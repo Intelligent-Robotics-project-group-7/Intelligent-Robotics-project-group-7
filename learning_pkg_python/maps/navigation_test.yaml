@@ -1,0 +1,12 @@
+# 这是地图元数据，不是 nav2_test.yaml 导航参数。
+# 图片路径相对于本 YAML 文件，因此两者放在同一个 maps 文件夹。
+image: navigation_test.pgm
+mode: trinary
+# 每个像素表示 0.05 m × 0.05 m。
+resolution: 0.05
+# 图片左下角在地图坐标中的 [x, y, yaw]，单位米、弧度。
+origin: [-12.0, -10.0, 0.0]
+# 黑色是障碍，白色是空闲，灰色是未知。
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25

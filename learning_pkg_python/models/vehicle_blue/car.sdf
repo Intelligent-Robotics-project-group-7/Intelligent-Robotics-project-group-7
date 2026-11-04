@@ -1,0 +1,295 @@
+<?xml version="1.0"?>
+<sdf version="1.8">
+  <model name='vehicle_blue' canonical_link='chassis'>
+    
+    <!-- odm -->
+    <plugin
+        filename="gz-sim-diff-drive-system"
+        name="gz::sim::systems::DiffDrive">
+        <left_joint>left_wheel_joint</left_joint>
+        <right_joint>right_wheel_joint</right_joint>
+        <wheel_separation>1.2</wheel_separation>
+        <wheel_radius>0.4</wheel_radius>
+        
+        <!-- topic init-->
+        <topic>/model/vehicle_blue/cmd_vel</topic>
+        <odom_topic>/model/vehicle_blue/odometry</odom_topic>
+        <tf_topic>/model/vehicle_blue/tf</tf_topic>
+        <frame_id>odom</frame_id>
+        <child_frame_id>base_link</child_frame_id>
+        <odom_publish_frequency>30</odom_publish_frequency> <!--odom publish frequency-->
+    </plugin>
+    <!-- real odm -->
+    <plugin
+        filename="gz-sim-odometry-publisher-system"
+        name="gz::sim::systems::OdometryPublisher">
+
+        <!-- 消息中的参考坐标系名称。 -->
+        <!-- 这个插件取得的是模型在Gazebo世界中的位姿。 -->
+        <odom_frame>world</odom_frame>
+
+        <!-- 被描述的坐标原点名称。 -->
+        <!-- 这里描述小车模型原点，不能只改名字就认为它是chassis原点。 -->
+        <robot_base_frame>vehicle_blue_origin</robot_base_frame>
+
+        <!-- 保留三维位置和朝向；后续平面实验主要使用x、y和yaw。 -->
+        <dimensions>3</dimensions>
+
+        <!-- 每秒仿真时间发布30次，方便与现有里程计记录比较。 -->
+        <odom_publish_frequency>30</odom_publish_frequency>
+
+        <!-- 不为真值输出主动添加高斯噪声。 -->
+        <gaussian_noise>0</gaussian_noise>
+
+        <!-- 不增加相对于模型原点的位置或旋转偏移。 -->
+        <xyz_offset>0 0 0</xyz_offset>
+        <rpy_offset>0 0 0</rpy_offset>
+
+        <!-- 使用独立话题，避免与原来的轮式里程计混在一起。 -->
+        <odom_topic>/model/vehicle_blue/ground_truth/odometry</odom_topic>
+
+        <!-- 协方差版本也使用独立话题；这一步暂不桥接它。 -->
+        <odom_covariance_topic>/model/vehicle_blue/ground_truth/odometry_with_covariance</odom_covariance_topic>
+
+        <!-- 插件同时产生的变换也使用独立话题。 -->
+        <!-- 这一步不将它桥接到ROS的/tf。 -->
+        <tf_topic>/model/vehicle_blue/ground_truth/tf</tf_topic>
+    </plugin>
+    <!--chassis-->
+    <link name='chassis'>
+        <pose relative_to='__model__'>0.5 0 0.4 0 0 0</pose>
+        <inertial> <!--inertial properties of the link mass, inertia matix-->
+            <mass>1.14395</mass>
+            <inertia>
+                <ixx>0.095329</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.381317</iyy>
+                <iyz>0</iyz>
+                <izz>0.476646</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <box>
+                    <size>2.0 1.0 0.5</size>
+                </box>
+            </geometry>
+            <!--Color of the link-->
+            <material>
+                <ambient>0.0 0.0 1.0 1</ambient>
+                <diffuse>0.0 0.0 1.0 1</diffuse>
+                <specular>0.0 0.0 1.0 1</specular>
+            </material>
+        </visual>
+        <!-- 车体的实体碰撞形状 -->
+        <collision name="collision">
+            <geometry>
+                <box>
+                    <!-- 长、宽、高，单位米。 -->
+                    <size>2.0 1.0 0.5</size>
+                </box>
+            </geometry>
+        </collision>
+       
+        <!-- lidar -->
+        <sensor name="lidar_sensor" type="gpu_lidar">
+            <!-- 雷达相对车体原点向上0.6米，没有额外旋转。 -->
+            <pose>0 0 0.60 0 0 0</pose>
+            <always_on>true</always_on>
+            <!-- 雷达10Hz；下面的IMU才使用50Hz。 -->
+            <update_rate>10</update_rate>
+            <visualize>false</visualize>
+            <topic>/model/vehicle_blue/scan</topic>
+            <gz_frame_id>laser_frame</gz_frame_id>
+            <lidar>
+                <scan>
+                    <horizontal>
+                        <!-- 360个采样方向，覆盖水平一整圈。 -->
+                        <samples>360</samples>
+                        <resolution>1</resolution>
+                        <min_angle>-3.141592653589793</min_angle>
+                        <max_angle>3.141592653589793</max_angle>
+                    </horizontal>
+                </scan>
+                <range>
+                    <!-- 最小、最大距离和距离分辨率参数，单位米。 -->
+                    <min>0.10</min>
+                    <max>12.0</max>
+                    <resolution>0.01</resolution>
+                </range>
+            </lidar>
+        </sensor>
+
+        <!-- IMU -->
+        <sensor name="imu_sensor" type="imu">
+            <!-- 两驱动轮中点相对chassis的位置。 -->
+            <pose>-0.5 0 0 0 0 0</pose>
+            <always_on>true</always_on>
+            <update_rate>50</update_rate>
+            <topic>/model/vehicle_blue/imu</topic>
+            <gz_frame_id>imu_link</gz_frame_id>
+            <imu>
+                <angular_velocity>
+                    <z>
+                        <!-- 对转向角速度添加零均值高斯测量噪声。 -->
+                        <noise type="gaussian">
+                            <mean>0</mean>
+                            <!-- 标准差单位为rad/s；不等于协方差。 -->
+                            <stddev>0.01</stddev>
+                        </noise>
+                    </z>
+                </angular_velocity>
+            </imu>
+        </sensor>
+    </link>
+
+    <!--Left wheel-->
+    <link name='left_wheel'>
+        <pose relative_to="chassis">-0.5 0.6 0 -1.5707 0 0</pose> <!--angles are in radian-->
+        <inertial>
+            <mass>1</mass>
+            <inertia>
+                <ixx>0.043333</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.043333</iyy>
+                <iyz>0</iyz>
+                <izz>0.08</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <cylinder>
+                    <radius>0.4</radius>
+                    <length>0.2</length>
+                </cylinder>
+            </geometry>
+            <material>
+                <ambient>1.0 0.0 0.0 1</ambient>
+                <diffuse>1.0 0.0 0.0 1</diffuse>
+                <specular>1.0 0.0 0.0 1</specular>
+            </material>
+        </visual>
+        <collision name='collision'>
+            <geometry>
+                <cylinder>
+                    <radius>0.4</radius>
+                    <length>0.2</length>
+                </cylinder>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--The same as left wheel but with different position-->
+    <link name='right_wheel'>
+        <pose relative_to="chassis">-0.5 -0.6 0 -1.5707 0 0</pose> <!--angles are in radian-->
+        <inertial>
+            <mass>1</mass>
+            <inertia>
+                <ixx>0.043333</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.043333</iyy>
+                <iyz>0</iyz>
+                <izz>0.08</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <cylinder>
+                    <radius>0.4</radius>
+                    <length>0.2</length>
+                </cylinder>
+            </geometry>
+            <material>
+                <ambient>1.0 0.0 0.0 1</ambient>
+                <diffuse>1.0 0.0 0.0 1</diffuse>
+                <specular>1.0 0.0 0.0 1</specular>
+            </material>
+        </visual>
+        <collision name='collision'>
+            <geometry>
+                <cylinder>
+                    <radius>0.4</radius>
+                    <length>0.2</length>
+                </cylinder>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--arbitrary frame-->
+    <frame name="caster_frame" attached_to='chassis'>
+        <pose>0.8 0 -0.2 0 0 0</pose>
+    </frame>
+
+    <!--caster wheel-->
+    <link name='caster'>
+        <pose relative_to='caster_frame'/>
+        <inertial>
+            <mass>1</mass>
+            <inertia>
+                <ixx>0.016</ixx>
+                <ixy>0</ixy>
+                <ixz>0</ixz>
+                <iyy>0.016</iyy>
+                <iyz>0</iyz>
+                <izz>0.016</izz>
+            </inertia>
+        </inertial>
+        <visual name='visual'>
+            <geometry>
+                <sphere>
+                    <radius>0.2</radius>
+                </sphere>
+            </geometry>
+            <material>
+                <ambient>0.0 1 0.0 1</ambient>
+                <diffuse>0.0 1 0.0 1</diffuse>
+                <specular>0.0 1 0.0 1</specular>
+            </material>
+        </visual>
+        <collision name='collision'>
+            <geometry>
+                <sphere>
+                    <radius>0.2</radius>
+                </sphere>
+            </geometry>
+        </collision>
+    </link>
+
+    <!--left wheel joint-->
+    <joint name='left_wheel_joint' type='revolute'>
+        <pose relative_to='left_wheel'/>
+        <parent>chassis</parent>
+        <child>left_wheel</child>
+        <axis>
+            <xyz expressed_in='__model__'>0 1 0</xyz> <!--can be descired to any frame or even arbitrary frames-->
+            <limit>
+                <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                <upper>1.79769e+308</upper>     <!--positive infinity-->
+            </limit>
+        </axis>
+    </joint>
+
+    <!--right wheel joint-->
+    <joint name='right_wheel_joint' type='revolute'>
+        <pose relative_to='right_wheel'/>
+        <parent>chassis</parent>
+        <child>right_wheel</child>
+        <axis>
+            <xyz expressed_in='__model__'>0 1 0</xyz>
+            <limit>
+                <lower>-1.79769e+308</lower>    <!--negative infinity-->
+                <upper>1.79769e+308</upper>     <!--positive infinity-->
+            </limit>
+        </axis>
+    </joint>
+
+    <!--caster wheel joint--> <!--pose default value is the child-->
+    <joint name='caster_wheel' type='ball'>
+        <parent>chassis</parent>
+        <child>caster</child>
+    </joint>
+  </model>
+</sdf>
