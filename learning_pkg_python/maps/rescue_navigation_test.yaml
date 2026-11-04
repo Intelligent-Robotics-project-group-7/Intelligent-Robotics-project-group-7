@@ -1,0 +1,12 @@
+# ZH: 这是地图元数据，不是 nav2_test.yaml 导航参数。 | EN: This file contains map metadata, not Nav2 navigation parameters.
+# ZH: 图片路径相对于本 YAML 文件，因此两者放在同一个 maps 文件夹。 | EN: The image path is relative to this YAML file; keep both files in the same maps directory.
+image: rescue_navigation_test.pgm
+mode: trinary
+# ZH: 每个像素表示 0.05 m × 0.05 m。 | EN: Each pixel represents a 0.05 m by 0.05 m ground area.
+resolution: 0.05
+# ZH: 图片左下角在地图坐标中的 [x, y, yaw]，单位米、弧度。 | EN: Map-frame pose [x, y, yaw] of the image lower-left origin, in meters and radians.
+origin: [-12.0, -10.0, 0.0]
+# ZH: 黑色是障碍，白色是空闲，灰色是未知。 | EN: Black denotes occupied space, white free space, and gray unknown space.
+negate: 0
+occupied_thresh: 0.65
+free_thresh: 0.25

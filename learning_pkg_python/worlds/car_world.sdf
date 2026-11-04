@@ -7,6 +7,7 @@
         </physics>
 
         <!-- 启动渲染传感器系统，用于生成GPU雷达,摄像头,IMU数据 -->
+        <!-- Start the rendering sensor system to generate GPU radar, camera, and IMU data -->
         <plugin
             filename="gz-sim-imu-system"
             name="gz::sim::systems::Imu">
@@ -71,9 +72,19 @@
 
         <!-- loading car models -->
         <include>
-            <uri>model://vehicle_blue</uri>
-            <name>vehicle_blue</name>            <!-- 生成位置 -->
-            <pose>0 0 0.02 0 0 0</pose>
+            <!-- 对应的小车模型名称 -->
+            <!-- The corresponding name of the car model -->
+            <uri>model://rescue_robot</uri>
+            <!-- <name>vehicle_blue</name> -->
+            <name>rescue_robot</name>
+
+            <!-- 生成位置 -->
+            <!-- Generation location -->
+            <!-- ZH: 出生在地图原点，车头朝 +x；位置和地图坐标直接对应。
+                 EN: Spawn at the map origin facing +x, with world 
+                 and test-map coordinates aligned. -->
+            <pose>0 0 0 0 0 0</pose>
+            
         </include>                      
         <!-- lidar test model -->
         <!-- <model name="lidar_target">  

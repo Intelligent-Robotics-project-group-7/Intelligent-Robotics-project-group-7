@@ -1,0 +1,275 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- ZH: 救援机器人候选 v1：仅使用基本几何，无 CAD 网格依赖。
+         EN: Rescue robot candidate v1: primitive geometry only; no CAD mesh dependency.
+         ZH: SDF 1.10 可由 Gazebo Harmonic 的 SDFormat 读取。
+         EN: Gazebo Harmonic supports SDF 1.10 through SDFormat.
+         ZH: base_link 在两驱动轮接地点的中点，x 前、y 左、z 上。
+         EN: base_link is midway between the drive-wheel ground contacts: x forward, y left, z up.
+         ZH: 这是待 Gazebo 验证的工程近似模型，不是真实硬件标定结果。
+         EN: This engineering approximation still requires Gazebo validation; it is not a calibrated hardware model. -->
+<sdf version="1.10">
+  <model name="rescue_robot" canonical_link="base_link">
+    <plugin filename="gz-sim-diff-drive-system" name="gz::sim::systems::DiffDrive">
+      <left_joint>left_wheel_joint</left_joint><right_joint>right_wheel_joint</right_joint>
+      <wheel_separation>0.43</wheel_separation><wheel_radius>0.10</wheel_radius>
+      <topic>/model/rescue_robot/cmd_vel</topic>
+      <!-- ZH: 原始轮式里程计单独桥接，带噪结果由 ROS 节点生成。
+         EN: Bridge raw wheel odometry separately; a ROS node generates the noisy output. -->
+      <odom_topic>/model/rescue_robot/odometry</odom_topic>
+      <!-- ZH: 此原始 TF 不桥接到 ROS，避免绕过噪声节点。
+         EN: Do not bridge this raw TF to ROS, so navigation cannot bypass the noise node. -->
+      <tf_topic>/model/rescue_robot/raw_wheel_tf</tf_topic>
+      <frame_id>odom</frame_id><child_frame_id>base_link</child_frame_id>
+      <odom_publish_frequency>30</odom_publish_frequency>
+    </plugin>
+    <!-- ZH: 世界真值独立输出，gaussian_noise=0；仅供离线评分。
+         EN: Publish world ground truth separately with gaussian_noise=0, for offline evaluation only. -->
+    <plugin filename="gz-sim-odometry-publisher-system" name="gz::sim::systems::OdometryPublisher">
+      <odom_frame>world</odom_frame><robot_base_frame>rescue_robot_origin</robot_base_frame>
+      <dimensions>3</dimensions><odom_publish_frequency>30</odom_publish_frequency>
+      <gaussian_noise>0</gaussian_noise><xyz_offset>0 0 0</xyz_offset><rpy_offset>0 0 0</rpy_offset>
+      <odom_topic>/model/rescue_robot/ground_truth/odometry</odom_topic>
+      <odom_covariance_topic>/model/rescue_robot/ground_truth/odometry_with_covariance</odom_covariance_topic>
+      <tf_topic>/model/rescue_robot/ground_truth/tf</tf_topic>
+    </plugin>
+    <link name="base_link">
+      <!-- ZH: 4 kg 是包含外壳、设备的近似质量；惯量按主体长方体估算，质心在 (0.08,0,0.18)。
+         EN: The approximate 4 kg mass includes the shell and equipment; box-based inertia uses a COM at (0.08,0,0.18) m. -->
+      <inertial><pose>0.08 0 0.18 0 0 0</pose><mass>4.0</mass>
+        <inertia><ixx>0.0517333333</ixx><iyy>0.1130666667</iyy><izz>0.1477333333</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia>
+      </inertial>
+      <!-- ZH: visual 定义外观；collision 定义简化的实体碰撞形状。
+         EN: visual defines appearance; collision defines simplified physical contact geometry. -->
+      <visual name="body">
+        <pose>0.08 0 0.18 0 0 0</pose>
+        <geometry><box><size>0.56 0.36 0.16</size></box></geometry>
+        <material><ambient>0.95 0.57 0.04 1</ambient><diffuse>0.95 0.57 0.04 1</diffuse></material>
+      </visual>
+      <visual name="lower_frame">
+        <pose>0.06 0 0.115 0 0 0</pose>
+        <geometry><box><size>0.48 0.32 0.045</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="front_bumper">
+        <pose>0.38 0 0.14 0 0 0</pose>
+        <geometry><box><size>0.04 0.42 0.08</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="rear_bumper">
+        <pose>-0.22 0 0.14 0 0 0</pose>
+        <geometry><box><size>0.04 0.42 0.08</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="equipment_box">
+        <pose>0.04 0 0.28 0 0 0</pose>
+        <geometry><box><size>0.22 0.24 0.04</size></box></geometry>
+        <material><ambient>0.30 0.34 0.38 1</ambient><diffuse>0.30 0.34 0.38 1</diffuse></material>
+      </visual>
+      <visual name="lidar_mast">
+        <pose>0.03 0 0.35 0 0 0</pose>
+        <geometry><cylinder><radius>0.018</radius><length>0.1</length></cylinder></geometry>
+        <material><ambient>0.30 0.34 0.38 1</ambient><diffuse>0.30 0.34 0.38 1</diffuse></material>
+      </visual>
+      <visual name="lidar_housing">
+        <pose>0.03 0 0.43 0 0 0</pose>
+        <geometry><cylinder><radius>0.045</radius><length>0.06</length></cylinder></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="lidar_band">
+        <pose>0.03 0 0.44 0 0 0</pose>
+        <geometry><cylinder><radius>0.046</radius><length>0.012</length></cylinder></geometry>
+        <material><ambient>0.95 0.57 0.04 1</ambient><diffuse>0.95 0.57 0.04 1</diffuse></material>
+      </visual>
+      <visual name="stereo_housing">
+        <pose>0.31 0 0.32 0 0 0</pose>
+        <geometry><box><size>0.18 0.2 0.08</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="beacon">
+        <pose>-0.12 0 0.34 0 0 0</pose>
+        <geometry><cylinder><radius>0.025</radius><length>0.05</length></cylinder></geometry>
+        <material><ambient>1.0 0.35 0.02 1</ambient><diffuse>1.0 0.35 0.02 1</diffuse></material>
+      </visual>
+      <visual name="side_panel_-1">
+        <pose>0.08 -0.183 0.19 0 0 0</pose>
+        <geometry><box><size>0.33 0.006 0.06</size></box></geometry>
+        <material><ambient>0.90 0.93 0.95 1</ambient><diffuse>0.90 0.93 0.95 1</diffuse></material>
+      </visual>
+      <visual name="camera_lens_-1">
+        <pose>0.409 -0.06 0.32 0 1.5707963267948966 0</pose>
+        <geometry><cylinder><radius>0.023</radius><length>0.018</length></cylinder></geometry>
+        <material><ambient>0.03 0.16 0.25 1</ambient><diffuse>0.03 0.16 0.25 1</diffuse></material>
+      </visual>
+      <visual name="caster_support_-1">
+        <pose>0.28 -0.025 0.09 0 0 0</pose>
+        <geometry><box><size>0.015 0.015 0.04</size></box></geometry>
+        <material><ambient>0.30 0.34 0.38 1</ambient><diffuse>0.30 0.34 0.38 1</diffuse></material>
+      </visual>
+      <visual name="hazard_-1_0">
+        <pose>-0.035 -0.188 0.19 0 0 0</pose>
+        <geometry><box><size>0.022 0.008 0.058</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="hazard_-1_1">
+        <pose>0.009999999999999995 -0.188 0.19 0 0 0</pose>
+        <geometry><box><size>0.022 0.008 0.058</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="hazard_-1_2">
+        <pose>0.05499999999999999 -0.188 0.19 0 0 0</pose>
+        <geometry><box><size>0.022 0.008 0.058</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="side_panel_1">
+        <pose>0.08 0.183 0.19 0 0 0</pose>
+        <geometry><box><size>0.33 0.006 0.06</size></box></geometry>
+        <material><ambient>0.90 0.93 0.95 1</ambient><diffuse>0.90 0.93 0.95 1</diffuse></material>
+      </visual>
+      <visual name="camera_lens_1">
+        <pose>0.409 0.06 0.32 0 1.5707963267948966 0</pose>
+        <geometry><cylinder><radius>0.023</radius><length>0.018</length></cylinder></geometry>
+        <material><ambient>0.03 0.16 0.25 1</ambient><diffuse>0.03 0.16 0.25 1</diffuse></material>
+      </visual>
+      <visual name="caster_support_1">
+        <pose>0.28 0.025 0.09 0 0 0</pose>
+        <geometry><box><size>0.015 0.015 0.04</size></box></geometry>
+        <material><ambient>0.30 0.34 0.38 1</ambient><diffuse>0.30 0.34 0.38 1</diffuse></material>
+      </visual>
+      <visual name="hazard_1_0">
+        <pose>-0.035 0.188 0.19 0 0 0</pose>
+        <geometry><box><size>0.022 0.008 0.058</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="hazard_1_1">
+        <pose>0.009999999999999995 0.188 0.19 0 0 0</pose>
+        <geometry><box><size>0.022 0.008 0.058</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <visual name="hazard_1_2">
+        <pose>0.05499999999999999 0.188 0.19 0 0 0</pose>
+        <geometry><box><size>0.022 0.008 0.058</size></box></geometry>
+        <material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material>
+      </visual>
+      <collision name="body">
+        <pose>0.08 0 0.18 0 0 0</pose>
+        <geometry><box><size>0.56 0.36 0.16</size></box></geometry>
+      </collision>
+      <collision name="lower_frame">
+        <pose>0.06 0 0.115 0 0 0</pose>
+        <geometry><box><size>0.48 0.32 0.045</size></box></geometry>
+      </collision>
+      <collision name="front_bumper">
+        <pose>0.38 0 0.14 0 0 0</pose>
+        <geometry><box><size>0.04 0.42 0.08</size></box></geometry>
+      </collision>
+      <collision name="rear_bumper">
+        <pose>-0.22 0 0.14 0 0 0</pose>
+        <geometry><box><size>0.04 0.42 0.08</size></box></geometry>
+      </collision>
+      <collision name="camera_housing_collision">
+        <pose>0.32 0 0.32 0 0 0</pose>
+        <geometry><box><size>0.2 0.21 0.09</size></box></geometry>
+      </collision>
+      <!-- ZH: 雷达平面高于全部车身附件，避免再次扫到自身。
+         EN: Place the scan plane above all body accessories to avoid self returns. -->
+      <sensor name="lidar_sensor" type="gpu_lidar">
+        <pose>0.03 0 0.48 0 0 0</pose><always_on>true</always_on><update_rate>10</update_rate>
+        <visualize>false</visualize><topic>/model/rescue_robot/scan</topic><gz_frame_id>laser_frame</gz_frame_id>
+        <lidar>
+          <scan><horizontal><samples>360</samples><resolution>1</resolution><min_angle>-3.141592653589793</min_angle><max_angle>3.141592653589793</max_angle></horizontal></scan>
+          <range><min>0.08</min><max>12.0</max><resolution>0.01</resolution></range>
+          <!-- ZH: 可控仿真测距噪声：标准差 1 cm，不是传感器实测参数。
+         EN: Controlled simulated range noise: 1 cm standard deviation, not a measured hardware specification. -->
+          <noise><type>gaussian</type><mean>0</mean><stddev>0.01</stddev></noise>
+        </lidar>
+      </sensor>
+      <!-- ZH: IMU 保留，当前 PF 主实验不要求额外融合 IMU。
+         EN: Retain the IMU interface; the main PF experiment does not require IMU fusion. -->
+      <sensor name="imu_sensor" type="imu">
+        <pose>0 0 0.10 0 0 0</pose><always_on>true</always_on><update_rate>50</update_rate>
+        <topic>/model/rescue_robot/imu</topic><gz_frame_id>imu_link</gz_frame_id>
+        <imu><angular_velocity><z><noise type="gaussian"><mean>0</mean><stddev>0.01</stddev></noise></z></angular_velocity></imu>
+      </sensor>
+      <!-- ZH: left 彩色相机：两个真实视点，物理间距为 0.12 m。
+         EN: Left color camera: two physical viewpoints separated by a 0.12 m baseline. -->
+      <sensor name="stereo_left" type="camera">
+        <!-- ZH: 相机渲染方向是 +x；图像消息通过 optical_frame_id 使用 ROS 光学坐标。
+         EN: Gazebo renders along +x; optical_frame_id labels image messages with the ROS optical frame. -->
+        <pose>0.421 0.06 0.32 0 0 0</pose>
+        <always_on>true</always_on><update_rate>10</update_rate>
+        <topic>/model/rescue_robot/stereo/left/image</topic>
+        <gz_frame_id>left_camera_optical_frame</gz_frame_id>
+        <camera name="left_camera">
+          <camera_info_topic>/model/rescue_robot/stereo/left/camera_info</camera_info_topic>
+          <optical_frame_id>left_camera_optical_frame</optical_frame_id>
+          <horizontal_fov>1.5707963267948966</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format><anti_aliasing>2</anti_aliasing></image>
+          <clip><near>0.05</near><far>15.0</far></clip>
+          <lens>
+            <type>gnomonical</type><scale_to_hfov>true</scale_to_hfov>
+            <!-- ZH: K：理想针孔相机内参，单位为像素。
+         EN: K: ideal pinhole-camera intrinsics, expressed in pixels. -->
+            <intrinsics><fx>320</fx><fy>320</fy><cx>320</cx><cy>240</cy><s>0</s></intrinsics>
+            <!-- ZH: P：右目的 tx=-fx*B=-320*0.12=-38.4；左目为 0。
+         EN: P: right-camera tx=-fx*B=-320*0.12=-38.4; left-camera tx=0. -->
+            <projection><p_fx>320</p_fx><p_fy>320</p_fy><p_cx>320</p_cx><p_cy>240</p_cy><tx>0</tx><ty>0</ty></projection>
+          </lens>
+        </camera>
+      </sensor>
+      <!-- ZH: right 彩色相机：两个真实视点，物理间距为 0.12 m。
+         EN: Right color camera: two physical viewpoints separated by a 0.12 m baseline. -->
+      <sensor name="stereo_right" type="camera">
+        <!-- ZH: 相机渲染方向是 +x；图像消息通过 optical_frame_id 使用 ROS 光学坐标。
+         EN: Gazebo renders along +x; optical_frame_id labels image messages with the ROS optical frame. -->
+        <pose>0.421 -0.06 0.32 0 0 0</pose>
+        <always_on>true</always_on><update_rate>10</update_rate>
+        <topic>/model/rescue_robot/stereo/right/image</topic>
+        <gz_frame_id>right_camera_optical_frame</gz_frame_id>
+        <camera name="right_camera">
+          <camera_info_topic>/model/rescue_robot/stereo/right/camera_info</camera_info_topic>
+          <optical_frame_id>right_camera_optical_frame</optical_frame_id>
+          <horizontal_fov>1.5707963267948966</horizontal_fov>
+          <image><width>640</width><height>480</height><format>R8G8B8</format><anti_aliasing>2</anti_aliasing></image>
+          <clip><near>0.05</near><far>15.0</far></clip>
+          <lens>
+            <type>gnomonical</type><scale_to_hfov>true</scale_to_hfov>
+            <!-- ZH: K：理想针孔相机内参，单位为像素。
+         EN: K: ideal pinhole-camera intrinsics, expressed in pixels. -->
+            <intrinsics><fx>320</fx><fy>320</fy><cx>320</cx><cy>240</cy><s>0</s></intrinsics>
+            <!-- ZH: P：右目的 tx=-fx*B=-320*0.12=-38.4；左目为 0。
+         EN: P: right-camera tx=-fx*B=-320*0.12=-38.4; left-camera tx=0. -->
+            <projection><p_fx>320</p_fx><p_fy>320</p_fy><p_cx>320</p_cx><p_cy>240</p_cy><tx>-38.4</tx><ty>0</ty></projection>
+          </lens>
+        </camera>
+      </sensor>
+    </link>
+    <link name="left_wheel">
+      <pose>0 0.215 0.10 -1.5707963267948966 0 0</pose>
+      <inertial><mass>0.25</mass><inertia><ixx>0.0007</ixx><iyy>0.0007</iyy><izz>0.00125</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+      <visual name="tire"><geometry><cylinder><radius>0.10</radius><length>0.06</length></cylinder></geometry><material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material></visual>
+      <collision name="tire_collision"><geometry><cylinder><radius>0.10</radius><length>0.06</length></cylinder></geometry></collision>
+    </link>
+    <joint name="left_wheel_joint" type="revolute">
+      <parent>base_link</parent><child>left_wheel</child>
+      <axis><xyz expressed_in="__model__">0 1 0</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis>
+    </joint>
+    <link name="right_wheel">
+      <pose>0 -0.215 0.10 -1.5707963267948966 0 0</pose>
+      <inertial><mass>0.25</mass><inertia><ixx>0.0007</ixx><iyy>0.0007</iyy><izz>0.00125</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+      <visual name="tire"><geometry><cylinder><radius>0.10</radius><length>0.06</length></cylinder></geometry><material><ambient>0.07 0.08 0.09 1</ambient><diffuse>0.07 0.08 0.09 1</diffuse></material></visual>
+      <collision name="tire_collision"><geometry><cylinder><radius>0.10</radius><length>0.06</length></cylinder></geometry></collision>
+    </link>
+    <joint name="right_wheel_joint" type="revolute">
+      <parent>base_link</parent><child>right_wheel</child>
+      <axis><xyz expressed_in="__model__">0 1 0</xyz><limit><lower>-1e16</lower><upper>1e16</upper></limit></axis>
+    </joint>
+    <!-- ZH: 前支撑球轮与左右驱动轮形成支撑三角，质心位于三角形内。
+         EN: The front ball caster and two drive wheels form a support triangle containing the modeled COM. -->
+    <link name="caster"><pose>0.28 0 0.035 0 0 0</pose>
+      <inertial><mass>0.10</mass><inertia><ixx>0.000049</ixx><iyy>0.000049</iyy><izz>0.000049</izz><ixy>0</ixy><ixz>0</ixz><iyz>0</iyz></inertia></inertial>
+      <visual name="caster_visual"><geometry><sphere><radius>0.035</radius></sphere></geometry><material><ambient>0.15 0.15 0.15 1</ambient><diffuse>0.15 0.15 0.15 1</diffuse></material></visual>
+      <collision name="caster_collision"><geometry><sphere><radius>0.035</radius></sphere></geometry></collision>
+    </link>
+    <joint name="caster_joint" type="ball"><parent>base_link</parent><child>caster</child></joint>
+  </model>
+</sdf>

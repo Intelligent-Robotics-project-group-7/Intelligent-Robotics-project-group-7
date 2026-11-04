@@ -1,46 +1,98 @@
-# ros2 bridge to gazebo
-- ros_topic_name: "/cmd_vel"
-  gz_topic_name: "/model/vehicle_blue/cmd_vel"
-  ros_type_name: "geometry_msgs/msg/Twist"
-  gz_type_name: "gz.msgs.Twist"
-  direction: ROS_TO_GZ
-
-- ros_topic_name: "/odom"
-  gz_topic_name: "/model/vehicle_blue/odometry"
-  ros_type_name: "nav_msgs/msg/Odometry"
-  gz_type_name: "gz.msgs.Odometry"
-  direction: GZ_TO_ROS
-
-- ros_topic_name: "/tf"
-  gz_topic_name: "/model/vehicle_blue/tf"
-  ros_type_name: "tf2_msgs/msg/TFMessage"
-  gz_type_name: "gz.msgs.Pose_V"
-  direction: GZ_TO_ROS
-
-# gazebo time
+# ZH: 本文件有意不桥接原始 TF；/odom 与 odom→base_link 由 noisy_odom_node.py 一起生成。 | EN: Raw TF is deliberately not bridged; noisy_odom_node.py generates both /odom and odom-to-base_link TF.
+# ZH: /camera/* 是左目的别名，不额外创建第三个相机。 | EN: /camera/* aliases the left camera; no third camera sensor is created.
+# ZH: 仿真时间供 ROS 节点共用。
+# EN: Simulation clock shared by ROS nodes.
 - ros_topic_name: "/clock"
   gz_topic_name: "/world/car_world/clock"
   ros_type_name: "rosgraph_msgs/msg/Clock"
   gz_type_name: "gz.msgs.Clock"
   direction: GZ_TO_ROS
 
-# ROS2 scaning topic
-- ros_topic_name: "/scan"
-  gz_topic_name: "/model/vehicle_blue/scan"
-  ros_type_name: "sensor_msgs/msg/LaserScan"
-  gz_type_name: "gz.msgs.LaserScan"
-  direction: GZ_TO_ROS
+# ZH: ROS 速度指令发送到 Gazebo 差速驱动。
+# EN: Send ROS velocity commands to the Gazebo differential drive.
+- ros_topic_name: "/cmd_vel"
+  gz_topic_name: "/model/rescue_robot/cmd_vel"
+  ros_type_name: "geometry_msgs/msg/Twist"
+  gz_type_name: "gz.msgs.Twist"
+  direction: ROS_TO_GZ
 
-# ROS2 real odm topic
-- ros_topic_name: "/ground_truth/odom"
-  gz_topic_name: "/model/vehicle_blue/ground_truth/odometry"
+# ZH: 原始轮式里程计进入噪声节点，不直接作为有噪基线。
+# EN: Feed raw wheel odometry to the noise node, rather than directly using it as the noisy baseline.
+- ros_topic_name: "/wheel/odometry_raw"
+  gz_topic_name: "/model/rescue_robot/odometry"
   ros_type_name: "nav_msgs/msg/Odometry"
   gz_type_name: "gz.msgs.Odometry"
   direction: GZ_TO_ROS
 
-# ROS2 IMU topic。
+# ZH: 世界真值只用于离线误差评估。
+# EN: Use world ground truth only for offline error evaluation.
+- ros_topic_name: "/ground_truth/odom"
+  gz_topic_name: "/model/rescue_robot/ground_truth/odometry"
+  ros_type_name: "nav_msgs/msg/Odometry"
+  gz_type_name: "gz.msgs.Odometry"
+  direction: GZ_TO_ROS
+
+# ZH: 二维激光距离扫描。
+# EN: 2D lidar range scans.
+- ros_topic_name: "/scan"
+  gz_topic_name: "/model/rescue_robot/scan"
+  ros_type_name: "sensor_msgs/msg/LaserScan"
+  gz_type_name: "gz.msgs.LaserScan"
+  direction: GZ_TO_ROS
+
+# ZH: 惯性测量数据，当前保留为可选接口。
+# EN: IMU measurements retained as an optional interface.
 - ros_topic_name: "/imu/data"
-  gz_topic_name: "/model/vehicle_blue/imu"
+  gz_topic_name: "/model/rescue_robot/imu"
   ros_type_name: "sensor_msgs/msg/Imu"
   gz_type_name: "gz.msgs.IMU"
   direction: GZ_TO_ROS
+
+# ZH: 双目左目彩色图像。
+# EN: Left color image of the stereo pair.
+- ros_topic_name: "/stereo/left/image_raw"
+  gz_topic_name: "/model/rescue_robot/stereo/left/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+
+# ZH: 左目内参与投影矩阵。
+# EN: Left-camera intrinsics and projection matrix.
+- ros_topic_name: "/stereo/left/camera_info"
+  gz_topic_name: "/model/rescue_robot/stereo/left/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+# ZH: 双目右目彩色图像。
+# EN: Right color image of the stereo pair.
+- ros_topic_name: "/stereo/right/image_raw"
+  gz_topic_name: "/model/rescue_robot/stereo/right/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+
+# ZH: 右目投影矩阵包含双目基线。
+# EN: Right-camera projection matrix includes the stereo baseline.
+- ros_topic_name: "/stereo/right/camera_info"
+  gz_topic_name: "/model/rescue_robot/stereo/right/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+
+# ZH: 复用左目图像作为原 RGB 接口。
+# EN: Reuse the left image for the original RGB interface.
+- ros_topic_name: "/camera/image_raw"
+  gz_topic_name: "/model/rescue_robot/stereo/left/image"
+  ros_type_name: "sensor_msgs/msg/Image"
+  gz_type_name: "gz.msgs.Image"
+  direction: GZ_TO_ROS
+
+# ZH: 复用左目相机标定信息。
+# EN: Reuse the left-camera calibration information.
+- ros_topic_name: "/camera/camera_info"
+  gz_topic_name: "/model/rescue_robot/stereo/left/camera_info"
+  ros_type_name: "sensor_msgs/msg/CameraInfo"
+  gz_type_name: "gz.msgs.CameraInfo"
+  direction: GZ_TO_ROS
+

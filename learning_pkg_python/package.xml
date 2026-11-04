@@ -11,8 +11,10 @@
   <license>TODO: License declaration</license>
 
   <!-- ROS 2 Python节点接口 -->
+  <!-- ROS 2 Python Node Interface -->
   <exec_depend>rclpy</exec_depend>
   <!-- 速度指令Twist的消息类型 -->
+  <!-- Message type of the speed command "Twist" -->
   <exec_depend>geometry_msgs</exec_depend>
 
 

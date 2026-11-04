@@ -8,11 +8,13 @@
     </physics>
 
     <!-- 物理、GUI 插入操作和场景显示所需的系统。 -->
+     <!-- The system required for physics, GUI insertion operations and scene display. -->
     <plugin filename="gz-sim-physics-system" name="gz::sim::systems::Physics"/>
     <plugin filename="gz-sim-user-commands-system" name="gz::sim::systems::UserCommands"/>
     <plugin filename="gz-sim-scene-broadcaster-system" name="gz::sim::systems::SceneBroadcaster"/>
 
     <!-- GPU 雷达依赖 Sensors 系统；IMU 使用独立的 Imu 系统。 -->
+     <!-- The GPU radar relies on the Sensors system; the IMU uses an independent Imu system. -->
     <plugin filename="gz-sim-sensors-system" name="gz::sim::systems::Sensors">
       <render_engine>ogre2</render_engine>
     </plugin>
@@ -40,16 +42,20 @@
       </link>
     </model>
 
-    <!-- 沿用原来的机器人模型；本测试包不另外复制机器人和传感器。 -->
     <!-- GZ_SIM_RESOURCE_PATH 必须包含 learning_pkg_python/models。 -->
+    <!-- GZ_SIM_RESOURCE_PATH should include learning_pkg_python/models -->
     <include>
-      <uri>model://vehicle_blue</uri>
-      <name>vehicle_blue</name>
+      <uri>model://rescue_robot</uri>
+      <name>rescue_robot</name>
       <!-- 出生在地图原点，车头朝 +x；位置和地图坐标直接对应。 -->
+      <!-- Born at the origin of the map, with the vehicle's 
+      front facing +x; the position is directly corresponding to the map coordinates. -->
       <pose>0 0 0 0 0 0</pose>
     </include>
 
     <!-- 静态物体：collision 决定碰撞，visual 决定显示和 GPU 雷达可见几何。 -->
+    <!-- Static objects: Collision determines the collision, and visual determines the display 
+     and the geometric shape visible to the GPU radar. -->
     <model name="wall_north">
       <static>true</static>
       <!-- x y z roll pitch yaw；盒子中心放在半个高度处，使底面接地。 -->
@@ -65,10 +71,9 @@
       </link>
     </model>
 
-    <!-- 静态物体：collision 决定碰撞，visual 决定显示和 GPU 雷达可见几何。 -->
     <model name="wall_south">
       <static>true</static>
-      <!-- x y z roll pitch yaw；盒子中心放在半个高度处，使底面接地。 -->
+      <!-- x y z roll pitch yaw -->
       <pose>0 -8 1.5 0 0 0</pose>
       <link name="link">
         <collision name="collision">
@@ -81,10 +86,9 @@
       </link>
     </model>
 
-    <!-- 静态物体：collision 决定碰撞，visual 决定显示和 GPU 雷达可见几何。 -->
     <model name="wall_east">
       <static>true</static>
-      <!-- x y z roll pitch yaw；盒子中心放在半个高度处，使底面接地。 -->
+      <!-- x y z roll pitch yaw -->
       <pose>10 0 1.5 0 0 0</pose>
       <link name="link">
         <collision name="collision">
@@ -97,10 +101,9 @@
       </link>
     </model>
 
-    <!-- 静态物体：collision 决定碰撞，visual 决定显示和 GPU 雷达可见几何。 -->
     <model name="wall_west">
       <static>true</static>
-      <!-- x y z roll pitch yaw；盒子中心放在半个高度处，使底面接地。 -->
+      <!-- x y z roll pitch yaw-->
       <pose>-10 0 1.5 0 0 0</pose>
       <link name="link">
         <collision name="collision">
@@ -113,10 +116,10 @@
       </link>
     </model>
 
-    <!-- 静态物体：collision 决定碰撞，visual 决定显示和 GPU 雷达可见几何。 -->
+   
     <model name="obstacle_a">
       <static>true</static>
-      <!-- x y z roll pitch yaw；盒子中心放在半个高度处，使底面接地。 -->
+      <!-- x y z roll pitch yaw-->
       <pose>4 0 1 0 0 0</pose>
       <link name="link">
         <collision name="collision">
@@ -129,10 +132,10 @@
       </link>
     </model>
 
-    <!-- 静态物体：collision 决定碰撞，visual 决定显示和 GPU 雷达可见几何。 -->
+
     <model name="obstacle_b">
       <static>true</static>
-      <!-- x y z roll pitch yaw；盒子中心放在半个高度处，使底面接地。 -->
+      <!-- x y z roll pitch yaw -->
       <pose>-3 4 1 0 0 0</pose>
       <link name="link">
         <collision name="collision">
