@@ -47,6 +47,8 @@
     <include>
       <uri>model://rescue_robot</uri>
       <name>rescue_robot</name>
+      <!-- <uri>model://vehicel_blue</uri> -->
+      <!-- <name>vehicel_blue</name> -->
       <!-- 出生在地图原点，车头朝 +x；位置和地图坐标直接对应。 -->
       <!-- Born at the origin of the map, with the vehicle's 
       front facing +x; the position is directly corresponding to the map coordinates. -->

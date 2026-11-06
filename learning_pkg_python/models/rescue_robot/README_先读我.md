@@ -78,40 +78,19 @@ DiffDrive 原始轮速里程计
 协方差由一阶线性化传播，未包括未建模的打滑、接触误差等；它不是完整硬件不确定性的标定值。
 seed=42 只固定该节点的随机抽样序列。丢帧、起始时刻、轨迹和 Gazebo 的 LiDAR 随机源仍影响整场实验可重复性。
 
-## 6. 放入 Ubuntu 工作空间
 
-把本包下列文件夹内容按同名目录复制进：
 
-```text
-/home/lucas/Documents/Intelligent Robot/rob_ws/src/learning_pkg_python/
-├── models/rescue_robot/car.sdf
-├── models/rescue_robot/model.config
-├── config/bridge_rescue.yaml
-├── config/odom_noise_rescue.yaml
-├── config/nav2_rescue.yaml
-├── launch/rescue_platform.launch.py
-├── learning_pkg_python/noisy_odom_node.py
-├── worlds/rescue_navigation_test.sdf
-└── maps/rescue_navigation_test.yaml、rescue_navigation_test.pgm
-```
-
-这些文件名与旧平台区分开。世界通过 model://rescue_robot 加载新目录，但实例名仍为 vehicle_blue，以保留已有 Gazebo 话题前缀。
-测试地图的墙和障碍物几何沿用之前场景；机器人变小不要求重新生成同一静态地图。
-
-## 7. 第一阶段：只看外观和运动稳定性
-
-结束旧 Gazebo 及旧桥接、静态 TF、定位和导航程序，然后在 Ubuntu 运行：
+## 第一阶段：只看外观和运动稳定性
 
 ```bash
 source /opt/ros/jazzy/setup.bash
 cd "$HOME/Documents/Intelligent Robot/rob_ws"
 ros2 launch "$PWD/src/learning_pkg_python/launch/rescue_platform.launch.py" start_bridge:=false
 ```
-
 这会加载新 Gazebo 场景，先观察：落地后是否稳定、车轮是否正确接地、外壳是否穿插、传感器是否被遮挡。
 PNG 预览是根据 SDF 几何生成的设计示意，不是这一阶段已通过的运行证据。
 
-## 8. 第二阶段：启动传感器与里程计接口
+## 第二阶段：启动传感器与里程计接口
 
 结束第一阶段的启动程序，在同一终端运行：
 
@@ -138,41 +117,4 @@ ros2 topic echo /stereo/right/image_raw --field header --once --qos-reliability 
 需要同时取样/录包比较左右图像时间戳，不能拿两条隔了几秒执行的 --once 命令判断同步情况。
 三个传感器更新频率和相机分辨率是起始值，实际负载需要在虚拟机中测量。改变双目分辨率/视场时，两目 K、P 必须配套更新。
 
-## 9. 第三阶段：重新验证导航
-min_x_velocity_threshold
-确认新底盘与传感器工作后，再分别启动下面三个终端（每个先 source ROS 并进入工作空间）：
 
-```bash
-ros2 launch nav2_bringup localization_launch.py \
-  map:="$PWD/src/learning_pkg_python/maps/rescue_navigation_test.yaml" \
-  params_file:="$PWD/src/learning_pkg_python/config/nav2_rescue.yaml" \
-  use_sim_time:=true autostart:=true use_composition:=False
-```
-
-```bash
-ros2 launch nav2_bringup navigation_launch.py \
-  params_file:="$PWD/src/learning_pkg_python/config/nav2_rescue.yaml" \
-  use_sim_time:=true autostart:=true use_composition:=False
-```
-
-```bash
-ros2 launch nav2_bringup rviz_launch.py use_sim_time:=true
-```
-
-AMCL 在这里用于调试固定地图导航；正式 PF 实验仍需替换其 map→odom 发布职责，并保持定位方法之外的条件一致。
-此包只是传感器/底盘候选平台，不代表未知环境 SLAM、目标识别、立体重建或正式评估已经完成。
-
-## 10. 依赖与验证范围
-
-沿用已安装的 ROS 2 Jazzy、现代 Gazebo、ros_gz_bridge、tf2_ros、Nav2，以及 rclpy、geometry_msgs、nav_msgs。
-如果以后安装为 ROS 包，需要在 package.xml 声明上述运行依赖，并在 setup.py 中安装 models、worlds、maps、config、launch 和 Python 模块。
-当前启动文件直接从源码目录定位资源，因此可先按上述方式验证。
-
-已完成：XML 格式检查、Python 语法检查、左右物理基线与 P[3]=-fx*B 的一致性检查、地图文件对应、打包完整性检查。
-未完成：Gazebo 加载/动力学、ROS 桥接运行、实际 CameraInfo 数值、左右同步、立体深度与新底盘导航的现场验证。
-
-参考实现与规范：
-- https://gazebosim.org/docs/harmonic/sensors/
-- https://github.com/gazebosim/gz-sensors/blob/gz-sensors8/src/CameraSensor.cc
-- https://github.com/gazebosim/sdformat/blob/sdf14/sdf/1.10/camera.sdf
-- https://github.com/gazebosim/gz-sim/blob/gz-sim8/src/systems/diff_drive/DiffDrive.cc
