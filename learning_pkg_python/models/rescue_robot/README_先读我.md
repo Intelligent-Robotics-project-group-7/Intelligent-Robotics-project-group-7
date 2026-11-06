@@ -88,33 +88,5 @@ cd "$HOME/Documents/Intelligent Robot/rob_ws"
 ros2 launch "$PWD/src/learning_pkg_python/launch/rescue_platform.launch.py" start_bridge:=false
 ```
 这会加载新 Gazebo 场景，先观察：落地后是否稳定、车轮是否正确接地、外壳是否穿插、传感器是否被遮挡。
-PNG 预览是根据 SDF 几何生成的设计示意，不是这一阶段已通过的运行证据。
-
-## 第二阶段：启动传感器与里程计接口
-
-结束第一阶段的启动程序，在同一终端运行：
-
-```bash
-ros2 launch "$PWD/src/learning_pkg_python/launch/rescue_platform.launch.py"
-```
-
-这一条启动 Gazebo、桥接、带噪里程计和全部传感器静态 TF。软件渲染默认开启；原生 GPU 可用时可按需传 software_rendering:=0。
-它不启动定位、SLAM 或导航。不要再单独运行旧桥接、旧 wheel_noise 或旧静态 TF。
-
-建议依次检查：
-
-```bash
-ros2 topic echo /odom --once
-ros2 run tf2_ros tf2_echo base_link laser_frame --ros-args -p use_sim_time:=true
-ros2 topic echo /scan --field ranges --once --qos-reliability best_effort
-ros2 topic echo /stereo/left/camera_info --once --qos-reliability best_effort
-ros2 topic echo /stereo/right/camera_info --once --qos-reliability best_effort
-ros2 topic echo /stereo/left/image_raw --field header --once --qos-reliability best_effort
-ros2 topic echo /stereo/right/image_raw --field header --once --qos-reliability best_effort
-```
-
-右目 CameraInfo 的 P 数组第 4 项应为 -38.4，左目为 0；左右图像 header 应对应各自 optical_frame。
-需要同时取样/录包比较左右图像时间戳，不能拿两条隔了几秒执行的 --once 命令判断同步情况。
-三个传感器更新频率和相机分辨率是起始值，实际负载需要在虚拟机中测量。改变双目分辨率/视场时，两目 K、P 必须配套更新。
 
 

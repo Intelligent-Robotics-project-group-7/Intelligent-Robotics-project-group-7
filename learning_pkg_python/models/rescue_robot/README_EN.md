@@ -69,6 +69,7 @@ Raw Gazebo TF is not bridged. Ground truth has zero configured noise and is not 
 
 These files use new names. `model://rescue_robot` selects the new model directory, while the instance name remains `vehicle_blue` to retain existing Gazebo topic prefixes. The test world retains the previous wall/obstacle layout, so its static occupancy map remains applicable.
 
+
 ## Stage 1: inspect appearance and stability
 
 Stop the old Gazebo, bridge, static TF, localization, and navigation processes. Run:
@@ -79,30 +80,4 @@ cd "$HOME/Documents/Intelligent Robot/rob_ws"
 ros2 launch "$PWD/src/learning_pkg_python/launch/rescue_platform.launch.py" start_bridge:=false
 ```
 
-Check that the robot settles stably, wheels contact the ground, geometry does not overlap incorrectly, and sensors are unobstructed. The included PNG is a geometry-based design preview, not a Gazebo runtime screenshot.
-
-## 8. Stage 2: verify sensor and odometry interfaces
-
-Stop the stage-1 launch, then run in the same terminal:
-
-```bash
-ros2 launch "$PWD/src/learning_pkg_python/launch/rescue_platform.launch.py"
-```
-
-This starts Gazebo, bridging, noisy odometry, and all sensor static TF publishers. It does not start SLAM, localization, or navigation. Do not additionally run the old bridge/noise/TF programs. Software rendering is enabled by default; use `software_rendering:=0` if suitable native graphics are available.
-
-In another sourced terminal, check:
-
-```bash
-ros2 topic echo /odom --once
-ros2 run tf2_ros tf2_echo base_link laser_frame --ros-args -p use_sim_time:=true
-ros2 topic echo /scan --field ranges --once --qos-reliability best_effort
-ros2 topic echo /stereo/left/camera_info --once --qos-reliability best_effort
-ros2 topic echo /stereo/right/camera_info --once --qos-reliability best_effort
-ros2 topic echo /stereo/left/image_raw --field header --once --qos-reliability best_effort
-ros2 topic echo /stereo/right/image_raw --field header --once --qos-reliability best_effort
-```
-
-Stop continuous `tf2_echo` with Ctrl+C before running the next check. Right CameraInfo P[3] should be -38.4 and left P[3] should be 0. Image headers should identify their respective optical frames. Record both streams together to assess synchronization; two sequential `--once` commands cannot establish timestamp agreement. Measure actual frame rates and VM workload.
-
-
+Check that the robot settles stably, wheels contact the ground, geometry does not overlap incorrectly, and sensors are unobstructed. 
