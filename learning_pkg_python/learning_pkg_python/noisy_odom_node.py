@@ -52,7 +52,7 @@ class NoisyOdometry(Node):
         self.bias_v = float(self.get_parameter('bias_v').value)
         self.bias_w = float(self.get_parameter('bias_w').value)
         if self.sigma_v < 0 or self.sigma_w < 0:
-            raise ValueError('噪声标准差不能为负。')
+            raise ValueError('The standard deviation of noise cannot be negative.噪声标准差不能为负。')
         self.seed = int(self.get_parameter('seed').value)
         self.reset_state()
         self.odom_pub = self.create_publisher(Odometry, '/odom', 10)
@@ -60,7 +60,7 @@ class NoisyOdometry(Node):
         self.tf_pub = TransformBroadcaster(self)
         self.sub = self.create_subscription(
             Odometry, '/wheel/odometry_raw', self.on_raw, qos_profile_sensor_data)
-        self.get_logger().info('带噪轮式里程计已启动；/odom 与 TF 使用同一积分状态。')
+        self.get_logger().info('The noisy wheeled odometer has been activated; /odom and TF use the same integrated state.带噪轮式里程计已启动；/odom 与 TF 使用同一积分状态。')
 
     def reset_state(self):
         self.rng = random.Random(self.seed)
@@ -74,7 +74,7 @@ class NoisyOdometry(Node):
         if self.previous_stamp is not None:
             dt = stamp - self.previous_stamp
             if dt < 0.0:
-                self.get_logger().warning('检测到仿真时间回跳：重置里程计；定位和导航也需重新初始化。')
+                self.get_logger().warning('A simulation time rollback has been detected: The odometer needs to be reset; positioning and navigation also need to be reinitialized.检测到仿真时间回跳：重置里程计；定位和导航也需重新初始化。')
                 self.reset_state()
             elif dt == 0.0:
                 return  # ZH: 重复时间戳不重复积分或抽取噪声。 | EN: Do not integrate again or draw new noise for a duplicate timestamp.

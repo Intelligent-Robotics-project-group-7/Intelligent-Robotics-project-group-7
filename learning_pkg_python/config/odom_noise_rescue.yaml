@@ -1,0 +1,9 @@
+# ZH: 新平台独立的测量噪声配置；以下是实验起始值，不是硬件标定结果。 | EN: Independent measurement-noise configuration: initial experiment settings, not hardware calibration.
+wheel_noise:
+  ros__parameters:
+    use_sim_time: true
+    sigma_v: 0.01  # ZH: 前进速度的独立高斯噪声标准差，m/s。 | EN: Standard deviation of independent Gaussian forward-speed noise, in m/s.
+    sigma_w: 0.02  # ZH: 转向角速度的独立高斯噪声标准差，rad/s。 | EN: Standard deviation of independent Gaussian yaw-rate noise, in rad/s.
+    bias_v: 0.0    # ZH: 固定速度偏置，m/s；第一版保持零。 | EN: Constant forward-speed bias in m/s; initially zero.
+    bias_w: 0.0    # ZH: 固定角速度偏置，rad/s；第一版保持零。 | EN: Constant yaw-rate bias in rad/s; initially zero.
+    seed: 42       # ZH: 仅控制本节点噪声序列，不保证整套仿真完全可重复。 | EN: Controls only this node's noise sequence; it does not guarantee whole-simulation repeatability.
