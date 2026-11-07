@@ -11,7 +11,7 @@
 
 ### 接口基线
 
-参考 TurtleBot4 官方 Jazzy 仿真桥接，将 **Gazebo 原生话题、ROS 话题、两端消息类型和传输方向**分别列出。组内代码以 ROS 侧接口为准。TurtleBot4 的官方仿真桥接提供 RGB、深度图和点云，本项目的视觉流程使用两路原图和标定计算视差。速度输入也以本车实际配置为准，本车 `/cmd_vel` 使用 `Twist`，TurtleBot4 官方 Jazzy Nav2 参数启用了带时间戳的速度指令。[TurtleBot4 官方桥接](https://github.com/turtlebot/turtlebot4_simulator/blob/jazzy/turtlebot4_gz_bringup/launch/ros_gz_bridge.launch.py) · [TurtleBot4 Jazzy 导航配置](https://github.com/turtlebot/turtlebot4/blob/jazzy/turtlebot4_navigation/config/nav2.yaml)
+本项目的接口基线以 `rescue_robot` 的 SDF 和 `config/bridge_rescue.yaml` 为准。桥接文件采用 ROS 2 Jazzy 的 `ros_gz_bridge` YAML 格式，逐项指定 **Gazebo 原生话题、ROS 话题、两端消息类型和传输方向**。组内代码使用 ROS 侧接口。`/cmd_vel` 使用 `geometry_msgs/msg/Twist`，双目处理从左右原始图像与标定计算视差，带噪 `/odom` 和 `odom → base_link` 由 `/wheel_noise` 发布。[ros_gz_bridge YAML 配置说明](https://github.com/gazebosim/ros_gz/blob/jazzy/ros_gz_bridge/README.md#example-5-configuring-the-bridge-via-yaml)
 
 组内确认 v1 后，换模型时保持公开的 ROS 话题、类型、单位、时间基准和坐标系语义一致。Gazebo 内部路径可以通过桥接调整。轮距、相机内参、传感器安装位置、帧率、噪声和车身轮廓属于车型参数。改动时同步更新 SDF、标定、TF 和相关配置，订阅程序从消息和 TF 读取实际值。
 
