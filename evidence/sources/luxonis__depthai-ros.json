@@ -1,0 +1,30 @@
+{
+  "full_name": "luxonis/depthai-ros",
+  "html_url": "https://github.com/luxonis/depthai-ros",
+  "default_branch": "develop",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2026-11-04T07:57:00Z",
+  "updated_at": "2026-11-08T23:58:44Z",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "description": "Official ROS Driver for DepthAI Sensors.",
+  "commit_sha": "3462a2fb92fccc4fc4123322a751aa4217a68505",
+  "commit_date": "2026-11-04T07:56:56Z",
+  "commit_subject": "Add option to use submodule for building in docker, update .gitignore",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/luxonis/depthai-ros/3462a2fb92fccc4fc4123322a751aa4217a68505/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/luxonis/depthai-ros/3462a2fb92fccc4fc4123322a751aa4217a68505/LICENSE"
+    }
+  ]
+}

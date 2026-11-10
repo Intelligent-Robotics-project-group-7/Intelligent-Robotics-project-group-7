@@ -1,0 +1,30 @@
+{
+  "full_name": "FoundationVision/ByteTrack",
+  "html_url": "https://github.com/FoundationVision/ByteTrack",
+  "default_branch": "main",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2024-06-19T11:45:05Z",
+  "updated_at": "2026-11-10T18:42:20Z",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "description": "[ECCV 2022] ByteTrack: Multi-Object Tracking by Associating Every Detection Box",
+  "commit_sha": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+  "commit_date": "2022-12-11T07:05:00Z",
+  "commit_subject": "Merge pull request #296 from SkalskiP/main",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/ifzhang/ByteTrack/d1bf0191adff59bc8fcfeaa0b33d3d1642552a99/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/ifzhang/ByteTrack/d1bf0191adff59bc8fcfeaa0b33d3d1642552a99/LICENSE"
+    }
+  ]
+}

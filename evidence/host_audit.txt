@@ -1,0 +1,60 @@
+2026-11-10T20:46:36+00:00
+john-VMware-Virtual-Platform
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04.1 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+Linux john-VMware-Virtual-Platform 7.0.0-42-generic #42-Ubuntu SMP PREEMPT_DYNAMIC Thu Oct 15 08:06:44 UTC 2026 x86_64 GNU/Linux
+uid=1000(john) gid=1000(john) groups=1000(john),4(adm),24(cdrom),27(sudo),30(dip),46(plugdev),100(users),111(lpadmin),114(lxd),115(docker)
+8
+               total        used        free      shared  buff/cache   available
+Mem:           7.2Gi       2.2Gi       1.2Gi       8.7Mi       4.1Gi       5.0Gi
+Swap:          4.0Gi       660Ki       4.0Gi
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/sda2        30G   21G  7.4G  74% /
+vmware
+00:0f.0 VGA compatible controller: VMware SVGA II Adapter
+Bus 001 Device 001: ID 1d6b:0002 Linux Foundation 2.0 root hub
+Bus 002 Device 001: ID 1d6b:0001 Linux Foundation 1.1 root hub
+Bus 002 Device 002: ID 0e0f:0003 VMware, Inc. Virtual Mouse
+Bus 002 Device 003: ID 0e0f:0002 VMware, Inc. Virtual USB Hub
+Client:
+ Version:           29.1.3
+ API version:       1.52
+ Go version:        go1.24.13
+ Git commit:        29.1.3-0ubuntu4.1
+ Built:             Wed Apr 29 16:40:20 2026
+ OS/Arch:           linux/amd64
+ Context:           default
+
+Server:
+ Engine:
+  Version:          29.1.3
+  API version:      1.52 (minimum version 1.44)
+  Go version:       go1.24.13
+  Git commit:       29.1.3-0ubuntu4.1
+  Built:            Wed Apr 29 16:40:20 2026
+  OS/Arch:          linux/amd64
+  Experimental:     false
+ containerd:
+  Version:          2.2.2
+  GitCommit:        
+ runc:
+  Version:          1.4.0-0ubuntu1
+  GitCommit:        
+ docker-init:
+  Version:          0.19.0
+  GitCommit:        
+REPOSITORY            TAG                    IMAGE ID                                                                  CREATED         SIZE
+turtlebot4-research   jazzy                  sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a   7 minutes ago   5.39GB
+ros                   jazzy-ros-base-noble   sha256:c26c86a28e1addf9d10a81232869791974a3f7907943d5634742b58b2f26e1a3   2 weeks ago     994MB
+ros                   jazzy-ros-base-noble   sha256:c32c73be42e13a8285e661865110efe3b36a517fe7c0cbc35da39bf3f097294c   2 weeks ago     1.91GB

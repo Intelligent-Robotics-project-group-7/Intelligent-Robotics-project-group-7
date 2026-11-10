@@ -1,0 +1,22 @@
+# Large downloads and local ROS build products
+/downloads/
+/build/
+/install/
+/log/
+/.ros/
+/.gz/
+
+# Python caches, local credentials and crash dumps
+**/__pycache__/
+*.py[cod]
+.venv/
+.env
+.env.*
+!.env.example
+/core
+core.*
+
+# Recordings are stored outside Git; commit their manifests and reports instead.
+*.bag
+*.db3
+*.mcap

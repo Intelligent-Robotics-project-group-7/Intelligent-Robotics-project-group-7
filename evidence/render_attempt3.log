@@ -1,0 +1,144 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2026-11-10-20-41-10-952121-42844b9e7a46-22
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [42]
+[INFO] [robot_state_publisher-2]: process started with pid [43]
+[INFO] [joint_state_publisher-3]: process started with pid [44]
+[INFO] [create-4]: process started with pid [46]
+[INFO] [parameter_bridge-5]: process started with pid [47]
+[INFO] [static_transform_publisher-6]: process started with pid [48]
+[INFO] [static_transform_publisher-7]: process started with pid [49]
+[robot_state_publisher-2] [WARN] [1794343271.475660224] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1794343271.475816902] [robot_state_publisher]: Robot initialized
+[static_transform_publisher-6] [INFO] [1794343271.479259918] [static_transform_publisher_r7PpUuH630mimIGt]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-6] rotation: ('0.499952', '-0.500000', '0.500000', '0.500048')
+[static_transform_publisher-6] from 'oakd_rgb_camera_optical_frame' to 'turtlebot4/oakd_rgb_camera_frame/rgbd_camera'
+[static_transform_publisher-7] [INFO] [1794343271.479846675] [static_transform_publisher_qgnkvfMaOwAP4CB3]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from 'rplidar_link' to 'turtlebot4/rplidar_link/rplidar'
+[create-4] [INFO] [1794343271.480841150] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[parameter_bridge-5] [INFO] [1794343271.503556710] [sensor_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343271.505003116] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (gz.msgs.Image) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343271.507191051] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (gz.msgs.Image) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343271.508011215] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (gz.msgs.CameraInfo) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343271.508980903] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (gz.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[joint_state_publisher-3] [INFO] [1794343271.814640223] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[joint_state_publisher-3] [INFO] [1794343271.948538177] [joint_state_publisher]: Got description, configuring robot
+[create-4] [INFO] [1794343271.965190977] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-4]: process has finished cleanly [pid 46]
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot4"]/joint[@name="wheel_drop_left_joint"]/physics/ode/provide_feedback:<urdf-string>:L0]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot4"]/joint[@name="wheel_drop_right_joint"]/physics/ode/provide_feedback:<urdf-string>:L0]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gazebo-1] [INFO] [1794343273.802343454] [gz_ros_control]: [gz_ros2_control] Fixed joint ['bumper_joint'] (Entity='97') is skipped.
+[gazebo-1] [INFO] [1794343273.802460971] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_caster_joint'] (Entity='98') is skipped.
+[gazebo-1] [INFO] [1794343273.802470164] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_bottom_weight_block_joint'] (Entity='99') is skipped.
+[gazebo-1] [INFO] [1794343273.802476889] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_top_weight_block_joint'] (Entity='100') is skipped.
+[gazebo-1] [INFO] [1794343273.802483146] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_bottom_weight_block_joint'] (Entity='101') is skipped.
+[gazebo-1] [INFO] [1794343273.802489214] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_top_weight_block_joint'] (Entity='102') is skipped.
+[gazebo-1] [INFO] [1794343273.802495351] [gz_ros_control]: [gz_ros2_control] Fixed joint ['imu_joint'] (Entity='103') is skipped.
+[gazebo-1] [INFO] [1794343273.802500574] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_center_left_joint'] (Entity='104') is skipped.
+[gazebo-1] [INFO] [1794343273.802506578] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_center_right_joint'] (Entity='105') is skipped.
+[gazebo-1] [INFO] [1794343273.802512555] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_left_joint'] (Entity='106') is skipped.
+[gazebo-1] [INFO] [1794343273.802518771] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_right_joint'] (Entity='107') is skipped.
+[gazebo-1] [INFO] [1794343273.802524617] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_left_joint'] (Entity='108') is skipped.
+[gazebo-1] [INFO] [1794343273.802530519] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_right_joint'] (Entity='109') is skipped.
+[gazebo-1] [INFO] [1794343273.802536349] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_side_left_joint'] (Entity='110') is skipped.
+[gazebo-1] [INFO] [1794343273.802542409] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_omni_joint'] (Entity='111') is skipped.
+[gazebo-1] [INFO] [1794343273.802547608] [gz_ros_control]: [gz_ros2_control] Fixed joint ['mouse_joint'] (Entity='112') is skipped.
+[gazebo-1] [INFO] [1794343273.802552841] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_tower_standoff_joint'] (Entity='113') is skipped.
+[gazebo-1] [INFO] [1794343273.802558655] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_tower_standoff_joint'] (Entity='114') is skipped.
+[gazebo-1] [INFO] [1794343273.802564669] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_camera_bracket_joint'] (Entity='115') is skipped.
+[gazebo-1] [INFO] [1794343273.802570670] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_joint'] (Entity='116') is skipped.
+[gazebo-1] [INFO] [1794343273.802576074] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_imu_joint'] (Entity='117') is skipped.
+[gazebo-1] [INFO] [1794343273.802581226] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_left_camera_joint'] (Entity='118') is skipped.
+[gazebo-1] [INFO] [1794343273.802587022] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_left_camera_optical_joint'] (Entity='119') is skipped.
+[gazebo-1] [INFO] [1794343273.802592897] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_rgb_camera_joint'] (Entity='120') is skipped.
+[gazebo-1] [INFO] [1794343273.802598664] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_rgb_camera_optical_joint'] (Entity='121') is skipped.
+[gazebo-1] [INFO] [1794343273.802604489] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_right_camera_joint'] (Entity='122') is skipped.
+[gazebo-1] [INFO] [1794343273.802610330] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_right_camera_optical_joint'] (Entity='123') is skipped.
+[gazebo-1] [INFO] [1794343273.802616143] [gz_ros_control]: [gz_ros2_control] Fixed joint ['rear_left_tower_standoff_joint'] (Entity='124') is skipped.
+[gazebo-1] [INFO] [1794343273.802622069] [gz_ros_control]: [gz_ros2_control] Fixed joint ['rear_right_tower_standoff_joint'] (Entity='125') is skipped.
+[gazebo-1] [INFO] [1794343273.802627993] [gz_ros_control]: [gz_ros2_control] Fixed joint ['rplidar_joint'] (Entity='126') is skipped.
+[gazebo-1] [INFO] [1794343273.802633048] [gz_ros_control]: [gz_ros2_control] Fixed joint ['tower_sensor_plate_joint'] (Entity='127') is skipped.
+[gazebo-1] [INFO] [1794343273.803206996] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1794343273.813823129] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1794343273.813877782] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1794343273.819073548] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1794343273.819143205] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343274.819315054] [controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [INFO] [1794343275.223242287] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1794343275.223352176] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1794343275.228087709] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1794343275.228171877] [gz_ros_control]: Loading joint: left_wheel_joint
+[gazebo-1] [INFO] [1794343275.228181901] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794343275.228207289] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794343275.228230979] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794343275.228241113] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794343275.228246322] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794343275.228456457] [gz_ros_control]: Loading sensor: imu
+[gazebo-1] [INFO] [1794343275.228481473] [gz_ros_control]: 	State:
+[gazebo-1] [WARN] [1794343275.228684520] [gz_ros_control]: IMU sensor 'imu' not found in hardware_info, skipping.
+[gazebo-1] [INFO] [1794343275.228793763] [controller_manager]: Initialize hardware 'left_wheel_controller' 
+[gazebo-1] [WARN] [1794343275.228812265] [controller_manager.hardware_component.system.left_wheel_controller]: Executor is not available during hardware component initialization for 'left_wheel_controller'. Skipping node creation!
+[gazebo-1] [INFO] [1794343275.228863182] [controller_manager]: Successful initialization of hardware 'left_wheel_controller'
+[gazebo-1] [INFO] [1794343275.229122465] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1794343275.229162815] [gz_ros_control]: Loading joint: right_wheel_joint
+[gazebo-1] [INFO] [1794343275.229177858] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794343275.229183691] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794343275.229188935] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794343275.229194621] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794343275.229199357] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794343275.229212469] [gz_ros_control]: Loading sensor: imu
+[gazebo-1] [INFO] [1794343275.229218438] [gz_ros_control]: 	State:
+[gazebo-1] [WARN] [1794343275.229223672] [gz_ros_control]: IMU sensor 'imu' not found in hardware_info, skipping.
+[gazebo-1] [INFO] [1794343275.229244857] [controller_manager]: Initialize hardware 'right_wheel_controller' 
+[gazebo-1] [WARN] [1794343275.229253576] [controller_manager.hardware_component.system.right_wheel_controller]: Executor is not available during hardware component initialization for 'right_wheel_controller'. Skipping node creation!
+[gazebo-1] [INFO] [1794343275.229269750] [controller_manager]: Successful initialization of hardware 'right_wheel_controller'
+[gazebo-1] [INFO] [1794343275.229359700] [controller_manager]: Activating component 'right_wheel_controller'.
+[gazebo-1] [INFO] [1794343275.229383012] [resource_manager]: 'configure' hardware 'right_wheel_controller' 
+[gazebo-1] [INFO] [1794343275.229389016] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1794343275.229395856] [resource_manager]: Successful 'configure' of hardware 'right_wheel_controller'
+[gazebo-1] [INFO] [1794343275.229402678] [resource_manager]: 'activate' hardware 'right_wheel_controller' 
+[gazebo-1] [INFO] [1794343275.229416243] [resource_manager]: Successful 'activate' of hardware 'right_wheel_controller'
+[gazebo-1] [INFO] [1794343275.229501400] [controller_manager]: Activating component 'left_wheel_controller'.
+[gazebo-1] [INFO] [1794343275.229517906] [resource_manager]: 'configure' hardware 'left_wheel_controller' 
+[gazebo-1] [INFO] [1794343275.229521684] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1794343275.229547895] [resource_manager]: Successful 'configure' of hardware 'left_wheel_controller'
+[gazebo-1] [INFO] [1794343275.229552324] [resource_manager]: 'activate' hardware 'left_wheel_controller' 
+[gazebo-1] [INFO] [1794343275.229556674] [resource_manager]: Successful 'activate' of hardware 'left_wheel_controller'
+[gazebo-1] [WARN] [1794343275.229573486] [controller_manager]: Component 'right_wheel_controller' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [WARN] [1794343275.229579880] [controller_manager]: Component 'left_wheel_controller' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1794343275.229586531] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...
+[gazebo-1] [ERROR] [1794343275.921478624] [gz_ros_control]: Desired controller update period (0.001 s) is faster than the gazebo simulation period (0.005 s).
+[gazebo-1] [1;31m[Err] [OgreRenderEngine.cc:358] [0m[1;31mUnable to open display: [0m[1;31m[0m
+[gazebo-1] terminate called after throwing an instance of 'Ogre::RenderingAPIException'
+[gazebo-1]   what():  OGRE EXCEPTION(3:RenderingAPIException): Couldn`t open X display  in GLXGLSupport::getGLDisplay at ./RenderSystems/GL/src/GLX/OgreGLXGLSupport.cpp (line 807)
+[gazebo-1] Stack trace (most recent call last) in thread 175:
+[gazebo-1] #24   Object "[0xffffffffffffffff]", at 0xffffffffffffffff, in 
+[gazebo-1] #23   Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77e1a5ae4cc3, in __clone
+[gazebo-1] #22   Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77e1a5a57b83, in 
+[gazebo-1] #21   Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77e1a0f65db3, in 
+[gazebo-1] #20   Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/libgz-sim-sensors-system.so", at 0x77e17e37d729, in gz::sim::v8::systems::SensorsPrivate::RenderThread()
+[gazebo-1] #19   Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/gz-sim-8/plugins/libgz-sim-sensors-system.so", at 0x77e17e37cd3b, in gz::sim::v8::systems::SensorsPrivate::WaitForInit()
+[gazebo-1] #18   Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8-rendering.so.8", at 0x77e17e2d5af9, in gz::sim::v8::RenderUtil::Init()
+[gazebo-1] #17   Object "/opt/ros/jazzy/opt/gz_rendering_vendor/lib/libgz-rendering8.so.8", at 0x77e17e1602b2, in gz::rendering::v8::RenderEngineManager::Engine(std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+[gazebo-1] #16   Object "/opt/ros/jazzy/opt/gz_rendering_vendor/lib/libgz-rendering8.so.8", at 0x77e17e15fffb, in gz::rendering::v8::RenderEngineManagerPrivate::Engine(EngineInfo, std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > const&, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const&)
+[gazebo-1] #15   Object "/opt/ros/jazzy/opt/gz_rendering_vendor/lib/libgz-rendering8.so.8", at 0x77e17e168617, in gz::rendering::v8::BaseRenderEngine::Load(std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > const&)
+[gazebo-1] #14   Object "/opt/ros/jazzy/opt/gz_rendering_vendor/lib/gz-rendering-8/engine-plugins/libgz-rendering-ogre.so", at 0x77e1481f15d2, in gz::rendering::v8::OgreRenderEngine::LoadImpl(std::map<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> >, std::less<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > >, std::allocator<std::pair<std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > const, std::__cxx11::basic_string<char, std::char_traits<char>, std::allocator<char> > > > > const&)
+[gazebo-1] #13   Object "/opt/ros/jazzy/opt/gz_rendering_vendor/lib/gz-rendering-8/engine-plugins/libgz-rendering-ogre.so", at 0x77e1481f10e3, in gz::rendering::v8::OgreRenderEngine::LoadAttempt()
+[gazebo-1] #12   Object "/opt/ros/jazzy/opt/gz_rendering_vendor/lib/gz-rendering-8/engine-plugins/libgz-rendering-ogre.so", at 0x77e1481f4cf2, in gz::rendering::v8::OgreRenderEngine::LoadPlugins()
+[gazebo-1] #11   Object "/usr/lib/x86_64-linux-gnu/OGRE-1.9.0/RenderSystem_GL.so", at 0x77e0e01d1cb4, in dllStartPlugin
+[gazebo-1] #10   Object "/lib/x86_64-linux-gnu/libOgreMain.so.1.9.0", at 0x77e1045dedd3, in Ogre::Root::installPlugin(Ogre::Plugin*)
+[gazebo-1] #9    Object "/usr/lib/x86_64-linux-gnu/OGRE-1.9.0/RenderSystem_GL.so", at 0x77e0e01917e7, in 
+[gazebo-1] #8    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x77e1a0e6e5cc, in _Unwind_Resume
+[gazebo-1] #7    Object "/lib/x86_64-linux-gnu/libgcc_s.so.1", at 0x77e1a0e6db05, in 
+[gazebo-1] #6    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77e1a0f338b9, in __gxx_personality_v0
+[gazebo-1] #5    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77e1a0f1e8e5, in __cxa_call_terminate
+[gazebo-1] #4    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77e1a0f340d9, in 
+[gazebo-1] #3    Object "/lib/x86_64-linux-gnu/libstdc++.so.6", at 0x77e1a0f1eff4, in 
+[gazebo-1] #2    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77e1a59e38fe, in abort
+[gazebo-1] #1    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77e1a5a0027d, in gsignal
+[gazebo-1] #0    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x77e1a5a59c0c, in pthread_kill
+[gazebo-1] Aborted (Signal sent by tkill() 45 1000)
+[gazebo-1] Aborted (core dumped)
+[ERROR] [gazebo-1]: process has died [pid 42, exit code 134, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim -r -s --headless-rendering /workspace/worlds/camera_smoke.sdf --force-version 8'].
