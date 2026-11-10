@@ -1,10 +1,10 @@
 #!/usr/bin/env bash
 set -euo pipefail
-project_dir="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
-cd "$project_dir"
-docker run --rm --init --network none --cap-drop ALL --security-opt no-new-privileges \
-  --pids-limit 1024 --memory 4g --cpus 4 \
-  --mount "type=bind,src=$project_dir,dst=/workspace" turtlebot4-research:jazzy \
+source "$(dirname "${BASH_SOURCE[0]}")/container_common.sh"
+tb4_check_image
+tb4_check_perception
+cd "$TB4_PROJECT_DIR"
+docker run "${tb4_docker_args[@]}" --network none "$TB4_IMAGE" \
   bash -lc 'source /opt/ros/jazzy/setup.bash
     python3 /workspace/scripts/compare_hog_baseline.py &&
     bash /workspace/scripts/run_offline_benchmark.sh &&

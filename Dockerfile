@@ -8,13 +8,16 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ros-jazzy-image-transport \
     ros-jazzy-vision-msgs \
     python3-colcon-common-extensions \
-    python3-pytest git cmake xvfb xauth mesa-utils libgl1-mesa-dri \
+    python3 python3-numpy python3-opencv python3-pytest \
+    build-essential git cmake curl ca-certificates libcurl4-openssl-dev \
+    xvfb xauth mesa-utils libgl1-mesa-dri \
     && rm -rf /var/lib/apt/lists/*
-RUN if ! getent passwd 1000 >/dev/null; then useradd -m -u 1000 researcher; fi
 ENV ROS_DOMAIN_ID=84 \
     ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST \
     LIBGL_ALWAYS_SOFTWARE=1 \
-    QT_X11_NO_MITSHM=1
+    QT_X11_NO_MITSHM=1 \
+    HOME=/tmp
 WORKDIR /workspace
-USER 1000:1000
+# Safe numeric default; host wrappers override it with the caller's UID/GID.
+USER 65532:65532
 CMD ["bash"]
