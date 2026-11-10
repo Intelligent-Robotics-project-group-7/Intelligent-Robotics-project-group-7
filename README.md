@@ -8,7 +8,8 @@ The original six-scene benchmark contains 360 frames and 322 visible person anno
 
 - An x86_64 Ubuntu 24.04 or 26.04 Linux host/VM, an existing non-root account, and sudo access for host setup. ROS runs inside an Ubuntu 24.04 container. Native Windows/macOS, ARM, and physical cameras are outside the validated setup; on Windows, use an Ubuntu VM.
 - Recommended host resources: 8 vCPUs, 8GB RAM, and at least 16GB free disk space before installation. Runtime containers use at most 4 CPUs and 4GiB RAM. Software rendering shares the CPU with inference and may run slower than real time.
-- A working Docker daemon and permission for your normal user to access it. The bootstrap below installs Ubuntu's Docker package if Docker is absent, preserves an existing Docker installation, and adds the selected account to the docker group. Docker-group membership grants administrator-equivalent host access.
+- A working local Docker daemon and permission for your normal user to access it. The bootstrap below installs Ubuntu's Docker package if Docker is absent, preserves an existing Docker installation, and adds the selected account to the docker group. Docker-group membership grants administrator-equivalent host access.
+- GitHub access to this repository. If HTTPS cloning requests authentication, configure your own Git credentials with repository access, or use the SSH URL with your registered key. Installation scripts do not contain or configure GitHub credentials.
 - Internet access during installation to Docker Hub, Ubuntu/ROS apt repositories, GitHub and its release assets, Hugging Face, and Gazebo Fuel. No API keys are required for the public inputs. Runtime evaluation uses `--network none` and downloads nothing.
 - Use a local Linux filesystem for the clone, with a writable checkout. Spaces in the directory name are supported; commas are rejected because of Docker bind-mount syntax. Run project scripts as your normal user, not with sudo.
 
@@ -31,6 +32,8 @@ cd robot-cv
 # One-time host setup; automatically selects the account invoking sudo
 sudo bash scripts/bootstrap_host.sh
 ```
+
+If your account uses SSH authentication, replace the clone URL above with `git@github.com:Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7.git` and keep `--branch robot-CV --single-branch`.
 
 Log out and back in, or disconnect and reconnect SSH, to activate docker-group membership. Return to your clone directory, then confirm Docker access:
 
@@ -65,6 +68,7 @@ Inspect the generated results:
 - `evidence/sensor_smoke.json`: `pass` must be true; includes received messages and sensor checks.
 - `evidence/phase2/detection_report.json`: six scenes, frame counts, precision/recall, and conditional uncertainty. The baseline target is 60 paired frames per scene; simulated rendering can vary between runs.
 - `evidence/phase2/offline_roundtrip.json`: replay timeouts must be zero; timing excludes sensor acquisition.
+- `evidence/install_check.json`: final pass/fail, runtime UID/GID, case coverage, and image-hash verification summary.
 - `evidence/phase2/detection_contact_sheet.png`: green predictions and blue independent ground-truth boxes.
 - `evidence/phase2/provenance.json`: actual image, software, asset, and project provenance.
 
@@ -81,7 +85,7 @@ bash scripts/setup_perception.sh
 bash scripts/run_person_suite.sh
 bash scripts/analyze_person_suite.sh
 
-# Optional interactive shell; omit -it when called without a terminal
+# Optional interactive shell; the wrapper automatically detects a terminal
 bash scripts/run_env.sh bash
 ```
 

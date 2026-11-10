@@ -1,0 +1,136 @@
+{
+  "validated_utc": "2026-11-10T23:26:29.778407+00:00",
+  "candidate_commit": "0d4fe9299708bbc5a70a140089c9689ca058c428",
+  "account": "replica",
+  "uid": 2001,
+  "gid": 2001,
+  "checkout_directory_contains_spaces": true,
+  "source_delivery": "Fresh Git clone from candidate bundle; anonymous HTTPS clone required authentication",
+  "client_os": "Ubuntu 24.04, freshly pulled container",
+  "host_os": "Ubuntu 26.04.1 VMware",
+  "reused": [
+    "Host Docker daemon",
+    "Immutable ROS base-image layers, manifest refreshed with --pull"
+  ],
+  "not_reused": [
+    "Application image build cache (--no-cache)",
+    "Original project download cache",
+    "ROS build/install/log directories",
+    "Original generated image dataset"
+  ],
+  "bootstrap": "Fresh Docker CLI/package installation; implicit and explicit replica account; repeat setup passed",
+  "build_command": "bash scripts/install.sh --no-cache --pull",
+  "verification_command": "bash scripts/verify_install.sh",
+  "image_id": "sha256:8f1c73a331276d26a47c0cd7c738ea59edbd439bb6fc0f903c486d27d54d4d7c",
+  "image_size_bytes": 1221354036,
+  "install_checks": {
+    "pass": true,
+    "runtime_uid": 2001,
+    "runtime_gid": 2001,
+    "sensor_checks": 9,
+    "cases": [
+      {
+        "case": "empty",
+        "frames": 60,
+        "prediction_coverage": 1.0
+      },
+      {
+        "case": "single_front",
+        "frames": 60,
+        "prediction_coverage": 1.0
+      },
+      {
+        "case": "single_far_back",
+        "frames": 60,
+        "prediction_coverage": 1.0
+      },
+      {
+        "case": "two_crossing",
+        "frames": 60,
+        "prediction_coverage": 1.0
+      },
+      {
+        "case": "partial_occlusion",
+        "frames": 60,
+        "prediction_coverage": 1.0
+      },
+      {
+        "case": "exit_return",
+        "frames": 60,
+        "prediction_coverage": 1.0
+      }
+    ],
+    "captured_image_hashes_verified": 360,
+    "replay_samples": 120,
+    "replay_timeouts": 0,
+    "phase3_started": false
+  },
+  "detection_results": {
+    "frames": 360,
+    "ground_truth_instances": 322,
+    "tp": 252,
+    "fp": 0,
+    "fn": 70,
+    "precision": 1.0,
+    "recall": 0.782608695652174,
+    "negative_frames": 98,
+    "negative_frames_with_false_positives": 0
+  },
+  "replay": {
+    "mode": "sequential one-in-flight ROS roundtrip, max_fps=0, two ONNX threads, no Gazebo",
+    "scope": "RGB publish to standard detection receipt; excludes PNG decode, message creation and sensor acquisition",
+    "samples_requested": 120,
+    "timeouts": 0,
+    "warmup_samples_excluded": 5,
+    "measured_samples": 115,
+    "p50_ms": 34.119711999665014,
+    "p95_ms": 37.48365019928315,
+    "p99_ms": 39.10158264061465,
+    "reciprocal_mean_roundtrip_hz": 29.182687638561355,
+    "robot_motion_commands_sent": false
+  },
+  "scope": "Phase 1 sensors and Phase 2 2D detection only; no Phase 3, tracking, navigation, or robot motion",
+  "limits": [
+    "Not a new VM or newly started Docker daemon",
+    "systemd daemon-start branch not exercised inside the disposable Ubuntu client",
+    "Source code access requires the reader own GitHub repository permissions",
+    "apt repositories and upstream dependency tags can change"
+  ],
+  "project_sha256": {
+    "scripts/analyze_person_suite.sh": "eb89462d49a8a5e051179ecc29abaae33f0dcc2894febf21867f99ff9612f791",
+    "scripts/audit_environment.sh": "d7b26bc735acab10d345fe0f2d51441e24da736e9fa62f2460b87fab7377bfd5",
+    "scripts/audit_host.sh": "22114afb607c569f9ed6d8b8956691ee0e47cc5aea55874bf59a3b89d6eafd67",
+    "scripts/benchmark_person_pipeline.py": "1494f3912cbfa834c4b03a771e028340b0193610374454ec1253664483f83a8d",
+    "scripts/bootstrap_host.sh": "e01d21d721c9c22627da09f3ae51967f06ba278e1c3b74ad18e4690b35b6f3c7",
+    "scripts/build_env.sh": "4654fbd8cf49d5f33f955aa11a7d2aa052787b1246c97540c761f6994e359da4",
+    "scripts/build_perception.sh": "b862a6d01e50fd8c9e3820e8e9b052d906f4882a3caf9f1b7bdb2665fe1d439b",
+    "scripts/capture_sensor_smoke.py": "469dc265debab33b739ea302f94171645e7b2c3763a21e759379c2a0c86aa02e",
+    "scripts/check_dependencies.sh": "bbbfbab0dcf624c5b4049832f729872ffded2acaccfc14a05f8166c8762a0511",
+    "scripts/check_install_results.py": "838d3ebe375bd7909d430e65dac7cbf178cc5fb1c90dbe112595311daff4e197",
+    "scripts/collect_person_detection.py": "237cce779d97bdf31c2f651cfb546fbcb1f3493d0d06a36e04414cf575873794",
+    "scripts/compare_hog_baseline.py": "6e451a622f9d2706415880d6c4633387328f8cc05355edafc302be291b668fb9",
+    "scripts/container_common.sh": "5020d5004723a4c8af3a4fd189a6f9d58ce6827d86ceed0c98ac730e19d5b40f",
+    "scripts/detection_metrics.py": "ff72e926d7b69b180e3d16432bf1816b7423caae6cd6b5592443f0b2b7bcf6ca",
+    "scripts/drive_virtual_people.py": "1ad1468ce84b0d1a9df7d7a30f0dde3a2a6bc7e7ef5ca9fefae68dcac2bc39d8",
+    "scripts/install.sh": "9c19ae61d407e12188875811cf515c64f85fc178615fe123a166cc510462fdbd",
+    "scripts/person_detection_adapter.py": "16ed6a228a9f85607d015aa946b9f92220d9d8679a2a24efdb614ea0b0a42cc2",
+    "scripts/prepare_person_world.py": "f0dbad91357c355767b6c1c1f73d02950f547ed4b1f2688e76b9da28b40a8af9",
+    "scripts/prepare_phase2_assets.py": "4599a02448517ddd6de6a71767c80ce21304c238b037877de95776b93d00871a",
+    "scripts/record_perception_graph.py": "284d5425810f772de2e0083d695e14da80837fb972ddfc0a375fad0cf3490aeb",
+    "scripts/record_perception_provenance.py": "0c0106ac9acda5d71d6f973f1e971ec29e63fa7bf5dae1613bb08cfa9d018011",
+    "scripts/run_env.sh": "6f012703e7ed3eb0bfb7ed815886d817fc73c1efcb838ee1d1036cdd2af2aa41",
+    "scripts/run_offline_benchmark.sh": "5221b90c7cb74404aea4c8f217d4d1623bb5b0bf283737de319c5f0e78434b72",
+    "scripts/run_person_case.sh": "8cc2d858735a7a8da2bbef85fb6c2f4f9174248895a96e01ba8d42e8c2d5fa7f",
+    "scripts/run_person_suite.sh": "9850c443dbc79c44a603cdcd732d41b156676fa5bd108dc87af255aea4c5a9f4",
+    "scripts/run_smoke.sh": "a8a9a90583da2fe47e6a17166e5c971f2bf6a2c0ebb3a885563d0d10972da898",
+    "scripts/setup_perception.sh": "c2fc7c2d78a9ab18ae2199eb821e378c26175c9fedaac391f10b762d9bccb0d9",
+    "scripts/summarize_person_suite.py": "7cc289f39af1476c565b547119c72c4e4d03a732e2eefcd2d89251d539bfdecc",
+    "scripts/verify_install.sh": "0398c74b064ce0c9883d489b79a6433eb5cefdf4e6801d59c4ef02d0441bfc0a",
+    "launch/person_detection_eval.launch.py": "678de3fa9d17f2ab060809b0e8b07a64dc40cc1f755ad890fca805d1f6b20a2c",
+    "launch/static_camera_smoke.launch.py": "b68c98514c465b1b6cfb5041c05a40ac91dd38fc9506ac988f683cecbb672f50",
+    "config/person_detection.yaml": "0161b18fcf6f8c730b1984cbfbbed622328d707a0b9b501506e2c42a4e00127f",
+    "config/person_scenarios.json": "b02f23bc553de6441e4884a09b88d555c9d5b441b77e426777807b136f2fe1d9",
+    "config/phase2_assets.lock.json": "5265a8831234134872673f594b2893d9cc791680b45b6da4cea7df2028e6acb5",
+    "Dockerfile": "ce6ca6117982320aa188c43cc808999c4c2bfae5f83359a83145b57c1efd7a6b"
+  }
+}
