@@ -1,46 +1,46 @@
-# TurtleBot 4 人体检测与跟随研发
+# TurtleBot 4 Person Detection and Following Research
 
-日期：2026-11-10。已完成技术调研、隔离仿真环境和第二阶段二维人物检测基线。所有硬件按用户要求为虚拟硬件。
+Date: 2026-11-10. Technical research, an isolated simulation environment, and the Phase 2 baseline for 2D person detection are complete. All hardware is virtual, as requested by the user.
 
-服务器项目：`/home/john/projects/turtlebot4_person_following`
+Server project: `/home/john/projects/turtlebot4_person_following`
 
-第一步：9个开源项目调研、环境构建和传感器9项检查通过。第二步：C++/ONNX CPU检测、标准ROS消息、独立真值与六场景360帧评估完成。总体召回78.26%；近距单人100%，两人交叉68.33%，遮挡40.91%。三维定位、身份跟踪和自主跟随尚未完成。
+Phase 1 covered nine open-source projects, built the environment, and passed nine sensor checks. Phase 2 implemented C++/ONNX CPU detection, standard ROS messages, independent ground truth, and a six-scenario evaluation with 360 frames. Overall recall was 78.26%: 100% for a nearby single person, 68.33% for two crossing people, and 40.91% under occlusion. 3D localisation, identity tracking, and autonomous following are not yet implemented.
 
-## 阅读入口
+## Reports
 
-- [第二阶段检测结果、失败样本与复现方法](docs/phase2_detection.md)
-- [行业与9个开源项目调研](docs/industry_research.md)
-- [技术比较与选型](docs/technology_comparison.md)
-- [系统架构设计稿](docs/system_architecture.md)
-- [虚拟硬件资源评估](docs/hardware_assessment.md)
-- [分阶段计划和量化验收建议](docs/implementation_plan.md)
-- [真实执行记录](docs/test_report.md)
+- [Phase 2 detection results, failure cases, and reproduction](docs/phase2_detection.md)
+- [Industry research and nine open-source projects](docs/industry_research.md)
+- [Technology comparison and selection](docs/technology_comparison.md)
+- [Proposed system architecture](docs/system_architecture.md)
+- [Virtual hardware and resource assessment](docs/hardware_assessment.md)
+- [Phased implementation plan and proposed acceptance criteria](docs/implementation_plan.md)
+- [Executed checks and test records](docs/test_report.md)
 
-## 环境
+## Environment
 
-Ubuntu 26.04宿主安装Docker，容器内使用Ubuntu24.04、ROS2 Jazzy和Gazebo Harmonic。固定基础镜像digest在Dockerfile和 `evidence/ros_image.lock.json`；固定源码与sha256见 `evidence/source_downloads.lock.json`。版本列表和执行结果以 `docs/test_report.md` 为准。
+Docker runs on the Ubuntu 26.04 host. The container uses Ubuntu 24.04, ROS 2 Jazzy, and Gazebo Harmonic. The pinned base-image digest is recorded in the Dockerfile and `evidence/ros_image.lock.json`; pinned source revisions and SHA-256 checksums are in `evidence/source_downloads.lock.json`. See `docs/test_report.md` for installed versions and execution results.
 
-基础镜像离线归档保存在服务器 `downloads/ros-jazzy-ros-base-noble.tar`；仿真环境由Dockerfile构建。第二阶段已编译yolo_ros overlay；第一阶段下载的Nav2源码仍作为参考，没有替换apt安装版本。
+The offline base-image archive is stored on the server at `downloads/ros-jazzy-ros-base-noble.tar`; the Dockerfile builds the simulation environment. Phase 2 has compiled the yolo_ros overlay. The Nav2 source downloaded in Phase 1 remains a reference and has not replaced the apt-installed packages.
 
-## 服务器命令
+## Server commands
 
 ```bash
 cd /home/john/projects/turtlebot4_person_following
-# 第一次已经完成的宿主安装：sudo bash scripts/bootstrap_host.sh
+# Host setup, already completed once: sudo bash scripts/bootstrap_host.sh
 
-# 重建环境（会访问Ubuntu/ROS仓库；不是时间快照）
+# Rebuild the environment; Ubuntu/ROS repositories are not a historical snapshot
 bash scripts/build_env.sh
 
-# 交互式进入隔离环境
+# Open a shell in the isolated environment
 bash scripts/run_env.sh bash
 
-# 容器内静止相机检查，无人体检测或运动命令
+# Run the stationary camera check, without person detection or motion commands
 bash scripts/run_env.sh bash scripts/run_smoke.sh
 ```
 
-运行脚本默认无外部网络、不映射实体设备、去除capabilities、设置CPU/内存限制。静止测试使用完全本地的几何世界与官方机器人模型；几何参考物不代表识别出来的人物。Nav2、SLAM、自动跟随均不由该测试激活。
+By default, the runtime scripts disable external networking, map no physical devices, drop capabilities, and limit CPU and memory. The stationary check uses a fully local geometric world and the official robot model. Its geometric reference objects are not detected people. This check does not activate Nav2, SLAM, or autonomous following.
 
-第二阶段复用同一镜像，在`research_ws/`构建固定提交的yolo_ros 5.0.0与ONNX Runtime 1.20.0。输入来源与hash见`config/phase2_assets.lock.json`；大型输入与编译结果不进入Git。Ubuntu服务器命令：
+Phase 2 reuses the same image and builds pinned yolo_ros 5.0.0 and ONNX Runtime 1.20.0 in `research_ws/`. Input sources and hashes are recorded in `config/phase2_assets.lock.json`; large inputs and build outputs are excluded from Git. Run these commands on the Ubuntu server:
 
 ```bash
 bash scripts/setup_perception.sh
@@ -48,6 +48,6 @@ bash scripts/run_person_suite.sh
 bash scripts/analyze_person_suite.sh
 ```
 
-![人物检测示例](evidence/phase2/detection_contact_sheet.png)
+![Person detection examples](evidence/phase2/detection_contact_sheet.png)
 
-人物网格来源OpenRobotics Scrubs，CC BY 4.0，详见第二阶段报告。绿色检测框、蓝色独立真值框；交叉与遮挡存在明显漏检。下一阶段是深度定位，保留困难案例回归。实体OAK深度精度/VPU性能以及真实底盘跟随效果均为 **NOT VERIFIED**。
+The person mesh is OpenRobotics Scrubs, licensed under CC BY 4.0; see the Phase 2 report for attribution. Green boxes show predictions and blue boxes show independent ground truth. Crossing and occlusion produce substantial missed detections. The next phase is depth localisation, retaining these difficult cases for regression evaluation. Physical OAK depth accuracy, VPU performance, and following with a real mobile base remain **NOT VERIFIED**.

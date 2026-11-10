@@ -1,51 +1,51 @@
-# 当前虚拟硬件与计算资源评估
+# Virtual Hardware and Compute Resource Assessment
 
-日期：2026-11-10。用户明确：全部是虚拟硬件。
+Date: 2026-11-10. The user has explicitly specified that all hardware is virtual.
 
-## 实际只读检查
+## Read-only inspection
 
-SSH：`john@192.168.48.135`，主机名 `john-VMware-Virtual-Platform`。
+SSH: `john@192.168.48.135`; hostname: `john-VMware-Virtual-Platform`.
 
-| 项目 | 已观察结果 | 对工程的影响 |
+| Item | Observed result | Engineering implication |
 |---|---|---|
-| 系统 | Ubuntu 26.04.1 LTS，x86_64，VMware | 使用Ubuntu24.04容器运行官方Jazzy组合 |
-| CPU | 8 vCPU，暴露型号 i7-13650HX | 可进行CPU推理和软件渲染；不是独占物理核心性能保证 |
-| RAM | 约7.2 GiB，初检可用5.2 GiB；swap4GiB | 仿真初始上限4GiB/4CPU，给宿主与已有服务留资源 |
-| 磁盘 | 根盘30G，初检约15G空闲 | 只装单套环境，不下载大型训练集/多套GPU框架 |
-| 图形 | VMware SVGA II；有 /dev/dri | 不等于CUDA GPU直通。先使用Mesa软件渲染 |
-| USB | VMware鼠标/集线器及root hub | 没有可见OAK-D；实体相机型号/标定/USB速率 NOT VERIFIED |
-| ROS/源码 | 初检无 /opt/ros、ros2、Docker与TurtleBot工作空间 | 允许新建隔离研发目录，不改已有其他项目 |
-| 实体底盘/雷达 | 不适用，本项目虚拟硬件 | 不声称实测Create3固件或真实RPLIDAR能力 |
+| System | Ubuntu 26.04.1 LTS, x86_64, VMware | Use an Ubuntu 24.04 container for the official Jazzy combination |
+| CPU | 8 vCPUs, exposed model i7-13650HX | CPU inference and software rendering are possible; this does not guarantee dedicated physical-core performance |
+| RAM | Approximately 7.2 GiB; initially 5.2 GiB available; 4 GiB swap | Initial simulation limits: 4 GiB/4 CPUs, leaving resources for the host and existing services |
+| Disk | 30G root disk, initially approximately 15G free | Install one environment; avoid large training datasets and multiple GPU frameworks |
+| Graphics | VMware SVGA II; /dev/dri present | Does not establish CUDA passthrough; start with Mesa software rendering |
+| USB | VMware mouse/hubs and root hub | No visible OAK-D; physical camera model, calibration, and USB rate NOT VERIFIED |
+| ROS/source | Initially no /opt/ros, ros2, Docker, or TurtleBot workspace | Create an isolated research directory without changing other projects |
+| Physical base/lidar | Not applicable; virtual hardware project | No claim of testing Create 3 firmware or physical RPLIDAR capabilities |
 
-命令与后续安装结果见 `test_report.md` 及 evidence。Gazebo 中的相机和雷达型号是选用模型的配置，不是现场盘点出的真实设备。
+Commands and installation results are recorded in `test_report.md` and evidence. Gazebo camera/lidar models are selected simulation configurations, not physically inventoried devices.
 
-## 计算架构比较
+## Compute architecture comparison
 
-| 方案 | 性能与延迟 | 电源/散热、USB/网络 | 驱动/复杂度 | 成本与当前决定 |
+| Option | Performance and latency | Power/cooling, USB/network | Drivers/complexity | Cost and current decision |
 |---|---|---|---|---|
-| A：原装OAK推理+Pi运行ROS | 可把推理下放到VPU；全链路FPS/深度精度 NOT VERIFIED | 实体需要核实USB3、供电和散热；发布检测比传全RGBD省带宽 | 必须匹配RVC/DepthAI/ROS版本 | 如果已有实物可优先复用；当前无实体设备，不能实验此方案 |
-| B：外部Ubuntu计算机 | 可选CPU/GPU；网络、队列和编解码增加延迟 | 传RGBD需带宽预算与时钟同步 | 机器人驱动保持本地，主机感知经标准接口接入 | 当前使用VM模拟同类分工，额外软件许可费用0；硬件采购不需要 |
-| C：Jetson边缘计算 | 具有支持模型的GPU加速潜力；不是TOPS到FPS的直接换算 | 电源转换、散热、负载和安装位置需要实测 | JetPack/ROS/Isaac版本强耦合 | 当前不建议购买；2024年官方发布价$249只是历史参考，2026当地含税总价 NOT VERIFIED |
-| D：更换/增加传感器 | 广视角可能缓解出视野，其他深度技术各有失败模式 | 增加USB/网络/电源、外参标定负担 | 多源同步、融合和故障诊断更复杂 | 当前没有必要；具体型号/价格 NOT VERIFIED，先量化既有模型瓶颈 |
+| A: original OAK inference + Pi running ROS | Inference can be offloaded to the VPU; full-path FPS/depth accuracy NOT VERIFIED | Physical USB3, power, and cooling require checks; detections consume less bandwidth than full RGB-D | RVC/DepthAI/ROS versions must match | Reuse existing hardware if available; no physical device here, so this option cannot be tested |
+| B: external Ubuntu computer | CPU/GPU options; network, queues, and codecs add latency | RGB-D transfer requires bandwidth and clock-synchronisation budgets | Keep robot drivers local and connect host perception through standard interfaces | Current VM simulates this division of work; additional software licence cost is 0; no hardware purchase required |
+| C: Jetson edge compute | Potential GPU acceleration for supported models; TOPS does not directly translate into FPS | Power conversion, cooling, load, and mounting require measurement | JetPack/ROS/Isaac versions are closely coupled | No purchase recommended now; the official 2024 launch price of $249 is historical, and a 2026 local tax-inclusive total is NOT VERIFIED |
+| D: replace/add sensors | A wider field of view may reduce loss from view; depth technologies have different failure modes | More USB/network/power demand and extrinsic calibration | More complex synchronisation, fusion, and fault diagnosis | Unnecessary now; specific models/prices NOT VERIFIED; quantify current model bottlenecks first |
 
-Jetson价格来源：[NVIDIA 2024-12-17公告](https://developer.nvidia.com/blog/nvidia-jetson-orin-nano-developer-kit-gets-a-super-boost)。它不是当前可购买报价。Isaac ROS支持限制见[版本4.0平台表](https://nvidia-isaac-ros.github.io/v/release-4.0/repositories_and_packages/isaac_ros_dnn_inference/index.html)。
+Jetson price source: [NVIDIA announcement, 2024-12-17](https://developer.nvidia.com/blog/nvidia-jetson-orin-nano-developer-kit-gets-a-super-boost). This is not a current quotation. Isaac ROS platform constraints are in the [release 4.0 platform documentation](https://nvidia-isaac-ros.github.io/v/release-4.0/repositories_and_packages/isaac_ros_dnn_inference/index.html).
 
-## 传输与实时性预算
+## Transport and real-time budget
 
-计算示例，**不是测量值**：640×480 RGB8、30Hz 的原始有效载荷约27.65MB/s；同尺寸32FC1深度约36.86MB/s，合计约64.51MB/s（516Mb/s），尚未加DDS、IP、点云或重传开销。因此当前把仿真和处理放在同一容器，先不额外发布高密度点云。
+Calculated example, **not a measurement**: 640×480 RGB8 at 30Hz carries approximately 27.65MB/s of raw payload; 32FC1 depth at the same size carries approximately 36.86MB/s. The total is approximately 64.51MB/s (516Mb/s), excluding DDS, IP, point clouds, and retransmission overhead. Simulation and processing therefore remain in one container, without additional dense point-cloud publication initially.
 
-记录实际图像尺寸/编码/频率；CPU推理前可降低模型输入尺寸，但应保留从模型像素到原RGB/深度像素的映射。图像缩放或压缩不应破坏CameraInfo对应关系。
+Record actual image dimensions, encodings, and rates. Model input may be reduced for CPU inference, but retain the mapping back to original RGB/depth pixels. Resizing or compression must not break CameraInfo correspondence.
 
-## 仿真能够与不能验证的内容
+## Simulation validation limits
 
-可以验证：接口、TF、同步、深度单位、位置计算、目标状态机、导航调用、传感器超时、CPU资源和仿真时间行为。
+Simulation can test interfaces, TF, synchronisation, depth units, position calculations, target state machines, navigation calls, sensor timeouts, CPU resources, and simulation-time behaviour.
 
-**NOT VERIFIED**：实际OAK双目测距误差、低照度/IR效果、透明反光物体、真实曝光运动模糊、USB掉线特征、真实VPU推理吞吐、实体底盘停止距离和人群安全。
+**NOT VERIFIED:** physical OAK stereo distance error, low-light/IR performance, transparent/reflective objects, real exposure motion blur, USB disconnection behaviour, VPU throughput, physical stopping distance, and crowd safety.
 
-第一步不升级硬件。若软件渲染实时因子低，先降低虚拟分辨率/帧率和世界复杂度，或申请更多VM资源；只有定位到明确计算瓶颈后再考虑GPU直通或独立Ubuntu环境。
+No hardware upgrade is needed in Phase 1. If software rendering produces a low real-time factor, first reduce virtual resolution/frame rate and world complexity, or allocate more VM resources. Consider GPU passthrough or a separate Ubuntu host only after identifying a compute bottleneck.
 
-## 第二阶段实测补充
+## Phase 2 measurements
 
-复用同一镜像构建CPU感知overlay，未增加CUDA/PyTorch或新设备。骨骼Actor与真值渲染组合停在首帧，日志记录显存预算阻塞；最终使用约1MB的OpenRobotics Scrubs刚性网格，评估相机配置5Hz、320×240。没有证明单独的Gazebo、驱动或资产因素是根因。
+The same image was reused to build a CPU perception overlay, without CUDA/PyTorch or new devices. Skeletal Actor plus ground-truth rendering stalled at the first frame, with a texture-memory budget message. The final setup uses the approximately 1MB OpenRobotics Scrubs rigid mesh, with the evaluation camera configured to 5Hz and 320×240. No single Gazebo, driver, or asset factor has been isolated as the cause.
 
-遮挡场景一次快照约3.76个逻辑CPU、949MiB、181进程/线程；不是峰值或长期稳定性结果。感知与真值渲染已接近4CPU容器限额，下一阶段增加导航前要再次预算。检测质量与时延见[第二阶段报告](phase2_detection.md)。
+One occlusion-scene snapshot showed approximately 3.76 logical CPUs, 949MiB, and 181 processes/threads. This is neither a peak nor a long-term stability result. Perception and ground-truth rendering approach the 4-CPU container limit, so resources must be reassessed before adding navigation. Detection quality and latency are documented in the [Phase 2 report](phase2_detection.md).

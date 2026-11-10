@@ -1,40 +1,40 @@
-# 已执行检查与测试记录
+# Executed Checks and Test Records
 
-日期：2026-11-10（Europe/London）。范围：第一阶段基础环境，以及随后执行的第二阶段二维人物检测。
+Date: 2026-11-10 (Europe/London). Scope: the Phase 1 base environment and subsequent Phase 2 2D person detection.
 
-## 初始只读检查
+## Initial read-only inspection
 
-执行：通过 `ssh -o BatchMode=yes john@192.168.48.135` 检查 `hostname`、`/etc/os-release`、`uname`、`nproc`、`free -h`、`df -h`、`lspci`、`lsusb`、ROS路径/进程/工具。
+Executed over `ssh -o BatchMode=yes john@192.168.48.135`: `hostname`, `/etc/os-release`, `uname`, `nproc`, `free -h`, `df -h`, `lspci`, `lsusb`, and checks of ROS paths, processes, and tools.
 
-结果：SSH成功；Ubuntu26.04.1 VMware，8vCPU、7.2GiB内存、初始约15G空闲磁盘；没有ROS、OAK-D或现有TurtleBot工作空间。用户随后明确全部使用虚拟硬件。
+Results: SSH succeeded. The host was Ubuntu 26.04.1 on VMware with 8 vCPUs, 7.2GiB RAM, and approximately 15G initial free disk space. No ROS installation, OAK-D, or existing TurtleBot workspace was found. The user subsequently confirmed that all hardware would be virtual.
 
-`sudo -n true` 返回需要交互验证；rootless用户命名空间检查也未通过。没有绕过身份验证。用户在自己的SSH终端执行了已准备好的Docker安装脚本，之后新的SSH连接确认john已在docker组，Docker server/client均为29.1.3。
+`sudo -n true` required interactive authentication; the rootless user-namespace check also failed. Authentication was not bypassed. The user ran the prepared Docker installation script in their own SSH terminal. A new connection then confirmed john's docker-group membership and Docker server/client version 29.1.3.
 
-## 研究与下载
+## Research and downloads
 
-GitHub API核实9个项目，记录源码分支、提交日期、SHA、许可证与归档状态。成功下载TurtleBot Simulator、Nav2 Jazzy、yolo_ros固定源码；文件hash见 `../evidence/source_downloads.lock.json`。这不表示已编译yolo_ros或已测模型。
+The GitHub API was used to verify nine projects, recording branches, commit dates, SHAs, licences, and archive status. Pinned TurtleBot Simulator, Nav2 Jazzy, and yolo_ros source archives were downloaded successfully; hashes are in `../evidence/source_downloads.lock.json`. At this Phase 1 point, downloading source did not mean yolo_ros had been compiled or a model tested; Phase 2 results follow below.
 
-官方 `ros:jazzy-ros-base-noble` linux/amd64镜像下载压缩层合计296,615,261 bytes，离线Docker归档912,240,640 bytes。验证manifest和每层SHA-256；离线归档SHA-256为 `8411722b407e385760a6d450ef2731f29fa3b078b72501b51061c2052f89a339`。Docker load成功。
+Compressed layers of the official `ros:jazzy-ros-base-noble` linux/amd64 image totalled 296,615,261 bytes; the offline Docker archive was 912,240,640 bytes. The manifest and each layer's SHA-256 were verified. Archive SHA-256: `8411722b407e385760a6d450ef2731f29fa3b078b72501b51061c2052f89a339`. Docker load succeeded.
 
-## 依赖预算与构建
+## Dependency budget and build
 
-执行：在基础镜像中 `apt-get update`，对Dockerfile指定包使用 `apt-get --assume-no install --no-install-recommends ...`。
+Executed in the base image: `apt-get update`, then `apt-get --assume-no install --no-install-recommends ...` for the Dockerfile package list.
 
-结果：依赖解析成功，1个包升级、1068个新增、无需卸载；下载预算652MB，新增磁盘3269MB。`--assume-no`按预期返回1并中止安装，不能算作构建失败。之后执行 `bash scripts/build_env.sh` 安装已审核的官方仿真依赖。
+Dependency resolution succeeded: 1 package upgrade, 1068 new packages, and no removals. The download budget was 652MB and additional installed disk space was 3269MB. `--assume-no` returned 1 and cancelled installation as expected; this was not a build failure. The reviewed official simulation dependencies were then installed through `bash scripts/build_env.sh`.
 
-构建结果：PASS。镜像`turtlebot4-research:jazzy`的ID为`sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a`。安装包清单保存在`../evidence/packages.lock.tsv`。
+Build result: PASS. Image `turtlebot4-research:jazzy` has ID `sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a`. The installed package inventory is saved in `../evidence/packages.lock.tsv`.
 
-已核实容器环境：Ubuntu24.04.5、ROS2 Jazzy、Gazebo Sim8.15.0（Harmonic）、OpenCV4.6.0、NumPy1.26.4、默认RMW为`rmw_fastrtps_cpp`。TurtleBot4 Simulator2.0.2、Description2.1.1、Create3相关包3.0.4、Nav2 1.3.13。基础与仿真包版本存在各自发行节奏，不能按一个仓库版本猜测全部包。
+Verified container: Ubuntu 24.04.5, ROS 2 Jazzy, Gazebo Sim 8.15.0 (Harmonic), OpenCV 4.6.0, NumPy 1.26.4, and default RMW `rmw_fastrtps_cpp`. Package versions include TurtleBot 4 Simulator 2.0.2, Description 2.1.1, Create 3 packages 3.0.4, and Nav2 1.3.13. Base and simulation packages have independent release schedules; a single repository version cannot establish all installed versions.
 
-`ros2 doctor --report`在无外部网络的环境中无法完成部分Package/Rosdistro在线报告；这是已记录的限制，没有把整份doctor报告写成全项通过。`FollowObject`接口定义存在，但`ros2 pkg prefix opennav_following`返回未安装。
+In the network-isolated environment, `ros2 doctor --report` could not complete parts of the online Package/Rosdistro reports. This limitation was recorded; the complete doctor report is not described as passing every check. The `FollowObject` interface exists, but `ros2 pkg prefix opennav_following` reported the package absent.
 
-渲染核验：Xvfb虚拟显示、Mesa llvmpipe、OpenGL4.5；`Accelerated: no`。未使用硬件GPU加速或VPU。
+Rendering verification: Xvfb virtual display, Mesa llvmpipe, OpenGL 4.5, `Accelerated: no`. No hardware GPU acceleration or VPU was used.
 
-## 静止虚拟传感器冒烟测试：PASS
+## Stationary virtual-sensor smoke test: PASS
 
-最终记录时间：2026-11-10 20:46:15 UTC（当日伦敦时间相同）。观察窗口45.000秒，使用完全本地几何世界、官方TurtleBot4 standard模型，无人体资产、无检测模型。容器退出码0，9项数据链路检查全部通过。
+Final record: 2026-11-10 20:46:15 UTC, also local London time that day. The observation window was 45.000 seconds, using a fully local geometric world and the official TurtleBot 4 standard model, without human assets or a detection model. Container exit code: 0. All nine data-path checks passed.
 
-执行命令（服务器项目目录）：
+Command executed from the server project directory:
 
 ```bash
 docker run --rm --init --name tb4-step1-smoke --network none --cap-drop ALL \
@@ -44,53 +44,53 @@ docker run --rm --init --name tb4-step1-smoke --network none --cap-drop ALL \
   turtlebot4-research:jazzy bash scripts/run_smoke.sh
 ```
 
-原始记录：`../evidence/sensor_smoke.json`、`simulation.log`、`smoke_console.log`、`renderer.txt`。收到的数据如下，频率按首末接收时间估算，未包含首帧前启动等待，不是检测模型的推理FPS。
+Raw records: `../evidence/sensor_smoke.json`, `simulation.log`, `smoke_console.log`, and `renderer.txt`. Rates below use the first-to-last reception interval, excluding startup before the first message. They are not detector inference FPS.
 
-| 数据 | 实测 | 判断 |
+| Data | Measurement | Assessment |
 |---|---|---|
-| RGB | 715帧，320×240，rgb8，墙钟约18.07Hz | PASS：有有效图像 |
-| Depth | 712帧，320×240，32FC1米制，墙钟约17.99Hz | PASS：有有效深度 |
-| CameraInfo | 715条；fx≈fy≈221.765，cx160、cy120 | PASS：正内参与图像尺寸一致 |
-| LaserScan | 1473条，首末接收间隔约37.43Hz | PASS：有扫描消息；未验证实体扫描频率 |
-| Clock | 23570条，仿真跨度23.569秒 | PASS：仿真时钟持续推进 |
-| TF | base_link到oakd_rgb_camera_optical_frame可查询 | PASS：相机到机体变换；不表示map→odom定位已完成 |
-| RGB与最近Depth的stamp差 | 中位数0ms、P95为0ms | 说明该数据中存在同stamp深度；不是曝光/标定的独立验证 |
-| 最后一帧深度 | 正有限值比例72.11%；中心11×11 ROI中位数2.95809m | 参考平面的一次测量；不是人物定位/深度精度实验 |
+| RGB | 715 frames, 320×240, rgb8, approximately 18.07Hz wall-clock | PASS: valid images received |
+| Depth | 712 frames, 320×240, 32FC1 in metres, approximately 17.99Hz wall-clock | PASS: valid depth received |
+| CameraInfo | 715 messages; fx≈fy≈221.765, cx=160, cy=120 | PASS: positive intrinsics consistent with image dimensions |
+| LaserScan | 1473 messages, approximately 37.43Hz between first and last reception | PASS: scan messages received; physical scan frequency unverified |
+| Clock | 23570 messages spanning 23.569 simulated seconds | PASS: simulation clock advanced |
+| TF | base_link to oakd_rgb_camera_optical_frame was queryable | PASS: camera-to-base transform; does not establish map→odom localisation |
+| RGB to nearest-depth stamp difference | Median 0ms; P95 0ms | Matching-stamp depth exists in these data; not independent exposure/calibration validation |
+| Final depth frame | Positive finite fraction 72.11%; centre 11×11 ROI median 2.95809m | One reference-plane measurement, not a person-localisation or depth-accuracy experiment |
 
-源时间推算相机频率约30.2–30.3Hz，墙钟只约18Hz；观测到的仿真时间/墙钟比例约0.58–0.60。不能把模拟时间下约30Hz写成实际实时30FPS。当前4CPU限制下的软件渲染是后续CPU推理需要考虑的预算。
+Camera source-time rates were approximately 30.2–30.3Hz, while wall-clock reception was only approximately 18Hz. The observed simulation-time/wall-time ratio was approximately 0.58–0.60. Approximately 30Hz in simulation time cannot be reported as real-time 30FPS. Software rendering under the 4-CPU limit consumes part of the future CPU inference budget.
 
-运行中一次`docker stats`快照：CPU298.41%（约2.98个逻辑CPU）、内存747.5MiB、151个进程/线程、容器网络I/O为0。它不是峰值、时间平均或长时间稳定性结论。实际采样见`../evidence/smoke_resources.json`。最终宿主根盘约7.4G可用。
+One runtime `docker stats` snapshot showed CPU 298.41% (approximately 2.98 logical CPUs), 747.5MiB memory, 151 processes/threads, and zero container network I/O. This is not a peak, time average, or long-term stability result. See `../evidence/smoke_resources.json`. The host root disk had approximately 7.4G free at the end.
 
-截图：[RGB](../evidence/camera_rgb.png)、[深度可视化](../evidence/camera_depth_0_to_5m.png)。深度颜色范围0–5m，黑色为无有效深度；画面中的几何平面不代表识别出的人。
+Screenshots: [RGB](../evidence/camera_rgb.png), [depth visualisation](../evidence/camera_depth_0_to_5m.png). Depth colours span 0–5m; black indicates invalid depth. The geometric plane in the image is not a recognised person.
 
-本测试只建立传感器链路，未发布导航目标或速度命令，未加载跟随服务或Nav2；结束后临时仿真容器已停止，环境镜像与项目文件保留。URDF自带Gazebo控制硬件组件会初始化，但没有激活跟随/路径控制。
+This test established only the sensor path. It published no navigation goals or velocity commands and loaded neither following services nor Nav2. The temporary simulation container stopped afterwards; the environment image and project files were retained. Gazebo control hardware included in the URDF initialised, but following/path controllers were not activated.
 
-## 已遇到的问题
+## Issues encountered
 
-- 部分ROS/Nav2页面返回访问限制或旧路径404；改为官方GitHub源码、对应Jazzy文档和包清单核验，没有从不可访问页面编造结论。
-- 一次SSH嵌套引号导致只读Python联网检查语法错误；后续改为上传脚本执行，GitHub下载成功。
-- 构建过程中一次 `docker system df` 遇到正在变动的dpkg临时文件而失败。使用`df -h`记录真实剩余磁盘，不据此声称镜像构建失败。
-- 完整官方机器人bringup触及初始512线程/进程上限，部分节点报`Resource temporarily unavailable`。静止测试改为官方模型描述、生成模型和单个传感器桥接进程，限制调整为1024，省去平台mock/运动/导航节点。
-- 精简launch起初未显式传递空namespace，控制插件等待`/turtlebot4/robot_description`。传递`namespace:=''`统一命名后修复；没有改动安装的官方包。
-- 官方Create3 URDF自带Sensors插件且默认ogre；无显示的初始运行失败。增加Xvfb并显式设置server渲染为ogre2。
-- `xvfb-run`作为容器PID1等待就绪信号，加入Docker `--init`后解决。虚拟显示未对宿主或网络开放。
-- 测试世界重复声明Sensors插件造成`Scene already exists`及Gazebo崩溃，移除项目world中的重复实例，使用官方URDF已有插件后修复。
-- 首次成功采集图片后，JSON导出遇到NumPy `bool_`类型错误；显式转换内参与检查值为Python float/bool，修复后重新执行采集，避免丢失量化记录。
+- Some ROS/Nav2 pages were restricted or old paths returned 404. Verification used official GitHub source, matching Jazzy documentation, and package inventories instead; no findings were invented from inaccessible pages.
+- Nested SSH quoting once caused a syntax error in a read-only Python network check. Uploading scripts for execution resolved this; GitHub downloads succeeded.
+- During the build, `docker system df` once failed on a changing dpkg temporary file. `df -h` recorded actual remaining space; this was not treated as an image-build failure.
+- Full official robot bringup reached the initial 512-process/thread limit, causing `Resource temporarily unavailable`. The stationary test switched to the official model description, model spawning, and one sensor-bridge process, raised the limit to 1024, and omitted platform mock, motion, and navigation nodes.
+- The reduced launch initially omitted an explicit empty namespace, leaving the control plugin waiting for `/turtlebot4/robot_description`. Passing `namespace:=''` aligned naming and resolved it without modifying installed official packages.
+- The official Create 3 URDF includes a Sensors plugin defaulting to ogre. Initial headless runs failed; adding Xvfb and explicitly selecting server-side ogre2 resolved display requirements.
+- `xvfb-run` as container PID 1 stalled waiting for readiness. Docker `--init` resolved it. The virtual display was not exposed to the host or network.
+- A duplicate Sensors plugin in the test world caused `Scene already exists` and a Gazebo crash. Removing the project's duplicate and using the official URDF plugin resolved it.
+- After the first successful image capture, JSON export failed on NumPy `bool_`. Intrinsics and check values were explicitly converted to Python float/bool, then capture was rerun to retain quantitative records.
 
-## 第一阶段结束时未执行项目（第二阶段更新见下）
+## Unexecuted at the end of Phase 1 (Phase 2 update below)
 
-人体检测precision/recall、推理FPS、人体三维定位误差、多人交叉IDF1/HOTA、目标丢失恢复、Nav2跟随、停止响应、30分钟稳定性均 **NOT VERIFIED**。未发送运动指令，未启用自主跟随。
+Person detection precision/recall, inference FPS, 3D localisation error, IDF1/HOTA during crossings, recovery after target loss, Nav2 following, stopping response, and 30-minute stability were **NOT VERIFIED** at that point. No motion commands were sent and autonomous following was not enabled.
 
-实体OAK双目精度、真实VPU性能、IR与低照度效果、实体底盘停止距离不属于本次纯虚拟测试结果。
+Physical OAK stereo accuracy, VPU performance, IR/low-light behaviour, and physical braking distance are outside this purely virtual test.
 
-## 第二阶段：二维人物检测与独立评估
+## Phase 2: 2D person detection and independent evaluation
 
-PASS：固定版本下载校验、5个ROS包编译、6个场景的完整采集评分、标准vision_msgs输出、运行图真值隔离检查、120张无渲染ROS往返（0超时）、360帧HOG对照，以及4个评分单元测试。
+PASS: pinned-download verification, five ROS package builds, complete capture/scoring for six scenes, standard vision_msgs output, graph checks for ground-truth isolation, 120 images in a ROS round-trip test without rendering (zero timeouts), a 360-frame HOG comparison, and four scoring unit tests.
 
-已执行入口与原始记录：`scripts/build_perception.sh`→`evidence/phase2/build.log`；`scripts/run_person_case.sh`与`scripts/run_person_suite.sh`→案例日志、`frames.json`和`summary.json`；`scripts/compare_hog_baseline.py`→`hog_baseline.json`；`scripts/run_offline_benchmark.sh`→`offline_roundtrip.json`；`pytest -q tests/test_detection_metrics.py`→`metric_tests.log`。
+Executed entry points and raw records: `scripts/build_perception.sh` → `evidence/phase2/build.log`; `scripts/run_person_case.sh` and `scripts/run_person_suite.sh` → case logs, `frames.json`, and `summary.json`; `scripts/compare_hog_baseline.py` → `hog_baseline.json`; `scripts/run_offline_benchmark.sh` → `offline_roundtrip.json`; `pytest -q tests/test_detection_metrics.py` → `metric_tests.log`.
 
-本次共360帧、322次可见人物标注：TP252、FN70、FP0，观测召回78.26%。近距单人100%、远距另一朝向96.67%、两人交叉68.33%、遮挡40.91%、离开视野再进入89.47%。结果来自单一人形网格与简单背景，不能作为真实人物泛化结论。
+Across 360 frames and 322 visible person annotations: TP=252, FN=70, FP=0, observed recall=78.26%. Recall was 100% for a nearby single person, 96.67% at a farther distance/different orientation, 68.33% for two crossing people, 40.91% under occlusion, and 89.47% for leaving and re-entering view. These results use one human mesh and simple backgrounds; they do not establish generalisation to real people.
 
-在线接收链路P95约53–56ms；关闭渲染的顺序ROS往返P95约40.15ms。二者不能替代包括曝光/渲染前段的完整采集时延。详情、置信区间、HOG窗口协议限制、截图与故障记录见[第二阶段报告](phase2_detection.md)。
+Online reception-path P95 was approximately 53–56ms; sequential ROS round-trip P95 without rendering was approximately 40.15ms. Neither measures full acquisition latency including exposure/early rendering. Details, confidence intervals, HOG window-protocol limitations, screenshots, and failure records are in the [Phase 2 report](phase2_detection.md).
 
-结论：**第二阶段检测基线完成，困难场景性能未达到可靠人物跟随的要求**。没有启用跟踪/三维定位/导航，也没有发送机器人速度或导航动作；只通过Gazebo场景服务移动虚拟人物网格。
+Finding: **the Phase 2 detection baseline is complete, but difficult-scene performance is insufficient for reliable person following**. Tracking, 3D localisation, and navigation were not enabled, and no robot velocity or navigation actions were sent. Only virtual person meshes moved through Gazebo scene services.

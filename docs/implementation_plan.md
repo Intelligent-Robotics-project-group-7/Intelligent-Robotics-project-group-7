@@ -1,56 +1,56 @@
-# 分阶段计划与验收
+# Phased Implementation Plan and Acceptance Criteria
 
-日期：2026-11-10。第一阶段与用户随后要求的第二阶段已执行；全部使用虚拟硬件。二维检测结果与困难场景限制见[第二阶段报告](phase2_detection.md)。
+Date: 2026-11-10. Phase 1 and the subsequently requested Phase 2 have been executed using virtual hardware only. See the [Phase 2 report](phase2_detection.md) for 2D detection results and difficult-scene limitations.
 
-## 阶段与依赖
+## Phases and dependencies
 
-| 阶段 | 任务 | 进入下一步的条件 | 当前边界 |
+| Phase | Work | Condition for the next step | Current status/boundary |
 |---|---|---|---|
-| 1 | 成熟项目调研、选型、隔离环境、固定版本、静止RGBD冒烟检查 | 报告有来源；ROS/Gazebo可启动；RGB/Depth/内参/扫描/TF实测记录 | 已完成 |
-| 2 | 搭建可复现人体场景，选择/导入模型，检测 | 有人工/真值标注，单人/多人/遮挡、模型文件和hash | 基线完成：6场景360帧；遮挡/交叉可靠性不足 |
-| 3 | 稳健深度定位、时间同步、TF | 位置误差、无效深度、时间错配测试通过 | 依赖阶段2和相机链路 |
-| 4 | ByteTrack基线、3D门控、外观对照、显式目标锁定 | 多人交叉、遮挡、重现无错误目标接管 | 依赖阶段3 |
-| 5 | Mock Navigation、Lifecycle、故障恢复 | timeout/取消/重启/时钟回退均安全撤销任务 | 不输出底盘运动 |
-| 6 | rosbag回放、Nav2逻辑与仿真低速跟随 | 通过保护链、路径和停止响应测试 | 单独进入运动测试阶段 |
-| 7 | 若未来接实物：版本/标定审计、DepthAI路线A/B实测 | 硬件可访问且明确授权 | 当前NOT VERIFIED，不采购硬件 |
+| 1 | Research established projects, select technologies, isolate the environment, pin versions, and run stationary RGB-D smoke checks | Sourced reports; working ROS/Gazebo; measured RGB/depth/intrinsics/scan/TF records | Complete |
+| 2 | Reproducible human scenes, model selection/import, detection | Independent manual/ground-truth labels; single/multiple people and occlusion; model files and hashes | Baseline complete: 6 scenes, 360 frames; occlusion/crossing reliability insufficient |
+| 3 | Robust depth localisation, synchronisation, TF | Pass position-error, invalid-depth, and timestamp-mismatch tests | Depends on Phase 2 and the camera path |
+| 4 | ByteTrack baseline, 3D gating, appearance comparison, explicit target lock | No incorrect target takeover in crossings, occlusion, and reappearance tests | Depends on Phase 3 |
+| 5 | Mock Navigation, Lifecycle, fault recovery | Timeouts, cancellation, restart, and backward clock jumps reliably withdraw tasks | No base motion output |
+| 6 | rosbag replay, Nav2 logic, simulated low-speed following | Pass protection-chain, path, and stopping-response tests | Enter as a separate motion-testing phase |
+| 7 | If physical hardware is introduced: version/calibration audit and DepthAI A/B tests | Accessible hardware and explicit authorisation | Currently NOT VERIFIED; no hardware purchase |
 
-## 第一阶段环境
+## Phase 1 environment
 
-宿主安装Docker；容器使用固定digest的ROS Jazzy/Ubuntu24.04基础镜像。先对官方仿真依赖做apt解析与空间预算，再构建单套镜像。启动使用`--network none`、去除capabilities、无USB设备映射，限制CPU/内存。Nav2包可以作为官方仿真依赖存在，但本阶段不激活导航或发送运动。
+Install Docker on the host and use a digest-pinned ROS Jazzy/Ubuntu 24.04 base image. Resolve official simulation dependencies and budget disk space before building one image. Runtime uses `--network none`, drops capabilities, maps no USB devices, and limits CPU/memory. Nav2 packages may be present as simulation dependencies, but this phase neither activates navigation nor sends motion commands.
 
-只下载本阶段必要基础镜像和固定SHA源码，不下载训练数据集、多套模型或GPU环境。基础镜像、源码和安装包版本保存到evidence。apt软件仓库不是时间快照，因此应保留本次已构建镜像，不宣称未来完全逐字节可重建。
+Download only the required base image and source pinned by SHA; do not preinstall training datasets, multiple models, or GPU environments. Save image, source, and package versions in evidence. apt repositories are not historical snapshots, so retain the built image rather than claiming future byte-identical rebuilds.
 
-## 量化验收指标（建议值，尚不是实测结果）
+## Quantitative acceptance criteria (proposed, not measured results)
 
-阈值依据低速仿真调试和处理预算制定，后续应根据数据调整；不是厂家性能承诺或安全标准。
+Initial thresholds reflect low-speed simulation debugging and processing budgets. Adjust them using subsequent data; they are not manufacturer specifications or safety standards.
 
-| 类别 | 初始验收建议 | 依据/测量方式 |
+| Category | Initial proposal | Rationale/measurement |
 |---|---|---|
-| 传感器链路 | RGB、深度、CameraInfo、scan、clock、TF均有真实消息；帧尺寸/内参一致 | 静止冒烟检查，不能只检查topic名称 |
-| 相机频率 | 记录配置频率、墙钟接收率、sim-time频率及real-time factor | VM渲染可能慢；第一步不保证30FPS |
-| 检测精度 | 场景/距离分层统计precision、recall和误检；初始简单场景recall≥0.90 | 必须有独立标注；至少100个可见实例，报告样本数和置信区间 |
-| 推理吞吐 | 主机检测≥10Hz作为初始目标 | 低速0.1m/s在100ms移动1cm；不由此推断系统安全 |
-| 感知延迟 | 墙钟P95≤200ms作为初始目标，另报P50/P99 | 统计完整采集/排队/推理/深度/发布链路 |
-| RGBD同步 | P95时间差≤33ms，错配帧丢弃并计数 | 初始30Hz帧周期；低帧率时重新确定窗口 |
-| 模拟深度 | 1、2、3m已知平面各至少100帧；报告偏差/标准差/有效比例 | 用Gazebo真值，区分光学Z与欧氏距离；实体深度误差仍NOT VERIFIED |
-| 3D定位 | 1–3m理想场景P95位置误差≤0.10m作为目标 | 包含像素选择、TF和同步，不仅检查公式 |
-| ID维持 | 报告IDF1/HOTA/ID switch；10次交叉中错误目标自动接管为0 | 较小样本不能证明泛化；模糊时允许停机 |
-| 遮挡 | 0.5/1/3s遮挡分别统计；超时撤销目标，不自动换人 | 区分tracker内部候选寿命与控制观测有效期 |
-| 导航 | 初始跟随距离1.5m、均方误差≤0.30m作为仿真目标 | 以后续场景和人体速度为条件，当前无导航实测 |
-| 停止响应 | 观测过期0.5s后在额外0.2s内撤销控制任务 | 要用墙钟故障注入和下游速度观测；不等于实体刹车距离 |
-| 故障 | 目标丢失/TF中断/scan断流/通信断开/clock暂停均停止目标驱动 | 用Mock server与仿真分别验证 |
-| 资源 | 记录CPU、RSS、容器内存、网络和磁盘；不得持续OOM | 在当前VM资源限制下测试，先5分钟再30分钟稳定性 |
+| Sensor path | Actual RGB, depth, CameraInfo, scan, clock, and TF messages; consistent dimensions/intrinsics | Stationary smoke check; topic names alone are insufficient |
+| Camera rate | Record configured rate, wall-clock reception rate, sim-time rate, and real-time factor | VM rendering may be slow; Phase 1 does not guarantee 30FPS |
+| Detection quality | Report precision, recall, and false positives by scene/distance; initial simple-scene recall ≥0.90 | Independent labels; at least 100 visible annotation instances; report sample size and confidence intervals |
+| Inference throughput | Initial host detection target ≥10Hz | At 0.1m/s, travel in 100ms is 1cm; this does not establish system safety |
+| Perception latency | Initial wall-clock P95 ≤200ms; also report P50/P99 | Measure acquisition, queueing, inference, depth, and publication together |
+| RGB-D synchronisation | P95 timestamp difference ≤33ms; discard and count mismatches | Initial 30Hz frame period; redefine the window at lower frame rates |
+| Simulated depth | At least 100 frames each of known planes at 1, 2, and 3m; report bias, standard deviation, and valid fraction | Gazebo truth; distinguish optical Z from Euclidean range; physical depth error remains NOT VERIFIED |
+| 3D localisation | Proposed P95 position error ≤0.10m in ideal scenes at 1–3m | Include pixel selection, TF, and synchronisation rather than checking the formula alone |
+| ID maintenance | Report IDF1/HOTA/ID switches; zero incorrect automatic target takeovers over 10 crossings | Small samples do not prove generalisation; stopping under ambiguity is allowed |
+| Occlusion | Separate 0.5/1/3s occlusions; withdraw the target at timeout without automatically selecting another person | Distinguish internal track lifetime from control observation validity |
+| Navigation | Initial simulated stand-off distance 1.5m, with root mean square error ≤0.30m | Conditional on future scenes and person speeds; no navigation measurements yet |
+| Stopping response | Withdraw the control task within an additional 0.2s after observations become stale at 0.5s | Wall-clock fault injection and downstream velocity observation; not physical braking distance |
+| Faults | Target loss, TF interruption, scan loss, communication loss, and clock pause stop target-driven control | Verify separately with Mock server and simulation |
+| Resources | Record CPU, RSS, container memory, network, and disk; no sustained OOM | Test under current VM limits: 5 minutes first, then 30 minutes |
 
-## 关键风险与对策
+## Main risks and mitigations
 
-- 软件渲染争夺CPU：先简单世界、低分辨率，记录实时因子，避免用sim-time FPS掩盖低墙钟速度。
-- 默认仓库文档漂移：保存SHA和许可证；当前yolo_ros已迁移C++，不可照搬旧Python接口。
-- DepthAI版本混用：当前不装实体驱动；接设备前逐项核对v2/v3、ROS发行版、模型编译格式。
-- 人体资产域差异：单个不真实的人体mesh可能不被通用检测模型识别，需要多模型、多视角/光照，并与真实公开数据分开评估。
-- 目标身份混淆：锁定身份独立于检测ID，歧义停止，不靠最近距离自动切人。
-- 地图/时间跳变：使目标失效并记录原因，重建TF/跟踪状态。
-- 磁盘空间：第一步依赖预估约3.27GB；保留镜像和源码缓存并记录实际占用，不主动清理无关服务/数据。
+- Software rendering competes for CPU: begin with a simple world and low resolution; report real-time factor rather than concealing poor wall-clock speed with sim-time FPS.
+- Repository/documentation drift: retain SHAs and licences. Current yolo_ros has migrated to C++, so old Python interfaces cannot be copied directly.
+- DepthAI version mixing: no physical driver is installed now; verify v2/v3, ROS distribution, and compiled model format before device integration.
+- Human-asset domain differences: one artificial mesh may be poorly recognised by a general detector. Test multiple models, views, and lighting conditions, and evaluate real public data separately.
+- Target identity ambiguity: target locking is independent of detection IDs. Stop under ambiguity rather than selecting the nearest person.
+- Map/time jumps: invalidate the target, log the reason, and rebuild TF/tracking state.
+- Disk space: initial dependencies were estimated at approximately 3.27GB. Retain image/source caches and record actual usage; do not clean unrelated services or data.
 
-## 本次不宣称完成的内容
+## Outstanding validation
 
-第二阶段已测固定虚拟基准的检测precision/recall和部分处理链路时延。三维人体定位、多人的ID稳定性、Nav2跟随、长时间运行和实体机器人效果，仍须独立实验记录；不能从检测基线推断这些验收已经通过。
+Phase 2 measured detection precision/recall on a fixed virtual benchmark and latency for part of the processing path. 3D person localisation, identity stability, Nav2 following, long-duration operation, and physical robot performance still require independent experiments. The detection baseline does not establish that these acceptance criteria have passed.

@@ -1,112 +1,112 @@
-# TurtleBot 4 人体感知与跟随：成熟技术调研
+# TurtleBot 4 Person Perception and Following: Established Technologies
 
-研究日期：2026-11-10（Europe/London）。阶段：第一步，技术调研及仿真开发环境。
+Research date: 2026-11-10 (Europe/London). Phase 1: technical research and a simulation development environment.
 
-## 结论与证据边界
+## Findings and evidence limits
 
-用户已明确全部为虚拟硬件。本项目当前采用 Ubuntu 24.04 容器、ROS 2 Jazzy、Gazebo Harmonic，先建立静止 RGB-D、雷达与 TF 数据链路，再比较检测和跟踪方法。当前主线是主机 CPU 推理；没有可访问的 OAK-D/VPU，也没有证据表明 VMware 向来宾提供 NVIDIA CUDA。
+The user has specified that all hardware is virtual. The project uses an Ubuntu 24.04 container, ROS 2 Jazzy, and Gazebo Harmonic. The first step establishes stationary RGB-D, lidar, and TF data paths before comparing detection and tracking methods. Host CPU inference is the current approach. No OAK-D/VPU is accessible, and there is no evidence that VMware exposes NVIDIA CUDA to the guest.
 
-专业系统应把检测、距离测量、目标身份、运动规划、执行保护分开设计。能画框不等于能够稳定跟随；有 Track ID 也不等于能够跨越任意遮挡识别同一人。第一阶段只完成调研与基础环境；第二阶段的二维检测实现和测量见[检测报告](phase2_detection.md)，目标跟踪和自主跟随尚未实现。
+A professional system should separate detection, distance measurement, target identity, motion planning, and execution protection. Drawing a bounding box does not establish reliable following; a track ID does not guarantee identity across arbitrary occlusions. Phase 1 covered research and the base environment. The implemented 2D detector and measurements are documented in the [Phase 2 report](phase2_detection.md); target tracking and autonomous following are not yet implemented.
 
-事实分级：**官方支持**指维护者文档/源码明确声明；**社区实现**指第三方项目；**设计建议**是本项目尚待验证的选择；**NOT VERIFIED**表示未在当前环境验证。公开项目无法证明所有商用机器人的内部技术栈。
+Evidence labels: **Official support** means explicitly stated in maintainer documentation or source code; **community implementation** means a third-party project; **design recommendation** means a project choice awaiting validation; **NOT VERIFIED** means untested in this environment. Public projects do not establish the internal technology used by every commercial robot.
 
-## 核验方式
+## Verification method
 
-通过 GitHub API 获取默认分支、默认分支最后提交、归档状态、许可证元数据，并保存提交固定的 README/许可证。完整记录见 `../evidence/repository_inventory.json`。维护判断依据提交活动，不能把 GitHub `updated_at`（可能只是收藏活动）当成维护日期。
+The GitHub API was used to record each default branch, its latest commit, archive status, and licence metadata. README and licence snapshots were pinned to commits. Full records are in `../evidence/repository_inventory.json`. Maintenance assessments use commit activity; GitHub `updated_at`, which can reflect activity such as stars, is not a maintenance date.
 
-以下短 SHA 均对应该记录中的完整 SHA。源代码下载与校验记录另见 `../evidence/source_downloads.lock.json`；Nav2 实际下载 Jazzy 分支，而不是默认 main。
+The short SHAs below correspond to full SHAs in that inventory. Download and checksum records are in `../evidence/source_downloads.lock.json`. The downloaded Nav2 source uses the Jazzy branch rather than the default main branch.
 
-## 1. TurtleBot 4 Simulator：官方仿真底座
+## 1. TurtleBot 4 Simulator: official simulation foundation
 
-- 项目：[turtlebot/turtlebot4_simulator](https://github.com/turtlebot/turtlebot4_simulator)，Apache-2.0。
-- 核验版本：Jazzy 分支 `b7d0f3b97325`，默认分支最后提交 2024-10-30，未归档；包源码版本 2.0.2。分支较旧不等于没有发行维护，apt 二进制版本另行记录。
-- 架构：Gazebo 物理/渲染传感器，`ros_gz_bridge` 转为 ROS 消息，Create 3 模拟节点和 TurtleBot 节点提供机器人接口；可选启动导航/定位。
-- 硬件：虚拟 Create 3、OAK RGB-D 和雷达模型；实际运行在主机 CPU/GPU，不执行原装 OAK-D 的 Myriad/VPU 固件。
-- ROS：官方手册列出 Jazzy/Ubuntu 24.04/Harmonic，以及 Humble/22.04/Fortress。Galactic 已停止支持。
-- 复用：是，本项目首选官方仿真底座。需要检查每个相机 topic、光学 frame、时钟和桥接方向。
-- 借鉴：优先保留官方描述、标准消息和模拟接口，在项目自己的 launch/world 中做配置；不要把 Gazebo 深度直接当成真实双目误差模型。
+- Project: [turtlebot/turtlebot4_simulator](https://github.com/turtlebot/turtlebot4_simulator), Apache-2.0.
+- Verified revision: Jazzy branch `b7d0f3b97325`; latest default-branch commit dated 2024-10-30; not archived; source package version 2.0.2. An older branch commit does not establish that distribution maintenance has ceased; apt binary versions are recorded separately.
+- Architecture: Gazebo physics and rendered sensors, `ros_gz_bridge` conversion to ROS messages, and simulated Create 3 and TurtleBot nodes providing robot interfaces. Navigation and localisation can be launched optionally.
+- Hardware: virtual Create 3, OAK RGB-D, and lidar models. Computation runs on the host CPU/GPU; it does not execute the original OAK-D Myriad/VPU firmware.
+- ROS: the official manual lists Jazzy/Ubuntu 24.04/Harmonic and Humble/22.04/Fortress. Galactic is no longer supported.
+- Reuse: selected as the official simulation foundation. Camera topics, optical frames, clocks, and bridge directions must be checked individually.
+- Lesson: retain official descriptions, standard messages, and simulated interfaces; configure project-specific launch/world files. Gazebo depth is not a validated model of physical stereo error.
 
-来源：[安装与启动](https://turtlebot.github.io/turtlebot4-user-manual/software/turtlebot4_simulator.html)、[相机桥接源码](https://github.com/turtlebot/turtlebot4_simulator/blob/jazzy/turtlebot4_gz_bringup/launch/ros_gz_bridge.launch.py)。
+Sources: [installation and launch](https://turtlebot.github.io/turtlebot4-user-manual/software/turtlebot4_simulator.html), [camera bridge source](https://github.com/turtlebot/turtlebot4_simulator/blob/jazzy/turtlebot4_gz_bringup/launch/ros_gz_bridge.launch.py).
 
-## 2. TurtleBot 4 Examples：早期原装相机跟随参考
+## 2. TurtleBot 4 Examples: early reference for following with the original camera
 
-- 项目：[turtlebot/turtlebot4_examples](https://github.com/turtlebot/turtlebot4_examples)，Apache-2.0。
-- 版本/维护：默认 Galactic，`82c8bdfedf71`，最后提交 2022-05-25；未归档，不能作为现代 Jazzy 开箱可用的证据。
-- 架构：Mobilenet Spatial Publisher 使用检测和双目深度发布空间检测；FollowBot 消费人物检测进行跟随。
-- 硬件：TurtleBot 4、物理 OAK-D、机器人端计算机；虚拟相机没有对应设备端推理器。
-- ROS：此默认分支为 Galactic；Humble/Jazzy 兼容性 **NOT VERIFIED**。
-- 复用：作为接口和流程参考；不直接运行旧跟随 launch，不照搬其运动控制或旧 DepthAI 配置。
-- 借鉴：相机内部推理减少主机负荷、空间检测把 RGB 检测与深度关联起来。但简单跟随示例不是完整多人身份管理、避障和异常恢复方案。
+- Project: [turtlebot/turtlebot4_examples](https://github.com/turtlebot/turtlebot4_examples), Apache-2.0.
+- Revision and maintenance: default Galactic branch, `82c8bdfedf71`, latest commit dated 2022-05-25; not archived. This does not establish readiness for modern Jazzy installations.
+- Architecture: Mobilenet Spatial Publisher combines detection and stereo depth to publish spatial detections; FollowBot consumes person detections to follow a target.
+- Hardware: TurtleBot 4, a physical OAK-D, and the robot computer. The virtual camera has no equivalent on-device inference engine.
+- ROS: this default branch targets Galactic; Humble/Jazzy compatibility is **NOT VERIFIED**.
+- Reuse: reference for interfaces and workflow. Do not directly run the old following launch or copy its motion control and legacy DepthAI settings.
+- Lesson: camera inference can reduce host load, and spatial detections associate RGB detections with depth. A simple following example does not provide complete identity management, obstacle avoidance, or fault recovery.
 
-来源：[固定版本 README](https://github.com/turtlebot/turtlebot4_examples/blob/82c8bdfedf71d5399cd3eb18d54097557551b274/README.md)。
+Source: [pinned README](https://github.com/turtlebot/turtlebot4_examples/blob/82c8bdfedf71d5399cd3eb18d54097557551b274/README.md).
 
-## 3. DepthAI ROS：官方 OAK 设备端感知
+## 3. DepthAI ROS: official perception on OAK devices
 
-- 项目：[luxonis/depthai-ros](https://github.com/luxonis/depthai-ros)，MIT。
-- 版本/维护：默认 develop，`3462a2fb92fc`，最后提交 2026-11-04，近期有提交，未归档。develop 活跃不能证明其接口稳定。
-- 架构：相机 pipeline、可组合 ROS 节点、标定/TF、RGBD/空间检测；ObjectTracker 可接收空间检测，保留 tracklet 的空间坐标。
-- 硬件：OAK/RVC 设备及主机，原装 OAK-D Pro/Lite 属于应单独核实的设备型号；本机不存在该设备。
-- ROS：官方 v3 文档明确 Humble/Jazzy 使用 `depthai_ros_driver_v3`、`ros-<distro>-depthai-ros-v3`；Kilted 及以后才把 v3 作为无后缀默认包。不能混用 v2 示例参数。
-- 复用：实体 OAK-D 路线优先候选；当前纯仿真不安装设备驱动、不声称模拟 VPU 性能。
-- 借鉴：把像素映射、深度 ROI、标定和时间戳保留在原始流水线；跟踪是否真正使用空间信息须看版本与配置，不能因有 XYZ 就推断关联已使用 XYZ。
+- Project: [luxonis/depthai-ros](https://github.com/luxonis/depthai-ros), MIT.
+- Revision and maintenance: default develop branch, `3462a2fb92fc`, latest commit dated 2026-11-04; recent activity, not archived. An active development branch does not establish interface stability.
+- Architecture: camera pipelines, composable ROS nodes, calibration/TF, RGB-D, and spatial detections. ObjectTracker can accept spatial detections and retain spatial coordinates in tracklets.
+- Hardware: an OAK/RVC device and host. Specific original OAK-D Pro/Lite models require separate verification; no such device is available here.
+- ROS: official v3 documentation specifies `depthai_ros_driver_v3` and `ros-<distro>-depthai-ros-v3` for Humble/Jazzy. Only Kilted and later use v3 as the unsuffixed default package. Parameters from v2 examples cannot be assumed compatible.
+- Reuse: a leading candidate for a future physical OAK-D route. No device driver is installed for this purely virtual phase, and no VPU performance is claimed.
+- Lesson: preserve pixel mappings, depth ROIs, calibration, and timestamps throughout the pipeline. Whether tracking uses spatial information depends on version and configuration; an XYZ output alone does not prove XYZ-based association.
 
-来源：[v3 ROS 驱动](https://docs.luxonis.com/software-v3/depthai/ros/driver)、[ObjectTracker](https://docs.luxonis.com/software-v3/depthai/depthai-components/nodes/object_tracker)。
+Sources: [v3 ROS driver](https://docs.luxonis.com/software-v3/depthai/ros/driver), [ObjectTracker](https://docs.luxonis.com/software-v3/depthai/depthai-components/nodes/object_tracker).
 
-## 4. yolo_ros：社区 ROS 2 检测与 RGB-D 提升
+## 4. yolo_ros: community ROS 2 detection and RGB-D lifting
 
-- 项目：[mgonzs13/yolo_ros](https://github.com/mgonzs13/yolo_ros)。
-- 版本/维护：`94d2dd500cb2`，默认 main 最后提交 2026-11-04，未归档。
-- 当前源码 README 已描述 C++、ONNX Runtime 和 pluginlib 单进程流水线，包含检测、跟踪、3D 提升和调试渲染。不能再直接依赖旧版 Python/Ultralytics 节点教程。
-- 硬件：RGB 或 RGB-D 输入；CPU ONNX Runtime 可运行，CUDA/TensorRT 为额外可选后端；不要求专用 OAK 设备。特定相机/主机的实测性能 **NOT VERIFIED**。
-- ROS：维护者列出 Humble/Jazzy 等版本；本机实际编译及插件验证留到感知阶段。
-- 许可证：核验的当前仓库为 MIT；模型权重/导出的 ONNX 不因此变成 MIT，Ultralytics 权重仍有单独条款。网上旧页面曾显示 GPL，必须按固定提交核查。
-- 复用：当前纯仿真路线的重要候选，已下载固定源码，不在环境第一步提前安装整套模型/GPU依赖。
-- 借鉴：模型推理后端与跟踪/深度模块分离，检测结果统一转标准接口，避免每帧图像跨多个进程重复复制。
+- Project: [mgonzs13/yolo_ros](https://github.com/mgonzs13/yolo_ros).
+- Revision and maintenance: `94d2dd500cb2`, latest default-main commit dated 2026-11-04; not archived.
+- The current source README describes a C++, ONNX Runtime, and pluginlib pipeline in one process, including detection, tracking, 3D lifting, and debug rendering. Older Python/Ultralytics node tutorials cannot be assumed to describe this version.
+- Hardware: RGB or RGB-D input. CPU ONNX Runtime is available; CUDA/TensorRT are optional backends. A dedicated OAK device is not required. Performance on any particular camera/host is **NOT VERIFIED** by this research snapshot.
+- ROS: the maintainer lists Humble/Jazzy and other versions. Compilation and plugin validation in this environment were deferred to the perception phase.
+- Licence: the verified current repository is MIT. Model weights and exported ONNX files do not thereby become MIT; Ultralytics weights have separate terms. Older online pages showed GPL, so the pinned commit must be checked.
+- Reuse: an important candidate for pure simulation. Pinned source was downloaded in Phase 1 without preinstalling a complete model/GPU stack.
+- Lesson: separate inference backends from tracking/depth modules, adapt detections to standard interfaces, and avoid copying every image repeatedly between processes.
 
-来源：[固定版本 README](https://github.com/mgonzs13/yolo_ros/blob/94d2dd500cb26027ee9c019f4d3a02029ac615cc/README.md)、[许可证](https://github.com/mgonzs13/yolo_ros/blob/94d2dd500cb26027ee9c019f4d3a02029ac615cc/LICENSE)。
+Sources: [pinned README](https://github.com/mgonzs13/yolo_ros/blob/94d2dd500cb26027ee9c019f4d3a02029ac615cc/README.md), [licence](https://github.com/mgonzs13/yolo_ros/blob/94d2dd500cb26027ee9c019f4d3a02029ac615cc/LICENSE).
 
-## 5. SPENCER：真实移动机器人的多模态人员跟踪
+## 5. SPENCER: multimodal people tracking on a real mobile robot
 
-- 项目：[spencer-project/spencer_people_tracking](https://github.com/spencer-project/spencer_people_tracking)。
-- 版本/维护：master `09b256ba4bc2`，默认分支最后提交 2020-09-22；仓库最近 push 为 2021-02-02，未归档，属于历史研究框架。
-- 架构：RGB-D/单目/激光检测器 → 检测融合 → 人员轨迹 → 群组关系；公开基线含最近邻关联、轨迹初始化、IMM 多运动模型，不能把论文中所有高级算法都当成已公开代码。
-- 实际硬件：README 记录前后 Asus Xtion Pro Live、两台 SICK LMS500，两台 i7-4700MQ/GeForce 765M 笔记本，以千兆以太网连接。这是该项目记录，不是 TurtleBot 的性能证明。
-- ROS：维护者列出 ROS 1 Kinetic/Melodic/Noetic；没有据此确认 ROS 2 支持。
-- 许可证：多数包 BSD，存在例外；根仓库 API 未给单一许可证，复用前逐包检查。
-- 复用：不能直接安装到 Jazzy；优先借鉴消息边界、带协方差的融合、轨迹确认和群组关系，不启动移植整个老栈。
+- Project: [spencer-project/spencer_people_tracking](https://github.com/spencer-project/spencer_people_tracking).
+- Revision and maintenance: master `09b256ba4bc2`, latest default-branch commit dated 2020-09-22; latest repository push dated 2021-02-02; not archived. This is a historical research framework.
+- Architecture: RGB-D/monocular/laser detectors, detection fusion, person tracks, and group relations. The public baseline includes nearest-neighbour association, track initiation, and interacting multiple models (IMM). Not every advanced method discussed in papers is publicly implemented.
+- Recorded hardware: front and rear Asus Xtion Pro Live cameras, two SICK LMS500 units, and two i7-4700MQ/GeForce 765M laptops connected over gigabit Ethernet. These are SPENCER's records, not evidence of TurtleBot performance.
+- ROS: maintainers list ROS 1 Kinetic/Melodic/Noetic; this does not confirm ROS 2 support.
+- Licence: most packages are BSD, with exceptions. The root repository API gives no single licence; check each package before reuse.
+- Reuse: not directly installable on Jazzy. Adopt lessons about message boundaries, covariance-aware fusion, track confirmation, and group relations rather than porting the entire legacy stack.
 
-来源：[固定 README：架构与硬件](https://github.com/spencer-project/spencer_people_tracking/blob/09b256ba4bc22c5cae8a5ae88960de1a387cfd7f/README.md)。
+Source: [pinned README: architecture and hardware](https://github.com/spencer-project/spencer_people_tracking/blob/09b256ba4bc22c5cae8a5ae88960de1a387cfd7f/README.md).
 
-## 6. Nav2：成熟的 ROS 2 导航与动态目标接口
+## 6. Nav2: established ROS 2 navigation and dynamic-target interfaces
 
-- 项目：[ros-navigation/navigation2](https://github.com/ros-navigation/navigation2)。
-- 维护：默认 main `3b7ec4355be9`，最后提交 2026-11-10，未归档。实际集成固定 Jazzy 分支和 apt 包版本。
-- 架构：行为树管理 planner/controller/behavior server，costmap 合并激光/深度障碍物；AMCL 或 SLAM 提供定位；Collision Monitor 位于速度输出链路。
-- 硬件：不绑定相机品牌，依赖配置正确的扫描/深度、里程计、TF和移动底盘；本项目使用对应虚拟传感器。
-- ROS：官方 ROS 2 栈，有 Jazzy、Humble 分支。Jazzy 源码已出现 `opennav_following` 及 `FollowObject`，但是否进入当前安装二进制必须单独检查。
-- 许可证：根 LICENSE 明确按包/文件分为 Apache-2.0、BSD-3-Clause、LGPL-2.1-or-later 等，不能笼统写成全部 Apache。
-- 复用：是。先用 Mock Action Server，后比较动态目标行为树与专用 Following Server。后者并不自动提供完整的社会化全局绕障。
-- 借鉴：目标更新通过已有导航能力完成，安全监测独立于视觉检测；不能把目标丢失时默认旋转搜索直接用于当前默认禁止运动的项目。
+- Project: [ros-navigation/navigation2](https://github.com/ros-navigation/navigation2).
+- Maintenance: default main `3b7ec4355be9`, latest commit dated 2026-11-10; not archived. Integration uses a pinned Jazzy source revision and recorded apt package versions.
+- Architecture: behaviour trees coordinate planner/controller/behaviour servers; costmaps combine laser/depth obstacles; AMCL or SLAM provides localisation; Collision Monitor belongs in the velocity output chain.
+- Hardware: camera-brand independent, requiring correctly configured scan/depth data, odometry, TF, and a mobile base. This project uses corresponding virtual sensors.
+- ROS: an official ROS 2 stack with Jazzy and Humble branches. Jazzy source includes `opennav_following` and `FollowObject`; availability in installed binaries must be checked separately.
+- Licence: the root LICENSE lists Apache-2.0, BSD-3-Clause, LGPL-2.1-or-later, and other terms by package/file. The whole repository cannot be labelled Apache.
+- Reuse: selected. Start with a Mock Action Server, then compare dynamic-target behaviour trees with the dedicated Following Server. The latter does not automatically provide complete socially aware global obstacle avoidance.
+- Lesson: update targets through navigation capabilities and keep protection independent of visual detection. Default rotation to search for a lost target is inappropriate for this project's current motion-disabled state.
 
-来源：[Jazzy 动态跟随教程](https://docs.nav2.org/jazzy/tutorials/general_tutorials/navigation2_dynamic_point_following/navigation2_dynamic_point_following/)、[Jazzy Following 包](https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_following/opennav_following/package.xml)、[Collision Monitor](https://docs.nav2.org/jazzy/configuration_and_development/configuration_guide/core_servers/collision_monitor/configuring_collision_monitor_node/)。
+Sources: [Jazzy dynamic-following tutorial](https://docs.nav2.org/jazzy/tutorials/general_tutorials/navigation2_dynamic_point_following/navigation2_dynamic_point_following/), [Jazzy Following package](https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_following/opennav_following/package.xml), [Collision Monitor](https://docs.nav2.org/jazzy/configuration_and_development/configuration_guide/core_servers/collision_monitor/configuring_collision_monitor_node/).
 
-## 7—9. 追踪算法参考实现
+## 7–9. Tracking reference implementations
 
-| 项目与固定版本 | 算法与作用 | 硬件、ROS 2、维护和许可证 | 复用判断 |
+| Project and pinned revision | Algorithm and purpose | Hardware, ROS 2, maintenance, and licence | Reuse assessment |
 |---|---|---|---|
-| [ByteTrack](https://github.com/FoundationVision/ByteTrack)，`d1bf0191adff` | 高低置信度两阶段关联，结合运动预测恢复弱检测；不提供可靠跨长遮挡身份辨认 | 原始完整检测管线涉及 GPU/检测器；跟踪关联可与检测器分离。无官方 ROS 2 发行版声明。默认提交 2022-12-11，MIT，未归档 | 先做轻量基线；不把论文 V100 FPS 用于本 VM |
-| [BoT-SORT](https://github.com/NirAharon/BoT-SORT)，`251985436d67` | 运动、外观、相机运动补偿与改进 Kalman 状态；ReID 需另配模型 | README 的测试系统 Ubuntu 20.04；原始实现依赖 PyTorch/相关检测器，未核实 ROS 2 支持。默认提交 2022-10-30，MIT，未归档 | 借鉴移动相机补偿和外观融合；是否降低本项目 ID switch 要实测 |
-| [DeepSORT](https://github.com/nwojke/deep_sort)，`f08cf1dc470e` | Kalman、门控、匹配级联及外观嵌入；将运动与外观共同用于关联 | 原始特征提取代码含 TensorFlow，关联阶段没有摄像头绑定。无 ROS 2 发行版声明。默认提交 2025-03-02 为修正文字，不能等同于算法持续开发；GPL-3.0 | 学习关联、轨迹寿命和遮挡处理；不直接把旧 TensorFlow 栈装入 Jazzy |
+| [ByteTrack](https://github.com/FoundationVision/ByteTrack), `d1bf0191adff` | Two-stage association of high- and low-confidence detections, using motion prediction to recover weak detections; no reliable identity guarantee across long occlusions | The original complete detection pipeline involves a GPU/detector; association can be separated. No official ROS 2 distribution statement. Default-branch commit dated 2022-12-11; MIT; not archived | Start with a lightweight baseline; do not transfer the paper's V100 FPS to this VM |
+| [BoT-SORT](https://github.com/NirAharon/BoT-SORT), `251985436d67` | Motion, appearance, camera-motion compensation, and an improved Kalman state; ReID needs a separate model | README testing used Ubuntu 20.04; original implementation depends on PyTorch/related detectors. ROS 2 support unverified. Default-branch commit dated 2022-10-30; MIT; not archived | Reference for camera-motion compensation and appearance fusion; measure whether it reduces ID switches here |
+| [DeepSORT](https://github.com/nwojke/deep_sort), `f08cf1dc470e` | Kalman filtering, gating, matching cascade, and appearance embeddings combine motion and appearance for association | Original feature extraction includes TensorFlow; association is camera independent. No ROS 2 distribution statement. The 2025-03-02 default-branch commit corrects text and does not demonstrate ongoing algorithm development; GPL-3.0 | Reference for association, track lifetime, and occlusion handling; do not install the entire old TensorFlow stack into Jazzy |
 
-论文：[ByteTrack, ECCV 2022](https://arxiv.org/abs/2110.06864)、[BoT-SORT, 2022](https://arxiv.org/abs/2206.14651)、[DeepSORT, 2017](https://arxiv.org/abs/1703.07402)。本项目没有复现这些论文的排行榜数据。
+Papers: [ByteTrack, ECCV 2022](https://arxiv.org/abs/2110.06864), [BoT-SORT, 2022](https://arxiv.org/abs/2206.14651), [DeepSORT, 2017](https://arxiv.org/abs/1703.07402). This project has not reproduced their leaderboard results.
 
-## 专业方法在本项目中的落地
+## Applying these methods to this project
 
-1. **传感器职责**：RGB 判断类别/外观；深度给测量尺度；激光支撑障碍物和定位。不能把每个雷达障碍物都当作人，不能把单个 2D bounding box 中心的背景深度当成人体距离。
-2. **融合条件**：先校验 CameraInfo、RGB-depth 对齐、曝光/仿真时间戳、TF 外参，再在共同坐标系融合。用于识别的视觉 track 与用于避障的 costmap 可以分开更新。
-3. **稳定身份**：对确认轨迹使用会话级 ID，显式选择目标，保存其外观/位置及不确定度；多人交叉使用 3D 门控和外观，无法区分时停下并等待确认。
-4. **遮挡与出视野**：允许短时预测，但预测不是新观测；达到超时立刻停止目标驱动，不能自动选择最近的人。绕弯时需要地图/局部避障，不能只按图像左右偏差转向。
-5. **导航**：从人体位置生成有距离约束、可到达且在自由空间中的目标，目标做限频和平滑；通过 Nav2 更新目标，避免每帧取消/重建完整动作。
-6. **验证**：固定场景、路径、种子、模型和权重；测墙钟延迟与仿真实时因子；把模拟真值独立于被测算法保存。现实泛化、深度孔洞和实体 VPU 性能均为 **NOT VERIFIED**。
+1. **Sensor roles:** RGB provides class/appearance information, depth provides scale, and lidar supports obstacle avoidance and localisation. A lidar obstacle is not automatically a person; background depth at a 2D box centre is not a valid person-distance measurement.
+2. **Fusion prerequisites:** verify CameraInfo, RGB/depth alignment, exposure/simulation timestamps, and TF extrinsics before fusion in a common frame. Visual identity tracks and obstacle costmaps may update independently.
+3. **Stable identity:** use session-scoped IDs for confirmed tracks, explicitly select the target, and retain appearance, position, and uncertainty. Use 3D gating and appearance during crossings; stop and await confirmation when identity is ambiguous.
+4. **Occlusion and leaving view:** allow limited prediction, but prediction is not a new observation. Stop target-driven control at timeout and do not automatically choose the nearest person. Turning corners requires a map/local obstacle avoidance, not just image-based left/right steering.
+5. **Navigation:** derive reachable goals in free space with a stand-off distance, limit update rates, and smooth goals. Use Nav2 goal updates rather than cancelling and recreating the entire action every frame.
+6. **Validation:** fix scenes, trajectories, seeds, models, and weights; measure wall-clock latency and simulation real-time factor; store simulator ground truth independently of the evaluated algorithm. Real-world generalisation, depth holes, and physical VPU performance remain **NOT VERIFIED**.
 
-商用项目通常还需要冗余、诊断及经过风险评估的停止链路；本次公开资料不足以断言特定厂商的内部传感器或安全等级。Collision Monitor 是软件保护组件，不替代实体机器人硬件安全。
+Commercial deployment also commonly requires redundancy, diagnostics, and a stopping chain informed by risk assessment. The reviewed public material does not establish any particular vendor's internal sensors or safety rating. Collision Monitor is a software protection component, not a replacement for physical robot safety hardware.

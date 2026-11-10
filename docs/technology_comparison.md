@@ -1,98 +1,98 @@
-# 技术比较与第一阶段选型
+# Technology Comparison and Phase 1 Selection
 
-日期：2026-11-10。本文记录技术选型依据；第二阶段已补充CPU二维检测实测，见[检测报告](phase2_detection.md)。实体硬件性能、全链路采集延迟与跟随效果仍为 **NOT VERIFIED**。
+Date: 2026-11-10. This report records the selection rationale. Phase 2 has added measured CPU 2D detection results; see the [detection report](phase2_detection.md). Physical hardware performance, full acquisition latency, and following performance remain **NOT VERIFIED**.
 
-## 基础环境选择
+## Base environment
 
-选择 **Ubuntu 24.04 容器 + ROS 2 Jazzy + Gazebo Harmonic**。这是 [TurtleBot 4 官方支持组合](https://turtlebot.github.io/turtlebot4-user-manual/software/turtlebot4_simulator.html)。当前宿主是 Ubuntu 26.04，因此 ROS/Gazebo 安装在容器内部。Jazzy 的目标系统和支持周期见 [REP-2000](https://www.ros.org/reps/rep-2000.html#jazzy-jalisco-may-2024-may-2029)。
+Selected: **Ubuntu 24.04 container + ROS 2 Jazzy + Gazebo Harmonic**, an [officially supported TurtleBot 4 combination](https://turtlebot.github.io/turtlebot4-user-manual/software/turtlebot4_simulator.html). The host runs Ubuntu 26.04, so ROS/Gazebo are installed inside the container. Jazzy target platforms and support dates are documented in [REP-2000](https://www.ros.org/reps/rep-2000.html#jazzy-jalisco-may-2024-may-2029).
 
-Humble/Ubuntu 22.04/Fortress 是仍值得保留的另一条官方组合；当前没有实体 Humble 机器人需要匹配，因此不同时安装两套环境。未来接实物先核实机器人镜像、底盘和驱动版本，再决定是否换为 Humble，不能依赖跨发行版 DDS 兼容的假设。
+Humble/Ubuntu 22.04/Fortress remains another official option. There is no physical Humble robot to match here, so two environments are unnecessary. Before connecting physical hardware, verify the robot image, base, and driver versions, then decide whether to use Humble. Do not assume DDS interoperability between distributions.
 
-## ROS 2 核心职责
+## ROS 2 responsibilities
 
-| 组件 | 职责 | 本项目使用阶段 |
+| Component | Responsibility | Project use |
 |---|---|---|
-| ROS 2 Jazzy | 节点、接口、工具和发行版依赖 | 必须，当前基础 |
-| TF2 | 按观测时间把相机坐标转到 base/odom/map | 必须，先验证再做 3D 融合 |
-| DDS/RMW | 传输与发现、QoS，不能代替同步/安全协议 | 使用发行版默认，记录实际实现；容器运行时无外部网络 |
-| Topics | 高频图像、深度、扫描、检测和状态 | 必须；图像 SensorDataQoS，记录可靠性兼容情况 |
-| Services | 设置/清除目标、查询状态等短操作 | 设计保留；不用于长时间导航 |
-| Actions | 可取消、反馈进度的导航/跟随任务 | 后续先连接 Mock server |
-| Lifecycle Nodes | 配置、激活、停用和异常恢复 | 感知/跟随协调节点采用；默认 inactive |
-| Nav2 + Costmap 2D | 全局路径、局部轨迹、障碍物代价 | 依赖安装；当前不启动导航 |
-| SLAM Toolbox | 构图并提供 map→odom | 后续建图时使用 |
-| AMCL | 在已知地图上定位 | 后续与 SLAM 二选一作为 map→odom 权威 |
+| ROS 2 Jazzy | Nodes, interfaces, tools, and distribution dependencies | Required; current foundation |
+| TF2 | Transform camera observations to base/odom/map at observation time | Required; validate before 3D fusion |
+| DDS/RMW | Transport, discovery, and QoS; does not replace synchronisation or protection protocols | Use the distribution default and record the implementation; runtime container has no external network |
+| Topics | Frequent images, depth, scans, detections, and status | Required; use SensorDataQoS for images and record reliability compatibility |
+| Services | Short operations such as setting/clearing targets or querying status | Planned; not for long navigation tasks |
+| Actions | Cancellable navigation/following tasks with feedback | Connect to a Mock server first |
+| Lifecycle Nodes | Configuration, activation, deactivation, and recovery | Proposed for perception/following coordination; inactive by default |
+| Nav2 + Costmap 2D | Global paths, local trajectories, and obstacle costs | Dependencies installed; navigation currently inactive |
+| SLAM Toolbox | Mapping and map→odom | Future mapping phase |
+| AMCL | Localisation on a known map | Future alternative to SLAM; only one map→odom authority |
 
-## 检测与深度路线
+## Detection and depth approaches
 
-准确率取决于模型、输入尺寸、场景/域差异与阈值；速度取决于算力、前后处理和传输。以下为工程特征比较，不是实测排名。
+Accuracy depends on the model, input size, scene/domain differences, and thresholds. Speed depends on compute, preprocessing, postprocessing, and transport. This is an engineering comparison, not a measured ranking.
 
-| 方法 | 检测、深度方式 | 资源与集成 | OAK/当前仿真适配 | 决策 |
+| Method | Detection and depth | Resources and integration | OAK/current simulation fit | Decision |
 |---|---|---|---|---|
-| OpenCV DNN + MobileNet/其他检测器 | 主机检测；通过对齐深度 ROI 取稳健测量 | 可用 CPU；要自行处理模型和消息适配；性能 NOT VERIFIED | 能消费模拟 RGBD，不能模拟设备端速度 | 可作较小模型对照基线 |
-| Ultralytics YOLO | 模型系列丰富；框/掩码配合 RGBD 提升 | Python/PyTorch 或导出 ONNX；CPU/GPU可选；权重和代码条款单独核查 | 不依赖 OAK；CPU 可用于当前 VM | 不默认最优；后续同一 rosbag 实测 |
-| 当前 yolo_ros + ONNX Runtime | C++ 插件式检测/追踪/3D 提升 | 社区 ROS 2 集成现成；当前源码与旧教程差异大，需固定提交 | 可直接消费虚拟 RGB/深度/CameraInfo | 已编译5.0.0并验证CPU二维检测；跟踪/3D插件未启用 |
-| DepthAI SpatialDetectionNetwork | 设备端检测结合双目深度，发布空间测量 | 主机压力可降低，受设备支持网络/编译格式约束 | 实体 OAK 路线强；当前没有设备/VPU | 纯仿真阶段不安装；不假报 VPU FPS |
-| MediaPipe Pose | 人体关键点，可用于动作/姿态 | 可用 CPU/部分硬件后端；需额外 ROS 适配 | 可处理虚拟 RGB；身体坐标不等于相机中的绝对距离 | 非第一阶段必需 |
-| NVIDIA Isaac ROS | TensorRT/Triton 和加速图像管线 | 依赖匹配版本的 NVIDIA 平台/驱动/存储 | 本 VM 没有可见 CUDA，不匹配当前资源 | 当前不安装 |
+| OpenCV DNN + MobileNet/other detectors | Host detection followed by robust measurements from aligned depth ROIs | CPU-capable; requires model handling and message adaptation; performance NOT VERIFIED | Can consume simulated RGB-D; cannot simulate device inference speed | Possible smaller-model baseline |
+| Ultralytics YOLO | Multiple model families; boxes/masks support RGB-D lifting | Python/PyTorch or ONNX export; CPU/GPU options; check code and weight terms separately | OAK-independent; CPU is usable in this VM | Do not assume optimality; compare on the same rosbag later |
+| Current yolo_ros + ONNX Runtime | C++ plugins for detection/tracking/3D lifting | Community ROS 2 integration; current source differs substantially from old tutorials, requiring a pinned commit | Can consume virtual RGB/depth/CameraInfo | Version 5.0.0 compiled and CPU 2D detection verified; tracking/3D plugins inactive |
+| DepthAI SpatialDetectionNetwork | Device detection with stereo depth and spatial measurements | Can reduce host load; constrained by device-supported networks and compiled formats | Strong physical OAK option; no device/VPU here | Not installed during pure simulation; no VPU FPS claim |
+| MediaPipe Pose | Body landmarks for pose/action analysis | CPU and selected hardware backends; additional ROS adaptation required | Can process virtual RGB; body coordinates are not absolute camera distance | Not required for Phase 1 |
+| NVIDIA Isaac ROS | TensorRT/Triton and accelerated image pipelines | Requires compatible NVIDIA platform, drivers, and storage | No visible CUDA device in this VM | Not installed |
 
-MediaPipe world landmarks 的原点在髋部，不能直接拿来当机器人到人的测距。[官方源码文档](https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/pose.md)。Isaac ROS 4.0 的支持平台需按[对应版本文档](https://nvidia-isaac-ros.github.io/v/release-4.0/repositories_and_packages/isaac_ros_dnn_inference/index.html)选择，不能认为任意 Jetson 都兼容任意最新版。
+MediaPipe world landmarks have a hip-centred origin and cannot directly measure robot-to-person distance. See the [official source documentation](https://github.com/google-ai-edge/mediapipe/blob/master/docs/solutions/pose.md). Select Isaac ROS 4.0 hardware using its [version-specific documentation](https://nvidia-isaac-ros.github.io/v/release-4.0/repositories_and_packages/isaac_ros_dnn_inference/index.html); arbitrary Jetson models are not compatible with every release.
 
-### DepthAI 版本门槛
+### DepthAI version requirements
 
-Humble/Jazzy 的 v3 驱动包带 `_v3` 后缀；无后缀旧驱动与 v3 文档不能互换。[官方说明](https://docs.luxonis.com/software-v3/depthai/ros/driver)。未来实体实验记录：相机型号/MXID、RVC代际、USB链路、ROS包版本、DepthAI库版本、模型格式与编译工具、固件信息、标定、同步与对齐参数。本阶段没有这些真实观测。
+Humble/Jazzy v3 driver packages use the `_v3` suffix. Unsuffixed legacy drivers and v3 documentation are not interchangeable. See the [official explanation](https://docs.luxonis.com/software-v3/depthai/ros/driver). A future physical experiment must record camera model/MXID, RVC generation, USB link, ROS package version, DepthAI library version, model format/compiler, firmware, calibration, synchronisation, and alignment settings. These physical observations are unavailable in this phase.
 
-虚拟 RGB-D 相机可以测试 ROS 接口，但没有证据支持它仿真 Myriad X 推理器；DepthAI 路线A与主机路线B的公平实体性能对比目前 **NOT VERIFIED**。
+A virtual RGB-D camera can test ROS interfaces; there is no evidence that it simulates the Myriad X inference engine. A fair physical comparison of DepthAI route A with host route B is **NOT VERIFIED**.
 
-## 跟踪与目标身份
+## Tracking and target identity
 
-| 方法 | ID维持方式 | 遮挡/交叉局限 | 当前建议 |
+| Method | ID maintenance | Occlusion/crossing limitations | Current recommendation |
 |---|---|---|---|
-| Kalman Filter | 预测状态及协方差；本身没有数据关联 | 不会辨认人物身份，长期预测会漂移 | 作为运动模型，不独立宣称完成跟踪 |
-| ByteTrack | 按置信度分阶段做运动/框关联 | 长遮挡、相似轨迹交叉仍会换 ID | 优先轻量基线 |
-| DeepSORT | 运动门控与外观距离、匹配级联 | 相似衣着/背面、旧模型域差异 | 参考设计，不引入旧 TensorFlow整栈 |
-| BoT-SORT | 运动与可选外观、全局相机运动补偿 | ReID额外计算，不能保证身份 | 交叉/移动相机测试中的对照 |
-| DepthAI ObjectTracker | 设备/主机 tracklet，部分版本可用空间关联 | 是否使用空间信息由配置决定，身份保证有限 | 仅实体路线评估 |
-| 3D数据关联 | 同一 odom 坐标下位置/协方差门控，融合外观与2D | 深度失效、TF延迟、拥挤时仍会误配 | 在2D基线上逐步增加 |
+| Kalman Filter | Predicts state and covariance; no data association by itself | Does not recognise identity; long prediction drifts | Use as a motion model, not as a complete tracker |
+| ByteTrack | Confidence-staged association using motion and boxes | Long occlusions and similar crossing trajectories can switch IDs | First lightweight baseline |
+| DeepSORT | Motion gating, appearance distance, and matching cascade | Similar clothes/back views and domain differences in old models | Design reference; avoid the entire legacy TensorFlow stack |
+| BoT-SORT | Motion, optional appearance, and global camera-motion compensation | ReID adds computation and does not guarantee identity | Comparator for crossings and a moving camera |
+| DepthAI ObjectTracker | Device/host tracklets; some versions support spatial association | Spatial use depends on configuration; limited identity guarantees | Evaluate only on the physical route |
+| 3D data association | Position/covariance gating in a common odom frame, with appearance and 2D evidence | Depth failures, TF delay, and crowding can still cause mismatches | Add incrementally to a 2D baseline |
 
-目标选择独立于 tracker：使用 `{session_id, track_id}` 锁定目标；相机/跟踪器重启后旧 ID 不自动继承。短遮挡可保留候选轨迹，观测超时后停止目标驱动；重现后需时空/外观/置信度一致，存在歧义则要求显式重新选择。不能通过“换成最近的人”掩盖目标丢失。
+Target selection is independent of the tracker. Lock a target with `{session_id, track_id}`; old IDs must not carry over automatically after camera/tracker restarts. Candidate tracks can survive brief occlusion, but target-driven control must stop when observations expire. Reappearance requires consistent spatial, temporal, appearance, and confidence evidence; ambiguity requires explicit reselection. Automatically choosing the nearest person would conceal target loss.
 
-论文及原始实现见 `industry_research.md`。本项目尚无 IDF1、HOTA、错误切换率的实测结果。
+Papers and original implementations are listed in `industry_research.md`. No IDF1, HOTA, or incorrect-switch measurements are available yet.
 
-## 导航方案A与B
+## Navigation options A and B
 
-| 比较项 | A：Nav2 动态目标/路径更新 | B：独立闭环跟随控制器 |
+| Comparison | A: Nav2 dynamic-target/path updates | B: separate closed-loop following controller |
 |---|---|---|
-| 优点 | 可复用地图、规划器、costmap、行为树及任务取消 | 延迟链路较短，开阔区域容易表达距离/方位误差控制 |
-| 局限 | 目标频繁变化会导致重规划抖动；需处理人体附近不可通行代价 | 需要补足避障、可达性、停机、仲裁及恢复；只靠视觉左右误差不能绕障 |
-| 遮挡/拐弯 | 可利用已知自由空间与最近有效位置；仍需限制预测寿命 | 目标离开视野后控制依据迅速失效 |
-| 安全接口 | 输出必须通过独立限速/Collision Monitor/最终使能 | 同样必须经过独立保护链，不直连底盘 |
-| 本项目选择 | 后续复杂场景主线，先通过 Mock action验证更新/取消 | 作为开阔场景对照，暂不实现输出运动 |
+| Advantages | Reuses maps, planners, costmaps, behaviour trees, and task cancellation | Shorter latency path; distance/bearing control is straightforward in open areas |
+| Limitations | Frequent target changes can cause replanning oscillation; costs near people require handling | Must add obstacle avoidance, reachability, stopping, arbitration, and recovery; image left/right error alone cannot navigate around obstacles |
+| Occlusion/corners | Can use known free space and the last valid position; prediction lifetime still needs limits | Control evidence quickly becomes stale when the target leaves view |
+| Protection interface | Output must pass independent speed limits, Collision Monitor, and final enable gating | Requires the same independent protection chain before the base |
+| Project choice | Future main approach for complex scenes; validate updates/cancellation through Mock actions first | Open-area comparator; motion output not implemented yet |
 
-Nav2 Jazzy 已有动态目标行为树教程；源码中存在专用 Following Server，必须区分源码中存在与当前镜像已安装。[官方教程](https://docs.nav2.org/jazzy/tutorials/general_tutorials/navigation2_dynamic_point_following/navigation2_dynamic_point_following/)。不能把“不断发送 NavigateToPose”作为唯一成熟方法，也不能把 Following Server 默认寻找目标旋转当作本项目默认行为。
+Nav2 Jazzy has a dynamic-target behaviour-tree tutorial and dedicated Following Server source. Source availability must be distinguished from installed functionality. See the [official tutorial](https://docs.nav2.org/jazzy/tutorials/general_tutorials/navigation2_dynamic_point_following/navigation2_dynamic_point_following/). Repeatedly sending NavigateToPose is not the only established approach, and the Following Server's default search rotation is not a project default.
 
-本机补充核验：已安装Nav2 1.3.13，`FollowObject` action定义可查询，但当前镜像没有安装`opennav_following`包。因此目前不能把专用Following Server记为可运行能力；下一阶段先用Mock与动态目标行为树，另行核实该可选包。
+Local verification: Nav2 1.3.13 is installed and the `FollowObject` action definition is queryable, but `opennav_following` is absent from the image. The dedicated Following Server is therefore not recorded as runnable. The next integration stage starts with Mock actions and dynamic-target behaviour trees, with separate verification of that optional package.
 
-### 控制器与动态障碍
+### Controllers and dynamic obstacles
 
-- Regulated Pure Pursuit：路径跟踪、曲率/障碍距离调速和前向碰撞检查，适合计算预算有限的路径跟随；不能替代全局规划和完整动态人群预测。[Jazzy源码说明](https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_regulated_pure_pursuit_controller/README.md)。
-- MPPI：采样预测控制并用代价评价轨迹，具有更多调参和计算成本；当前软件渲染 VM 先测预算，再与 RPP 比较。[Jazzy源码说明](https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_mppi_controller/README.md)。
-- Costmap 2D：静态/障碍/膨胀层分别处理地图与传感器障碍；有障碍层不意味着具有行人长期行为预测。
-- 社会化导航：把个人空间、群体关系和不横穿群体作为额外策略，SPENCER 提供研究经验；标准 Nav2 不自动保证社会规范。
-- Collision Monitor：对传感器超时和区域触发进行速度限制/停止；必须接在最终速度链上并测试故障注入。[Jazzy参数](https://docs.nav2.org/jazzy/configuration_and_development/configuration_guide/core_servers/collision_monitor/configuring_collision_monitor_node/)。
+- Regulated Pure Pursuit: path tracking, speed regulation using curvature/obstacle distance, and forward collision checks. Suitable for constrained compute budgets, but does not replace global planning or complete crowd prediction. [Jazzy source documentation](https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_regulated_pure_pursuit_controller/README.md).
+- MPPI: samples predicted trajectories and evaluates costs, with additional tuning and compute requirements. Measure the software-rendered VM budget before comparing it with RPP. [Jazzy source documentation](https://github.com/ros-navigation/navigation2/blob/jazzy/nav2_mppi_controller/README.md).
+- Costmap 2D: static, obstacle, and inflation layers handle map and sensor costs. An obstacle layer does not provide long-term pedestrian behaviour prediction.
+- Social navigation: personal space, group relations, and avoiding passage through groups need additional policies. SPENCER offers research experience; standard Nav2 does not automatically guarantee social behaviour.
+- Collision Monitor: limits/stops velocity on sensor timeouts and zone triggers. It must be in the final velocity chain and tested through fault injection. [Jazzy parameters](https://docs.nav2.org/jazzy/configuration_and_development/configuration_guide/core_servers/collision_monitor/configuring_collision_monitor_node/).
 
-## 轻量工具链
+## Lightweight toolchain
 
-| 等级 | 工具 | 用途/当前动作 |
+| Priority | Tools | Purpose/current action |
 |---|---|---|
-| 必须 | Ubuntu24容器、ROS2、Git、CMake/colcon、Python/C++ | 安装可复现仿真基础；保留源码和依赖锁 |
-| 必须 | Gazebo Harmonic、TurtleBot4 Simulator、ros_gz | 虚拟硬件与消息桥接 |
-| 必须 | OpenCV/cv_bridge、rosbag2 | 读写图像、采集可复现实验数据 |
-| 必须（分阶段） | pytest / launch_testing | 离线数值与集成/失联测试；不编写只重复实现的空测试 |
-| 推荐 | RViz2 | 图像、TF、点云、轨迹可视化；官方仿真依赖可能已带入，当前不启动GUI |
-| 推荐 | Docker | 隔离宿主26.04与Jazzy依赖；运行时 network none |
-| 推荐 | VS Code/Codex、Dev Container配置 | 编辑、远程开发；不在服务器再装一套桌面IDE |
-| 可选 | Foxglove、PlotJuggler | 大规模日志/曲线分析，第一步不加装 |
-| 当前不需要 | PyTorch训练、CUDA、TensorRT、Isaac Sim、MediaPipe全套 | 当前无训练任务或匹配GPU，不预装 |
+| Required | Ubuntu 24 container, ROS 2, Git, CMake/colcon, Python/C++ | Reproducible simulation foundation; retain source and dependency locks |
+| Required | Gazebo Harmonic, TurtleBot 4 Simulator, ros_gz | Virtual hardware and message bridging |
+| Required | OpenCV/cv_bridge, rosbag2 | Image I/O and reproducible data collection |
+| Required, by phase | pytest / launch_testing | Numerical, integration, and disconnection tests; avoid empty tests that merely repeat implementation |
+| Recommended | RViz2 | Images, TF, point clouds, and trajectories; may already be included by official simulation dependencies; GUI currently inactive |
+| Recommended | Docker | Isolate host 26.04 from Jazzy dependencies; runtime network disabled |
+| Recommended | VS Code/Codex, Dev Container configuration | Editing and remote development; no additional desktop IDE installed on the server |
+| Optional | Foxglove, PlotJuggler | Larger-scale log/plot analysis; not added in Phase 1 |
+| Not currently needed | PyTorch training, CUDA, TensorRT, Isaac Sim, full MediaPipe stack | No training task or compatible GPU; not preinstalled |
 
-锁定基础镜像 digest、源码 SHA 和安装包清单。Dockerfile 使用固定基础镜像但 apt 仓库会演进；只有保留本次构建镜像/镜像ID与 packages.lock 才能复用这一运行环境，不能承诺未来任意日期重建得到逐字节相同镜像。
+Pin the base-image digest, source SHAs, and installed package inventory. The Dockerfile fixes the base image, but apt repositories evolve. Retain this built image/image ID and packages.lock to reuse the observed environment; rebuilding on an arbitrary future date is not guaranteed to produce a byte-identical image.
