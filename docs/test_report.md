@@ -1,6 +1,6 @@
 # 已执行检查与测试记录
 
-日期：2026-11-10（Europe/London）。范围：技术研究与虚拟环境第一步。
+日期：2026-11-10（Europe/London）。范围：第一阶段基础环境，以及随后执行的第二阶段二维人物检测。
 
 ## 初始只读检查
 
@@ -77,8 +77,20 @@ docker run --rm --init --name tb4-step1-smoke --network none --cap-drop ALL \
 - 测试世界重复声明Sensors插件造成`Scene already exists`及Gazebo崩溃，移除项目world中的重复实例，使用官方URDF已有插件后修复。
 - 首次成功采集图片后，JSON导出遇到NumPy `bool_`类型错误；显式转换内参与检查值为Python float/bool，修复后重新执行采集，避免丢失量化记录。
 
-## 未执行项目
+## 第一阶段结束时未执行项目（第二阶段更新见下）
 
 人体检测precision/recall、推理FPS、人体三维定位误差、多人交叉IDF1/HOTA、目标丢失恢复、Nav2跟随、停止响应、30分钟稳定性均 **NOT VERIFIED**。未发送运动指令，未启用自主跟随。
 
 实体OAK双目精度、真实VPU性能、IR与低照度效果、实体底盘停止距离不属于本次纯虚拟测试结果。
+
+## 第二阶段：二维人物检测与独立评估
+
+PASS：固定版本下载校验、5个ROS包编译、6个场景的完整采集评分、标准vision_msgs输出、运行图真值隔离检查、120张无渲染ROS往返（0超时）、360帧HOG对照，以及4个评分单元测试。
+
+已执行入口与原始记录：`scripts/build_perception.sh`→`evidence/phase2/build.log`；`scripts/run_person_case.sh`与`scripts/run_person_suite.sh`→案例日志、`frames.json`和`summary.json`；`scripts/compare_hog_baseline.py`→`hog_baseline.json`；`scripts/run_offline_benchmark.sh`→`offline_roundtrip.json`；`pytest -q tests/test_detection_metrics.py`→`metric_tests.log`。
+
+本次共360帧、322次可见人物标注：TP252、FN70、FP0，观测召回78.26%。近距单人100%、远距另一朝向96.67%、两人交叉68.33%、遮挡40.91%、离开视野再进入89.47%。结果来自单一人形网格与简单背景，不能作为真实人物泛化结论。
+
+在线接收链路P95约53–56ms；关闭渲染的顺序ROS往返P95约40.15ms。二者不能替代包括曝光/渲染前段的完整采集时延。详情、置信区间、HOG窗口协议限制、截图与故障记录见[第二阶段报告](phase2_detection.md)。
+
+结论：**第二阶段检测基线完成，困难场景性能未达到可靠人物跟随的要求**。没有启用跟踪/三维定位/导航，也没有发送机器人速度或导航动作；只通过Gazebo场景服务移动虚拟人物网格。

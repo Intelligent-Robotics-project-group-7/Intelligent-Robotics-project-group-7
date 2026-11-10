@@ -1,0 +1,8 @@
+{
+  "base_image_id": "sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a",
+  "yolo_ros_commit": "94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+  "yolo_ros_version": "5.0.0",
+  "onnxruntime_version_verified_in_runtime_log": "1.20.0",
+  "huggingface_hub_cpp_commit": "a894c86dc701b97b6627bc3986e542a72faa0fe3",
+  "huggingface_hub_cpp_requested_tag": "1.1.5"
+}

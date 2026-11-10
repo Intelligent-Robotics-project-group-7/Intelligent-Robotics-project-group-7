@@ -1,0 +1,31 @@
+{
+  "frames": 60,
+  "ground_truth_instances": 38,
+  "tp": 34,
+  "fp": 0,
+  "fn": 4,
+  "precision": 1.0,
+  "recall": 0.8947368421052632,
+  "negative_frames": 22,
+  "negative_frames_with_false_positives": 0,
+  "case": "exit_return",
+  "collection_wall_s": 31.424077056999977,
+  "simulation_completed": true,
+  "rgb_messages_total": 77,
+  "truth_messages_total": 77,
+  "prediction_messages_total": 76,
+  "paired_rgb_truth_frames": 60,
+  "prediction_coverage": 1.0,
+  "subscriber_receipt_latency": {
+    "p50_ms": 43.983476999983395,
+    "p95_ms": 53.73674524989838,
+    "p99_ms": 56.15449245992748
+  },
+  "iou_threshold": 0.5,
+  "score_threshold": 0.25,
+  "annotation": "Visible-pixel boxes from Gazebo semantic labels 11/12; separate co-located sensor",
+  "motion_commands_sent": false,
+  "motion_command_scope": "robot base; synthetic person pose updates are enabled",
+  "tracking_enabled": false,
+  "recorded_utc": "2026-11-10T21:17:15Z"
+}

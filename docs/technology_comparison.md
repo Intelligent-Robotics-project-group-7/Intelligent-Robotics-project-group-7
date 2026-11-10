@@ -1,6 +1,6 @@
 # 技术比较与第一阶段选型
 
-日期：2026-11-10。所有检测准确率、推理 FPS 和硬件端到端性能尚未测量，均为 **NOT VERIFIED**。
+日期：2026-11-10。本文记录技术选型依据；第二阶段已补充CPU二维检测实测，见[检测报告](phase2_detection.md)。实体硬件性能、全链路采集延迟与跟随效果仍为 **NOT VERIFIED**。
 
 ## 基础环境选择
 
@@ -31,7 +31,7 @@ Humble/Ubuntu 22.04/Fortress 是仍值得保留的另一条官方组合；当前
 |---|---|---|---|---|
 | OpenCV DNN + MobileNet/其他检测器 | 主机检测；通过对齐深度 ROI 取稳健测量 | 可用 CPU；要自行处理模型和消息适配；性能 NOT VERIFIED | 能消费模拟 RGBD，不能模拟设备端速度 | 可作较小模型对照基线 |
 | Ultralytics YOLO | 模型系列丰富；框/掩码配合 RGBD 提升 | Python/PyTorch 或导出 ONNX；CPU/GPU可选；权重和代码条款单独核查 | 不依赖 OAK；CPU 可用于当前 VM | 不默认最优；后续同一 rosbag 实测 |
-| 当前 yolo_ros + ONNX Runtime | C++ 插件式检测/追踪/3D 提升 | 社区 ROS 2 集成现成；当前源码与旧教程差异大，需固定提交 | 可直接消费虚拟 RGB/深度/CameraInfo | 当前感知实现的优先集成候选，尚未编译验证 |
+| 当前 yolo_ros + ONNX Runtime | C++ 插件式检测/追踪/3D 提升 | 社区 ROS 2 集成现成；当前源码与旧教程差异大，需固定提交 | 可直接消费虚拟 RGB/深度/CameraInfo | 已编译5.0.0并验证CPU二维检测；跟踪/3D插件未启用 |
 | DepthAI SpatialDetectionNetwork | 设备端检测结合双目深度，发布空间测量 | 主机压力可降低，受设备支持网络/编译格式约束 | 实体 OAK 路线强；当前没有设备/VPU | 纯仿真阶段不安装；不假报 VPU FPS |
 | MediaPipe Pose | 人体关键点，可用于动作/姿态 | 可用 CPU/部分硬件后端；需额外 ROS 适配 | 可处理虚拟 RGB；身体坐标不等于相机中的绝对距离 | 非第一阶段必需 |
 | NVIDIA Isaac ROS | TensorRT/Triton 和加速图像管线 | 依赖匹配版本的 NVIDIA 平台/驱动/存储 | 本 VM 没有可见 CUDA，不匹配当前资源 | 当前不安装 |

@@ -1,6 +1,8 @@
 # 推荐系统架构（设计稿，非已实现系统）
 
-日期：2026-11-10。当前仅建立仿真基础和静止传感器验证；以下节点除官方仿真节点外均是后续设计。
+日期：2026-11-10。当前完成仿真基础、传感器验证和二维人物检测链路；以下完整跟踪/三维定位/导航架构仍是设计。
+
+第二阶段已运行`yolo_ros` detection插件与`person_detection_adapter`，输出`/perception/people/detections2d`（vision_msgs/Detection2DArray）。独立语义真值只进入评估器，不进入推理节点。未启用跟踪、3D、导航或跟随。实际节点和评估边界见[第二阶段报告](phase2_detection.md)。
 
 ## 节点关系与模块边界
 

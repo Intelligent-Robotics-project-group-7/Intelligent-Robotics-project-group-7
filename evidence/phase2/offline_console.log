@@ -1,0 +1,107 @@
+{
+  "frames": 360,
+  "ground_truth_instances": 322,
+  "tp": 252,
+  "fp": 0,
+  "fn": 70,
+  "precision": 1.0,
+  "recall": 0.782608695652174,
+  "negative_frames": 98,
+  "negative_frames_with_false_positives": 0
+}
+{
+  "yolo_ros_commit": "94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+  "yolo_ros_version": "5.0.0",
+  "onnxruntime_version_verified_in_runtime_log": "1.20.0",
+  "huggingface_hub_cpp_commit": "a894c86dc701b97b6627bc3986e542a72faa0fe3",
+  "huggingface_hub_cpp_requested_tag": "1.1.5"
+}
+{
+  "method": "OpenCV default HOG people detector, 640x480 input, two CPU threads",
+  "scope": "offline detector call; excludes rendering, capture, ROS and image resize",
+  "cases": {
+    "empty": {
+      "frames": 60,
+      "ground_truth_instances": 0,
+      "tp": 0,
+      "fp": 0,
+      "fn": 0,
+      "precision": null,
+      "recall": null,
+      "negative_frames": 60,
+      "negative_frames_with_false_positives": 0
+    },
+    "exit_return": {
+      "frames": 60,
+      "ground_truth_instances": 38,
+      "tp": 0,
+      "fp": 6,
+      "fn": 38,
+      "precision": 0.0,
+      "recall": 0.0,
+      "negative_frames": 22,
+      "negative_frames_with_false_positives": 0
+    },
+    "partial_occlusion": {
+      "frames": 60,
+      "ground_truth_instances": 44,
+      "tp": 0,
+      "fp": 0,
+      "fn": 44,
+      "precision": null,
+      "recall": 0.0,
+      "negative_frames": 16,
+      "negative_frames_with_false_positives": 0
+    },
+    "single_far_back": {
+      "frames": 60,
+      "ground_truth_instances": 60,
+      "tp": 0,
+      "fp": 56,
+      "fn": 60,
+      "precision": 0.0,
+      "recall": 0.0,
+      "negative_frames": 0,
+      "negative_frames_with_false_positives": 0
+    },
+    "single_front": {
+      "frames": 60,
+      "ground_truth_instances": 60,
+      "tp": 0,
+      "fp": 60,
+      "fn": 60,
+      "precision": 0.0,
+      "recall": 0.0,
+      "negative_frames": 0,
+      "negative_frames_with_false_positives": 0
+    },
+    "two_crossing": {
+      "frames": 60,
+      "ground_truth_instances": 120,
+      "tp": 0,
+      "fp": 0,
+      "fn": 120,
+      "precision": null,
+      "recall": 0.0,
+      "negative_frames": 0,
+      "negative_frames_with_false_positives": 0
+    }
+  },
+  "inference": {
+    "p50_ms": 44.588531000044895,
+    "p95_ms": 48.44811319940164
+  }
+}
+{
+  "mode": "sequential one-in-flight ROS roundtrip, max_fps=0, two ONNX threads, no Gazebo",
+  "scope": "RGB publish to standard detection receipt; excludes PNG decode, message creation and sensor acquisition",
+  "samples_requested": 120,
+  "timeouts": 0,
+  "warmup_samples_excluded": 5,
+  "measured_samples": 115,
+  "p50_ms": 35.41740699984075,
+  "p95_ms": 40.150484799778496,
+  "p99_ms": 41.79668870025125,
+  "reciprocal_mean_roundtrip_hz": 27.973569105613077,
+  "robot_motion_commands_sent": false
+}

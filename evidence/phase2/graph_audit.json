@@ -1,0 +1,179 @@
+{
+  "subscriptions": {
+    "/oakd/rgb/preview/image_raw": [
+      {
+        "node": "phase2_independent_evaluator",
+        "namespace": "/",
+        "type": "sensor_msgs/msg/Image"
+      },
+      {
+        "node": "yolo_node",
+        "namespace": "/yolo",
+        "type": "sensor_msgs/msg/Image"
+      }
+    ],
+    "/evaluation/semantic/labels_map": [
+      {
+        "node": "phase2_independent_evaluator",
+        "namespace": "/",
+        "type": "sensor_msgs/msg/Image"
+      }
+    ],
+    "/yolo/oakd/detections": [
+      {
+        "node": "person_detection_adapter",
+        "namespace": "/",
+        "type": "yolo_msgs/msg/DetectionArray"
+      }
+    ],
+    "/perception/people/detections2d": [
+      {
+        "node": "phase2_independent_evaluator",
+        "namespace": "/",
+        "type": "vision_msgs/msg/Detection2DArray"
+      }
+    ]
+  },
+  "all_topics": [
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/controller_manager/activity",
+      [
+        "controller_manager_msgs/msg/ControllerManagerActivity"
+      ]
+    ],
+    [
+      "/controller_manager/introspection_data/full",
+      [
+        "pal_statistics_msgs/msg/Statistics"
+      ]
+    ],
+    [
+      "/controller_manager/introspection_data/names",
+      [
+        "pal_statistics_msgs/msg/StatisticsNames"
+      ]
+    ],
+    [
+      "/controller_manager/introspection_data/values",
+      [
+        "pal_statistics_msgs/msg/StatisticsValues"
+      ]
+    ],
+    [
+      "/controller_manager/statistics/full",
+      [
+        "pal_statistics_msgs/msg/Statistics"
+      ]
+    ],
+    [
+      "/controller_manager/statistics/names",
+      [
+        "pal_statistics_msgs/msg/StatisticsNames"
+      ]
+    ],
+    [
+      "/controller_manager/statistics/values",
+      [
+        "pal_statistics_msgs/msg/StatisticsValues"
+      ]
+    ],
+    [
+      "/diagnostics",
+      [
+        "diagnostic_msgs/msg/DiagnosticArray"
+      ]
+    ],
+    [
+      "/evaluation/semantic/labels_map",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/joint_states",
+      [
+        "sensor_msgs/msg/JointState"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/camera_info",
+      [
+        "sensor_msgs/msg/CameraInfo"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/depth",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/image_raw",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/parameter_events",
+      [
+        "rcl_interfaces/msg/ParameterEvent"
+      ]
+    ],
+    [
+      "/perception/people/detections2d",
+      [
+        "vision_msgs/msg/Detection2DArray"
+      ]
+    ],
+    [
+      "/robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/rosout",
+      [
+        "rcl_interfaces/msg/Log"
+      ]
+    ],
+    [
+      "/scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/tf",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/tf_static",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/yolo/oakd/detections",
+      [
+        "yolo_msgs/msg/DetectionArray"
+      ]
+    ],
+    [
+      "/yolo/yolo_node/transition_event",
+      [
+        "lifecycle_msgs/msg/TransitionEvent"
+      ]
+    ]
+  ],
+  "detector_subscribed_to_truth": false,
+  "robot_velocity_topics": []
+}

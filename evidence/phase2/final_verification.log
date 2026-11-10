@@ -1,0 +1,18 @@
+{
+  "frames": 360,
+  "ground_truth_instances": 322,
+  "tp": 252,
+  "fp": 0,
+  "fn": 70,
+  "precision": 1.0,
+  "recall": 0.782608695652174,
+  "negative_frames": 98,
+  "negative_frames_with_false_positives": 0
+}
+{
+  "yolo_ros_commit": "94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+  "yolo_ros_version": "5.0.0",
+  "onnxruntime_version_verified_in_runtime_log": "1.20.0",
+  "huggingface_hub_cpp_commit": "a894c86dc701b97b6627bc3986e542a72faa0fe3",
+  "huggingface_hub_cpp_requested_tag": "1.1.5"
+}

@@ -1,5 +1,6 @@
 # Large downloads and local ROS build products
 /downloads/
+/research_ws/
 /build/
 /install/
 /log/
@@ -8,6 +9,7 @@
 
 # Python caches, local credentials and crash dumps
 **/__pycache__/
+/.pytest_cache/
 *.py[cod]
 .venv/
 .env
