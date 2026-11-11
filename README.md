@@ -4,9 +4,15 @@ Phases 1 and 2 provide technical research, an isolated simulation environment, s
 
 The original six-scene benchmark contains 360 frames and 322 visible person annotations. Recall was 78.26% overall, 100% for a nearby single person, 68.33% for crossing people, and 40.91% under occlusion. These are measurements of one synthetic human mesh, not evidence of reliable real-world following. See the [Phase 2 report](docs/phase2_detection.md).
 
+## Integration status
+
+Integration with commit [ece8c84](https://github.com/Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7/commit/ece8c84aa07ab65b9950223d08c630c2b4139b6f) is pending because of unresolved merge conflicts. That commit has not been merged into this branch; this version remains based on [23d4ef3](https://github.com/Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7/commit/23d4ef304fd5c5dd1f9569ccbeaa90554fce6038).
+
 ## My work and the model speed/accuracy trade-off
 
-I added model selection and tested YOLO26n, YOLO26s, YOLO26m and YOLOv8n through the same detection pipeline. This lets me switch between models and compare their detection quality and processing time. In the current synthetic benchmark, the larger YOLO26 models detected more people than the original YOLO26n baseline, but required more processing time. YOLO26s and YOLO26m achieved the same recall in that test, so a larger model did not automatically improve every accuracy measure.
+This revision builds on the `robot-CV` YOLO26n baseline at commit [23d4ef3](https://github.com/Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7/commit/23d4ef304fd5c5dd1f9569ccbeaa90554fce6038), adding selectable models and person-centre distance and bearing outputs. The improvement figures in this section refer to that specific baseline version.
+
+I tested YOLO26n, YOLO26s, YOLO26m and YOLOv8n through the same detection pipeline. On the same 360 synthetic frames containing 322 visible person annotations, recall increased from 78.26% with the `23d4ef3` baseline to 95.03% with YOLO26s or YOLO26m; YOLOv8n reached 93.17%. Compared with `23d4ef3`, the added model options improve measured detection coverage and allow a choice between accuracy and processing speed. The larger models required more processing time, and YOLO26s and YOLO26m achieved the same recall, so a larger model did not automatically improve every accuracy measure. These results describe this synthetic benchmark, rather than a demonstrated improvement on physical robots.
 
 For my current accuracy-focused experiments, I have chosen YOLO26m, the largest model in the current set. This helps me investigate detection quality, but it may reduce the rate at which new person positions become available. The robot has a limited computing budget, so the final model choice needs to balance accuracy, processing speed and the resources needed by the rest of the system.
 
@@ -82,7 +88,7 @@ sudo apt-get update
 sudo apt-get install --no-install-recommends -y git ca-certificates
 
 # Clone the requested branch into a directory you own
-git clone --branch robot-CV --single-branch \
+git clone --branch robotcv2 --single-branch \
   https://github.com/Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7.git robot-cv
 cd robot-cv
 
@@ -90,7 +96,7 @@ cd robot-cv
 sudo bash scripts/bootstrap_host.sh
 ```
 
-If your account uses SSH authentication, replace the clone URL above with `git@github.com:Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7.git` and keep `--branch robot-CV --single-branch`.
+If your account uses SSH authentication, replace the clone URL above with `git@github.com:Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7.git` and keep `--branch robotcv2 --single-branch`.
 
 Log out and back in, or disconnect and reconnect SSH, to activate docker-group membership. Return to your clone directory, then confirm Docker access:
 
@@ -329,6 +335,16 @@ bash scripts/verify_install.sh
 
 ![Live YOLO preview with model switching, person-centre measurements, FPS and receipt latency](docs/images/live_yolo_performance.png)
 
-Example of the actual preview with rolling live measurements. The screenshot's values describe that moment and are separate from the estimated performance ranges above. The original detection contact sheet remains in `evidence/phase2/detection_contact_sheet.png`.
+YOLOv8n preview with the selected model highlighted and live person-centre measurements.
+
+![YOLO26n preview with RGB and depth, centre point, distance, turn angle, FPS and receipt latency](docs/images/live_yolo26n_performance.png)
+
+YOLO26n baseline preview, showing the same distance and bearing outputs with live performance counters.
+
+![YOLO26m preview with RGB and depth, centre point, distance, turn angle, FPS and receipt latency](docs/images/live_yolo26m_performance.png)
+
+YOLO26m preview, showing the larger model's live update rate and receipt latency in the moving-person scene.
+
+These are actual preview snapshots with rolling five-second measurements, captured at different moments. Their displayed values are separate from the estimated performance ranges above and do not form a controlled same-frame model comparison. The YOLO26n and YOLO26m images were saved during a partial timed run; the full four-model timed comparison was not completed. The original detection contact sheet remains in `evidence/phase2/detection_contact_sheet.png`.
 
 Person mesh: OpenRobotics Scrubs, CC BY 4.0; attribution and limitations are in the Phase 2 report. Physical OAK depth accuracy, VPU performance, calibrated robot-frame localisation, identity tracking, navigation, and autonomous following remain **NOT VERIFIED**.
