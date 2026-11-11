@@ -1,8 +1,8 @@
 # Proposed System Architecture (Design, Not an Implemented System)
 
-Date: 2026-11-10. The simulation foundation, sensor validation, and 2D person detection path are complete. The full tracking, 3D localisation, and navigation architecture below remains a design.
+Date: 2026-11-10. The simulation foundation, sensor validation, 2D person detection, and camera-relative depth prototype are implemented. The architecture below describes the planned integration with tracking and navigation.
 
-Phase 2 runs the `yolo_ros` detection plugin and `person_detection_adapter`, publishing `/perception/people/detections2d` (vision_msgs/Detection2DArray). Independent semantic ground truth reaches only the evaluator, not inference nodes. Tracking, 3D, navigation, and following are inactive. See the [Phase 2 report](phase2_detection.md) for the actual graph and evaluation limits.
+Phase 2 runs `yolo_ros` and publishes `/perception/people/detections2d` (`vision_msgs/Detection2DArray`). Phase 3 pairs those messages with same-stamp depth and camera calibration, then publishes `/perception/people/depth_estimates` with camera-frame positions. The evaluator is the sole subscriber to semantic truth. See the [Phase 3 report](phase3_depth.md) for the measured pipeline and its limits.
 
 ## Node relationships and module boundaries
 

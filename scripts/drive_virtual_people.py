@@ -1,8 +1,6 @@
 """Move only named synthetic human meshes through Gazebo's scene pose service."""
 import argparse
-import json
 import math
-from pathlib import Path
 import rclpy
 from rclpy.node import Node as ROSNode
 from rclpy.qos import qos_profile_sensor_data
@@ -10,6 +8,8 @@ from rosgraph_msgs.msg import Clock
 from gz.transport13 import Node as GZNode
 from gz.msgs10.pose_pb2 import Pose
 from gz.msgs10.boolean_pb2 import Boolean
+
+from prepare_person_world import load_settings
 
 
 def interpolate(points, t):
@@ -33,6 +33,8 @@ class SceneDriver(ROSNode):
             return
         self.last_sim = t
         for index, spec in enumerate(self.people, 1):
+            if len(spec['waypoints']) == 1:
+                continue
             x,y,yaw = interpolate(spec['waypoints'], t)
             pose = Pose()
             pose.name = f'person_{index}'
@@ -46,9 +48,9 @@ class SceneDriver(ROSNode):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('case')
+    parser.add_argument('--phase', type=int, choices=(2, 3), default=2)
     args = parser.parse_args()
-    root = Path(__file__).resolve().parents[1]
-    cases = json.loads((root / 'config/person_scenarios.json').read_text())['cases']
+    cases = load_settings(args.phase)['cases']
     people = next(c['actors'] for c in cases if c['id'] == args.case)
     rclpy.init()
     node = SceneDriver(people)

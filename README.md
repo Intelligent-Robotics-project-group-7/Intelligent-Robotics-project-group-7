@@ -1,6 +1,6 @@
 # TurtleBot 4 Person Detection and Following Research
 
-Date: 2026-11-10. Phases 1 and 2 are implemented: technical research, an isolated simulation environment, sensor checks, and a CPU baseline for 2D person detection. All hardware is virtual. Phase 3 (depth-based person localisation) has not started.
+Project start: 2026-11-10. The virtual setup includes sensor checks, a CPU YOLO baseline, and a Phase 3 prototype that estimates person depth and camera-frame position. The Phase 3 report gives the measured accuracy, coverage, and occlusion results.
 
 The original six-scene benchmark contains 360 frames and 322 visible person annotations. Recall was 78.26% overall, 100% for a nearby single person, 68.33% for crossing people, and 40.91% under occlusion. These are measurements of one synthetic human mesh, not evidence of reliable real-world following. See the [Phase 2 report](docs/phase2_detection.md).
 
@@ -91,6 +91,18 @@ bash scripts/run_env.sh bash
 
 All runtime wrappers use the caller's numeric UID/GID, a writable temporary home, a dynamically located host checkout, and the constant internal mount `/workspace`. They work without a TTY in SSH/CI. No physical devices are mapped; capabilities are dropped and resources are limited. Scene services move only synthetic person meshes; no robot velocity or navigation goals are sent.
 
+## Run Phase 3 person depth evaluation
+
+After installing the Phase 1–2 environment, capture the three plane cases and eleven person/empty cases. Score the captured estimates against the independent simulator geometry.
+
+```bash
+bash scripts/run_depth_suite.sh
+bash scripts/run_env.sh python3 scripts/evaluate_depth_suite.py
+bash scripts/run_env.sh python3 -m pytest -q tests
+```
+
+The estimator publishes `/perception/people/depth_estimates` with forward depth, straight-line camera range, optical-frame XYZ, and validity per detection. Captures and per-case simulation logs go under `downloads/phase3/`. The analysis regenerates `evidence/phase3/depth_report.json` and `evidence/phase3/measurements.jsonl`. See the [Phase 3 validation report](docs/phase3_depth.md).
+
 ## Rebuild and troubleshooting
 
 ```bash
@@ -111,6 +123,7 @@ bash scripts/verify_install.sh
 
 ## Reports and evidence
 
+- [Phase 3 depth accuracy, output coverage, and occlusion evaluation](docs/phase3_depth.md)
 - [Clean installation validation](docs/installation_validation.md)
 - [Phase 2 detection results, limitations, and reproduction](docs/phase2_detection.md)
 - [Industry research and nine open-source projects](docs/industry_research.md)
@@ -122,4 +135,4 @@ bash scripts/verify_install.sh
 
 ![Person detection examples](evidence/phase2/detection_contact_sheet.png)
 
-Person mesh: OpenRobotics Scrubs, CC BY 4.0; attribution and limitations are in the Phase 2 report. Physical OAK depth accuracy, VPU performance, 3D person localisation, identity tracking, navigation, and autonomous following remain **NOT VERIFIED**.
+Person mesh: OpenRobotics Scrubs, CC BY 4.0. Attribution is in the Phase 2 report. Identity tracking is planned for Phase 4.

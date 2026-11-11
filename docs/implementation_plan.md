@@ -1,6 +1,6 @@
 # Phased Implementation Plan and Acceptance Criteria
 
-Date: 2026-11-10. Phase 1 and the subsequently requested Phase 2 have been executed using virtual hardware only. See the [Phase 2 report](phase2_detection.md) for 2D detection results and difficult-scene limitations.
+Date: 2026-11-10. Phases 1–3 have been evaluated using virtual hardware. See the [Phase 2 report](phase2_detection.md) for 2D detection and the [Phase 3 report](phase3_depth.md) for camera-relative depth and position results.
 
 ## Phases and dependencies
 
@@ -8,7 +8,7 @@ Date: 2026-11-10. Phase 1 and the subsequently requested Phase 2 have been execu
 |---|---|---|---|
 | 1 | Research established projects, select technologies, isolate the environment, pin versions, and run stationary RGB-D smoke checks | Sourced reports; working ROS/Gazebo; measured RGB/depth/intrinsics/scan/TF records | Complete |
 | 2 | Reproducible human scenes, model selection/import, detection | Independent manual/ground-truth labels; single/multiple people and occlusion; model files and hashes | Baseline complete: 6 scenes, 360 frames; occlusion/crossing reliability insufficient |
-| 3 | Robust depth localisation, synchronisation, TF | Pass position-error, invalid-depth, and timestamp-mismatch tests | Depends on Phase 2 and the camera path |
+| 3 | Robust depth localisation and synchronisation, with TF planned for downstream use | Pass position-error, invalid-depth, and timestamp-mismatch tests | Camera-frame benchmark complete. The 10 cm position goal remains open |
 | 4 | ByteTrack baseline, 3D gating, appearance comparison, explicit target lock | No incorrect target takeover in crossings, occlusion, and reappearance tests | Depends on Phase 3 |
 | 5 | Mock Navigation, Lifecycle, fault recovery | Timeouts, cancellation, restart, and backward clock jumps reliably withdraw tasks | No base motion output |
 | 6 | rosbag replay, Nav2 logic, simulated low-speed following | Pass protection-chain, path, and stopping-response tests | Enter as a separate motion-testing phase |
@@ -53,4 +53,4 @@ Initial thresholds reflect low-speed simulation debugging and processing budgets
 
 ## Outstanding validation
 
-Phase 2 measured detection precision/recall on a fixed virtual benchmark and latency for part of the processing path. 3D person localisation, identity stability, Nav2 following, long-duration operation, and physical robot performance still require independent experiments. The detection baseline does not establish that these acceptance criteria have passed.
+Phase 3 measured camera-relative depth and position on the virtual benchmark. Base/map-frame localisation, identity stability, Nav2 following, long-duration operation, and physical robot performance still require independent experiments.

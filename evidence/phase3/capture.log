@@ -1,0 +1,42 @@
+Capturing depth case plane_1m
+/workspace/downloads/phase3/generated/plane_1m
+{"case": "plane_1m", "expected_frames": 110, "frames": 110, "stream_counts": {"rgb": 110, "depth": 109, "labels": 110, "info": 110, "boxes": 110, "output": 103}, "pose_snapshots": 1477, "pose_entity_names": ["depth_plane", "oakd_rgb_camera_frame", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case plane_2m
+/workspace/downloads/phase3/generated/plane_2m
+{"case": "plane_2m", "expected_frames": 110, "frames": 110, "stream_counts": {"rgb": 110, "depth": 109, "labels": 110, "info": 110, "boxes": 110, "output": 105}, "pose_snapshots": 1543, "pose_entity_names": ["depth_plane", "oakd_rgb_camera_frame", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case plane_3m
+/workspace/downloads/phase3/generated/plane_3m
+{"case": "plane_3m", "expected_frames": 110, "frames": 110, "stream_counts": {"rgb": 110, "depth": 109, "labels": 110, "info": 110, "boxes": 110, "output": 101}, "pose_snapshots": 1517, "pose_entity_names": ["depth_plane", "oakd_rgb_camera_frame", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case person_1m
+/workspace/downloads/phase3/generated/person_1m
+{"case": "person_1m", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 60, "labels": 60, "info": 60, "boxes": 60, "output": 58}, "pose_snapshots": 833, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case person_2m
+/workspace/downloads/phase3/generated/person_2m
+{"case": "person_2m", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 59, "labels": 60, "info": 60, "boxes": 60, "output": 57}, "pose_snapshots": 833, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case person_3m
+/workspace/downloads/phase3/generated/person_3m
+{"case": "person_3m", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 59, "labels": 60, "info": 60, "boxes": 60, "output": 58}, "pose_snapshots": 829, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case person_2m_off_axis
+/workspace/downloads/phase3/generated/person_2m_off_axis
+{"case": "person_2m_off_axis", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 57, "labels": 60, "info": 60, "boxes": 60, "output": 58}, "pose_snapshots": 852, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case torso_occlusion
+/workspace/downloads/phase3/generated/torso_occlusion
+{"case": "torso_occlusion", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 59, "labels": 60, "info": 60, "boxes": 60, "output": 55}, "pose_snapshots": 834, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case empty
+/workspace/downloads/phase3/generated/empty
+{"case": "empty", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 60, "labels": 60, "info": 60, "boxes": 60, "output": 57}, "pose_snapshots": 829, "pose_entity_names": ["oakd_rgb_camera_frame", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case single_front
+/workspace/downloads/phase3/generated/single_front
+{"case": "single_front", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 58, "labels": 60, "info": 60, "boxes": 60, "output": 57}, "pose_snapshots": 837, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case single_far_back
+/workspace/downloads/phase3/generated/single_far_back
+{"case": "single_far_back", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 60, "labels": 60, "info": 60, "boxes": 60, "output": 58}, "pose_snapshots": 864, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case two_crossing
+/workspace/downloads/phase3/generated/two_crossing
+{"case": "two_crossing", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 59, "labels": 60, "info": 60, "boxes": 60, "output": 57}, "pose_snapshots": 841, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "person_2", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case partial_occlusion
+/workspace/downloads/phase3/generated/partial_occlusion
+{"case": "partial_occlusion", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 58, "labels": 60, "info": 60, "boxes": 60, "output": 55}, "pose_snapshots": 842, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}
+Capturing depth case exit_return
+/workspace/downloads/phase3/generated/exit_return
+{"case": "exit_return", "expected_frames": 60, "frames": 60, "stream_counts": {"rgb": 60, "depth": 58, "labels": 60, "info": 60, "boxes": 60, "output": 58}, "pose_snapshots": 836, "pose_entity_names": ["oakd_rgb_camera_frame", "person_1", "turtlebot4"], "observed_pose_names_if_missing": [], "truth_subscribers": ["phase3_depth_evaluator"], "velocity_topics": []}

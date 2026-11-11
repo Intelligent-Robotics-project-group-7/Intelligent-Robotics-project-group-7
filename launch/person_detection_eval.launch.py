@@ -1,4 +1,4 @@
-"""Stationary simulation + independent rendering truth + detection-only CPU pipeline."""
+"""Stationary simulation with independent truth and optional depth estimates."""
 import os
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory as share
@@ -12,15 +12,16 @@ from launch_ros.actions import Node
 def setup(context):
     root = Path(__file__).resolve().parents[1]
     case_id = LaunchConfiguration('case').perform(context)
-    generated = root / 'downloads/phase2/generated' / case_id
+    phase = LaunchConfiguration('phase').perform(context)
+    generated = root / f'downloads/phase{phase}/generated' / case_id
     description = (generated / 'robot.urdf').read_text()
     camera = '/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/'
     lidar = '/world/person_eval/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan'
-    return [
+    actions = [
         SetEnvironmentVariable('GZ_SIM_RESOURCE_PATH', ':'.join([
             str(Path(share('turtlebot4_description')).parent),
             str(Path(share('irobot_create_description')).parent), str(root / 'downloads/phase2')])),
-        SetEnvironmentVariable('GZ_PARTITION', 'tb4_research_phase2_' + case_id),
+        SetEnvironmentVariable('GZ_PARTITION', f'tb4_research_phase{phase}_' + case_id),
         IncludeLaunchDescription(PythonLaunchDescriptionSource(os.path.join(share('ros_gz_sim'), 'launch/gz_sim.launch.py')),
                                  launch_arguments={'gz_args': '-r -s --render-engine-server ogre2 ' + str(generated / 'world.sdf')}.items()),
         Node(package='robot_state_publisher', executable='robot_state_publisher',
@@ -41,9 +42,14 @@ def setup(context):
         Node(package='yolo_ros', executable='yolo_node', name='yolo_node', namespace='yolo',
              parameters=[str(root / 'config/person_detection.yaml')]),
         ExecuteProcess(cmd=['python3', str(root / 'scripts/person_detection_adapter.py')], output='screen'),
-        ExecuteProcess(cmd=['python3', str(root / 'scripts/drive_virtual_people.py'), case_id], output='screen'),
+        ExecuteProcess(cmd=['python3', str(root / 'scripts/drive_virtual_people.py'), case_id, '--phase', phase], output='screen'),
     ]
+    if phase == '3':
+        actions.append(ExecuteProcess(cmd=['python3', str(root / 'scripts/person_depth_node.py')], output='screen'))
+    return actions
 
 
 def generate_launch_description():
-    return LaunchDescription([DeclareLaunchArgument('case', default_value='single_front'), OpaqueFunction(function=setup)])
+    return LaunchDescription([DeclareLaunchArgument('case', default_value='single_front'),
+                              DeclareLaunchArgument('phase', default_value='2', choices=['2', '3']),
+                              OpaqueFunction(function=setup)])

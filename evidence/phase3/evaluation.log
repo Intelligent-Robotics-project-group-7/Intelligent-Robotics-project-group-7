@@ -1,0 +1,14 @@
+plane_1m 110 {'n': 109, 'mean_m': 3.877816383557331e-07, 'std_m': 0.0, 'mae_m': 3.877816383557331e-07, 'p95_abs_m': 3.877816383557331e-07}
+plane_2m 110 {'n': 109, 'mean_m': 9.650460057741839e-07, 'std_m': 0.0, 'mae_m': 9.650460057741839e-07, 'p95_abs_m': 9.650460057741839e-07}
+plane_3m 110 {'n': 109, 'mean_m': 1.0654732145454204e-06, 'std_m': 0.0, 'mae_m': 1.0654732145454204e-06, 'p95_abs_m': 1.0654732145454204e-06}
+person_1m 60 0
+person_2m 60 57
+person_3m 60 58
+person_2m_off_axis 60 58
+torso_occlusion 60 37
+empty 60 0
+single_front 60 57
+single_far_back 60 56
+two_crossing 60 76
+partial_occlusion 60 16
+exit_return 60 31
