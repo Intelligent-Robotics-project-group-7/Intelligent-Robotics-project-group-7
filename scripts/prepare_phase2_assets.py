@@ -7,6 +7,7 @@ import urllib.error
 import zipfile
 import tarfile
 import time
+from person_models import download_model, model_catalog
 
 ROOT = Path(__file__).resolve().parents[1]
 DEST = ROOT / 'downloads/phase2'
@@ -78,3 +79,7 @@ with tarfile.open(DEST / 'source/yolo_ros.tar.gz', 'r:gz') as archive:
                                 'person_asset': 'OpenRobotics/Scrubs', 'person_asset_version': 2,
                                 'files': records}, indent=2) + '\n')
 print('Person asset files: ' + ', '.join(str(p.relative_to(scrubs_dir)) for p in scrubs_dir.rglob('*') if p.is_file())[:2200])
+
+# Additional detectors use the simple model-name/file/download-URL configuration.
+for model_id in model_catalog()['models']:
+    print(f'{model_id}: {download_model(model_id)}', flush=True)

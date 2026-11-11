@@ -7,6 +7,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ros-jazzy-cv-bridge \
     ros-jazzy-image-transport \
     ros-jazzy-vision-msgs \
+    ros-jazzy-message-filters \
     python3-colcon-common-extensions \
     python3 python3-numpy python3-opencv python3-pytest \
     build-essential git cmake curl ca-certificates libcurl4-openssl-dev \
