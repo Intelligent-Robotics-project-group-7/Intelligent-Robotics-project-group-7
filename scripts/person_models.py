@@ -22,6 +22,8 @@ def get_model_path(model_id, root=ROOT):
     model = model_spec(model_id, root)
     path = root / 'downloads/phase2/models' / model['file']
     if not path.is_file() or path.stat().st_size == 0:
+        if model.get('local_export'):
+            raise FileNotFoundError(f'Missing {model_id}; run scripts/export_person_pose.py with your local pose .pt weights')
         raise FileNotFoundError(f'Missing or empty {model_id}; run: python3 scripts/person_models.py download {model_id}')
     return path
 
@@ -31,6 +33,8 @@ def download_model(model_id, root=ROOT):
     path = root / 'downloads/phase2/models' / model['file']
     if path.is_file() and path.stat().st_size > 0:
         return path
+    if model.get('local_export'):
+        raise ValueError(f'{model_id} requires a local export; use scripts/export_person_pose.py')
     path.parent.mkdir(parents=True, exist_ok=True)
     temporary = path.with_suffix('.onnx.part')
     try:
@@ -56,7 +60,8 @@ def main():
             parser.error('path requires exactly one model name')
         print(get_model_path(args.models[0]))
         return
-    model_ids = args.models or list(model_catalog()['models'])
+    model_ids = args.models or [name for name, spec in model_catalog()['models'].items()
+                               if args.command != 'download' or not spec.get('local_export')]
     # Check names before starting any downloads.
     models = [model_spec(model_id) for model_id in model_ids]
     for model in models:

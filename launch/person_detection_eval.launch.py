@@ -11,7 +11,7 @@ from launch_ros.actions import Node
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / 'scripts'))
-from person_models import model_catalog, get_model_path
+from person_models import model_catalog, model_spec, get_model_path
 
 
 def setup(context):
@@ -19,6 +19,8 @@ def setup(context):
     case_id = LaunchConfiguration('case').perform(context)
     model_id = LaunchConfiguration('model').perform(context)
     model_path = get_model_path(model_id)
+    model_type = model_spec(model_id).get('model_type', 'YOLO')
+    method = 'keypoint_mean' if model_type == 'Pose' else 'box_center'
     generated = root / 'downloads/phase2/generated' / case_id
     description = (generated / 'robot.urdf').read_text()
     camera = '/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/'
@@ -46,9 +48,15 @@ def setup(context):
                          (camera + 'depth_image', '/oakd/rgb/preview/depth'),
                          (camera + 'camera_info', '/oakd/rgb/preview/camera_info'), (lidar, '/scan')]),
         Node(package='yolo_ros', executable='yolo_node', name='yolo_node', namespace='yolo',
-             parameters=[str(root / 'config/person_detection.yaml'), {'detection.model_path': str(model_path)}]),
+             parameters=[str(root / 'config/person_detection.yaml'), {'detection.model_path': str(model_path),
+                         'detection.model_type': model_type}]),
         ExecuteProcess(cmd=['python3', str(root / 'scripts/person_detection_adapter.py')], output='screen'),
-        ExecuteProcess(cmd=['python3', str(root / 'scripts/person_distance.py')], output='screen'),
+        ExecuteProcess(cmd=['python3', str(root / 'scripts/person_distance.py'), '--ros-args',
+                            '-p', 'method:=' + method,
+                            '-p', 'keypoint_threshold:=' + LaunchConfiguration('keypoint_threshold').perform(context),
+                            '-p', 'minimum_keypoints:=' + LaunchConfiguration('minimum_keypoints').perform(context),
+                            '-p', 'outlier_tolerance_m:=' + LaunchConfiguration('outlier_tolerance_m').perform(context),
+                            '-p', 'outlier_mad_scale:=' + LaunchConfiguration('outlier_mad_scale').perform(context)], output='screen'),
         ExecuteProcess(cmd=['python3', str(root / 'scripts/drive_virtual_people.py'), case_id], output='screen'),
     ]
 
@@ -58,5 +66,9 @@ def generate_launch_description():
     return LaunchDescription([
         DeclareLaunchArgument('case', default_value='single_front'),
         DeclareLaunchArgument('model', default_value=catalog['default_model'], choices=list(catalog['models'])),
+        DeclareLaunchArgument('keypoint_threshold', default_value='0.7'),
+        DeclareLaunchArgument('minimum_keypoints', default_value='3'),
+        DeclareLaunchArgument('outlier_tolerance_m', default_value='0.5'),
+        DeclareLaunchArgument('outlier_mad_scale', default_value='3.0'),
         OpaqueFunction(function=setup),
     ])

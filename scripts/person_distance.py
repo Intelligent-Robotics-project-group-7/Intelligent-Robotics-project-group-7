@@ -1,4 +1,4 @@
-"""Measure each person's box centre relative to an assumed robot at (0, 0, 0)."""
+"""Measure each person's box centre or confident pose nodes from an assumed origin."""
 import json
 import math
 
@@ -13,6 +13,8 @@ from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import CameraInfo, Image
 from std_msgs.msg import String
 from vision_msgs.msg import Detection2DArray
+from yolo_msgs.msg import DetectionArray
+from keypoint_distance import SELECTION_POLICIES, measure_keypoints
 
 
 def measure_center(depth_m, u, v, k):
@@ -44,10 +46,26 @@ class PersonDistance(Node):
     def __init__(self):
         super().__init__('person_distance', parameter_overrides=[Parameter('use_sim_time', value=True)])
         self.bridge = CvBridge()
+        self.method = self.declare_parameter('method', 'box_center').value
+        self.threshold = self.declare_parameter('keypoint_threshold', .7).value
+        self.min_points = self.declare_parameter('minimum_keypoints', 3).value
+        self.outlier_tolerance = self.declare_parameter('outlier_tolerance_m', .5).value
+        self.outlier_mad_scale = self.declare_parameter('outlier_mad_scale', 3.).value
+        self.selection_policy = self.declare_parameter('selection_policy', 'all_valid').value
+        if self.method not in ('box_center', 'keypoint_mean'):
+            raise ValueError('method must be box_center or keypoint_mean')
+        if self.selection_policy not in SELECTION_POLICIES:
+            raise ValueError('invalid_selection_policy')
+        if not math.isfinite(self.threshold) or not 0 <= self.threshold <= 1 or self.min_points < 1:
+            raise ValueError('invalid_keypoint_parameters')
+        if not all(math.isfinite(v) and v > 0 for v in (self.outlier_tolerance, self.outlier_mad_scale)):
+            raise ValueError('invalid_depth_outlier_parameters')
         self.distances = self.create_publisher(String, '/perception/people/distances', 10)
         self.poses = self.create_publisher(PoseArray, '/perception/people/center_poses', 10)
         self.detections = message_filters.Subscriber(
-            self, Detection2DArray, '/perception/people/detections2d', qos_profile=10)
+            self, DetectionArray if self.method == 'keypoint_mean' else Detection2DArray,
+            '/perception/people/poses2d' if self.method == 'keypoint_mean' else '/perception/people/detections2d',
+            qos_profile=10)
         self.depth = message_filters.Subscriber(
             self, Image, '/oakd/rgb/preview/depth', qos_profile=qos_profile_sensor_data)
         self.info = message_filters.Subscriber(
@@ -61,6 +79,9 @@ class PersonDistance(Node):
                   'frame_id': 'assumed_robot',
                   'robot_position_m': {'x': 0.0, 'y': 0.0, 'z': 0.0},
                   'robot_yaw_rad': 0.0, 'people': []}
+        output['method'] = self.method
+        if self.method == 'keypoint_mean':
+            output['selection_policy'] = self.selection_policy
         poses = PoseArray()
         poses.header.stamp = detections.header.stamp
         poses.header.frame_id = 'assumed_robot'
@@ -79,11 +100,12 @@ class PersonDistance(Node):
         except (ValueError, CvBridgeError) as exc:
             error = str(exc)
         for index, detection in enumerate(detections.detections):
-            if not detection.results or detection.results[0].hypothesis.class_id != 'person':
+            pose_mode = self.method == 'keypoint_mean'
+            if not pose_mode and (not detection.results or detection.results[0].hypothesis.class_id != 'person'):
                 continue
             u = float(detection.bbox.center.position.x)
             v = float(detection.bbox.center.position.y)
-            score = float(detection.results[0].hypothesis.score)
+            score = float(detection.score if pose_mode else detection.results[0].hypothesis.score)
             person = {'detection_index': index, 'valid': False,
                       'score': score if math.isfinite(score) else None,
                       'center_px': {'u': u if math.isfinite(u) else None,
@@ -91,8 +113,17 @@ class PersonDistance(Node):
             try:
                 if error:
                     raise ValueError(error)
-                person.update(measure_center(image, u, v, info.k))
-                person['valid'] = True
+                if pose_mode:
+                    nodes = [(p.id, p.point.x, p.point.y, p.score) for p in detection.keypoints.data]
+                    person.update(measure_keypoints(image, nodes, info.k, self.threshold, self.min_points,
+                                                    self.outlier_tolerance, self.outlier_mad_scale,
+                                                    self.selection_policy))
+                else:
+                    person.update(measure_center(image, u, v, info.k))
+                    person['valid'] = True
+                if not person['valid']:
+                    output['people'].append(person)
+                    continue
                 pose = Pose()
                 point = person['position_m']
                 pose.position.x, pose.position.y, pose.position.z = point['x'], point['y'], point['z']

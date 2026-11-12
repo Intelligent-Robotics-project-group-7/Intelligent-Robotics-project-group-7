@@ -81,5 +81,7 @@ with tarfile.open(DEST / 'source/yolo_ros.tar.gz', 'r:gz') as archive:
 print('Person asset files: ' + ', '.join(str(p.relative_to(scrubs_dir)) for p in scrubs_dir.rglob('*') if p.is_file())[:2200])
 
 # Additional detectors use the simple model-name/file/download-URL configuration.
-for model_id in model_catalog()['models']:
+for model_id, spec in model_catalog()['models'].items():
+    if spec.get('local_export'):
+        continue
     print(f'{model_id}: {download_model(model_id)}', flush=True)

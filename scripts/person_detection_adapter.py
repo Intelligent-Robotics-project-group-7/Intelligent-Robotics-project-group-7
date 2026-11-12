@@ -11,11 +11,14 @@ class Adapter(Node):
     def __init__(self):
         super().__init__('person_detection_adapter', parameter_overrides=[Parameter('use_sim_time', value=True)])
         self.output = self.create_publisher(Detection2DArray, '/perception/people/detections2d', 10)
+        self.pose_output = self.create_publisher(DetectionArray, '/perception/people/poses2d', 10)
         self.input = self.create_subscription(DetectionArray, '/yolo/oakd/detections', self.receive, 10)
 
     def receive(self, msg):
         result = Detection2DArray()
         result.header = msg.header
+        pose_result = DetectionArray()
+        pose_result.header = msg.header
         for item in msg.detections:
             if item.class_id != 0 or item.class_name != 'person' or item.score < .25:
                 continue
@@ -34,7 +37,9 @@ class Adapter(Node):
             hypothesis.hypothesis.score = item.score
             detection.results.append(hypothesis)
             result.detections.append(detection)
+            pose_result.detections.append(item)
         self.output.publish(result)
+        self.pose_output.publish(pose_result)
 
 
 if __name__ == '__main__':
