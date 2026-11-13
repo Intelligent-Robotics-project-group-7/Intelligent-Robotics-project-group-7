@@ -12,6 +12,6 @@ if [ "${#cases[@]}" -eq 0 ]; then
 fi
 for case_id in "${cases[@]}"; do
   printf 'Capturing depth case %s\n' "$case_id"
-  docker run "${tb4_docker_args[@]}" --network none "$TB4_IMAGE" \
+  docker run "${tb4_docker_args[@]}" --network none --env "TB4_MODEL=${TB4_MODEL:-}" "$TB4_IMAGE" \
     bash scripts/run_depth_case.sh "$case_id"
 done

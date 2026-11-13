@@ -194,13 +194,18 @@ def run(selected):
     case_list = [case for case in config['cases'] if not selected or case['id'] in selected]
     if selected and {case['id'] for case in case_list} != set(selected):
         raise ValueError('Unknown case ID')
+    captures = [json.loads((CAPTURE / f"{case['id']}.json").read_text()) for case in case_list]
+    # Captures created before model selection was added used the YOLO26n baseline.
+    models = {capture.get('model', 'yolo26n') for capture in captures}
+    if len(models) != 1:
+        raise ValueError('Selected cases contain different models. Capture them with one model or score matching cases.')
+    model = models.pop()
     mesh = load_obj(ROOT / 'downloads/phase2/Scrubs/meshes/scrubs.obj')
     results, all_rows, ideal, obstructed = [], [], [], []
     OUTPUT.mkdir(parents=True, exist_ok=True)
     example = None
-    for case in case_list:
+    for case, capture in zip(case_list, captures, strict=True):
         case_id = case['id']
-        capture = json.loads((CAPTURE / f'{case_id}.json').read_text())
         shape, intrinsics = simulator_intrinsics(ROOT / f'downloads/phase3/generated/{case_id}/robot.urdf')
         rays = pixel_rays(shape, intrinsics)
         case_rows = []
@@ -249,7 +254,7 @@ def run(selected):
     people = [item for row in all_rows for item in row.get('instances', [])]
     comparable = [item for item in people if 'median' in item]
     comparable_occluded = [item for item in obstructed if 'median' in item]
-    report = {'recorded_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'cases': results,
+    report = {'recorded_utc': time.strftime('%Y-%m-%dT%H:%M:%SZ', time.gmtime()), 'model': model, 'cases': results,
               'overall': summarize_people(people), 'ideal': summarize_people(ideal),
               'occluded': summarize_people(obstructed), 'goal_p95_m': config['position_goal_p95_m'],
               'truth_box': {'overall': summarize_people(people, 'truth_box'),

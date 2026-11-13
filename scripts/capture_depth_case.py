@@ -20,6 +20,7 @@ from vision_msgs.msg import Detection2DArray
 
 from person_depth_node import (DEPTH_TOPIC, DETECTION_TOPIC, INFO_TOPIC, OUTPUT_TOPIC, RGBD_QOS,
                                box_xyxy, camera_intrinsics, stamp_ns)
+from person_models import model_catalog
 from prepare_person_world import load_settings
 
 
@@ -103,7 +104,7 @@ class Capture(Node):
             with self.pose_lock:
                 self.poses[stamp] = poses
 
-    def record(self, case_id, expected_frames):
+    def record(self, case_id, expected_frames, model):
         data = self.data
         stamps = sorted(data['labels'])
         with self.pose_lock:
@@ -130,7 +131,7 @@ class Capture(Node):
                          'poses': poses.get(pose_stamp)})
         subscribers = sorted({item.node_name for item in self.get_subscriptions_info_by_topic(LABEL_TOPIC)})
         topics = [topic for topic, _ in self.get_topic_names_and_types()]
-        summary = {'case': case_id, 'expected_frames': expected_frames, 'frames': len(stamps),
+        summary = {'case': case_id, 'model': model, 'expected_frames': expected_frames, 'frames': len(stamps),
                    'stream_counts': {key: len(value) for key, value in data.items()},
                    'pose_snapshots': len(poses), 'pose_entity_names': sorted(self.pose_names),
                    'observed_pose_names_if_missing': self.last_pose_names if not poses else [],
@@ -148,7 +149,7 @@ class Capture(Node):
             raise RuntimeError('The evaluation graph did not preserve truth isolation or stationary scope')
 
 
-def run(case_id):
+def run(case_id, model):
     config = load_settings(3)
     case = next(case for case in config['cases'] if case['id'] == case_id)
     duration = config['calibration_duration_sim_s'] if case['category'] == 'plane' else config['case_duration_sim_s']
@@ -163,7 +164,7 @@ def run(case_id):
             rclpy.spin_once(node, timeout_sec=0.05)
             if node.latest_clock >= stop and drain_deadline is None:
                 drain_deadline = time.monotonic() + 2
-        node.record(case_id, int(duration * config['sensor_hz']))
+        node.record(case_id, int(duration * config['sensor_hz']), model)
         if drain_deadline is None:
             raise RuntimeError('Simulation did not reach the end of the capture window')
     finally:
@@ -172,6 +173,9 @@ def run(case_id):
 
 
 if __name__ == '__main__':
+    catalog = model_catalog()
     parser = argparse.ArgumentParser()
     parser.add_argument('case')
-    run(parser.parse_args().case)
+    parser.add_argument('--model', choices=list(catalog['models']), default=catalog['default_model'])
+    args = parser.parse_args()
+    run(args.case, args.model)

@@ -1,0 +1,25 @@
+{
+  "default_model": "yolo26n",
+  "models": {
+    "yolo26n": {
+      "file": "yolo26n.onnx",
+      "sha256": "4f44c33cea12d4b5785e5e7c0a20c13d0c62a77de607ce96a40d6036c7d7bbcf",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26n.onnx"
+    },
+    "yolo26s": {
+      "file": "yolo26s.onnx",
+      "sha256": "e3f5515ea1cdbb16d8c6c1a8e58048a0991d5a3b2ee48cc1c82d35b492bcc265",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26s.onnx"
+    },
+    "yolo26m": {
+      "file": "yolo26m.onnx",
+      "sha256": "8d1c032e6f67670e00e0256fd83390fac2e1f9341e2eb627f94ff4a565b4fcce",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26m.onnx"
+    },
+    "yolov8n": {
+      "file": "yolov8n.onnx",
+      "sha256": "fa2c856b0effedce4f49fffd121f438247a64c8f633bf0e6d5e5960e869ccc5a",
+      "url": "https://huggingface.co/unileon-robotics/YOLO8-ONNX/resolve/66e5888954d3454da709847e77b36df31f756aa9/yolov8n.onnx"
+    }
+  }
+}

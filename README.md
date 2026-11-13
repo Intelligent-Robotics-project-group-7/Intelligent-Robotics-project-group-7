@@ -91,6 +91,25 @@ bash scripts/run_env.sh bash
 
 All runtime wrappers use the caller's numeric UID/GID, a writable temporary home, a dynamically located host checkout, and the constant internal mount `/workspace`. They work without a TTY in SSH/CI. No physical devices are mapped; capabilities are dropped and resources are limited. Scene services move only synthetic person meshes; no robot velocity or navigation goals are sent.
 
+## Select a YOLO model
+
+YOLO26n is the default. The model catalogue from `robotcv2` also supports YOLO26s, YOLO26m and YOLOv8n. Download the models you want to run. The download script checks their SHA-256 hashes and reuses verified files.
+
+```bash
+bash scripts/setup_person_models.sh yolo26s yolov8n
+```
+
+Set `TB4_MODEL` when running the Phase 3 suite. The selected detector feeds the same torso-region estimator, and each capture and evaluation records the model ID.
+
+```bash
+TB4_MODEL=yolo26s bash scripts/run_depth_suite.sh two_crossing partial_occlusion
+bash scripts/run_env.sh python3 scripts/evaluate_depth_suite.py two_crossing partial_occlusion
+```
+
+Capture the whole suite with one model for an aggregate report. The evaluator checks that the selected captures use the same model. Use separate checkouts to keep results for multiple models, since a new capture replaces the files for that case.
+
+When launching the simulation manually, set `model:=yolo26s` on `person_detection_eval.launch.py`. For an existing RGB source, run `bash scripts/run_person_detector.sh yolo26s` inside the container and start `person_detection_adapter.py` in the same ROS graph. Model selection takes effect when the detector starts. Wenhao Fan's report includes the original four-model results and screenshots from his local preview. [Model comparison report](docs/robotcv2_model_comparison.md)
+
 ## Run Phase 3 person depth evaluation
 
 After installing the Phase 1–2 environment, capture the three plane cases and eleven person/empty cases. Score the captured estimates against the independent simulator geometry.
@@ -124,6 +143,7 @@ bash scripts/verify_install.sh
 ## Reports and evidence
 
 - [Phase 3 depth accuracy, output coverage, and occlusion evaluation](docs/phase3_depth.md)
+- [Four-model detection comparison from robotcv2](docs/robotcv2_model_comparison.md)
 - [Clean installation validation](docs/installation_validation.md)
 - [Phase 2 detection results, limitations, and reproduction](docs/phase2_detection.md)
 - [Industry research and nine open-source projects](docs/industry_research.md)

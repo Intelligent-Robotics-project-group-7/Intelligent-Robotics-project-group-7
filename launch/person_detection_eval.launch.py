@@ -1,5 +1,6 @@
 """Stationary simulation with independent truth and optional depth estimates."""
 import os
+import sys
 from pathlib import Path
 from ament_index_python.packages import get_package_share_directory as share
 from launch import LaunchDescription
@@ -8,11 +9,16 @@ from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import LaunchConfiguration
 from launch_ros.actions import Node
 
+ROOT = Path(__file__).resolve().parents[1]
+sys.path.insert(0, str(ROOT / 'scripts'))
+from person_models import get_model_path, model_catalog
+
 
 def setup(context):
-    root = Path(__file__).resolve().parents[1]
+    root = ROOT
     case_id = LaunchConfiguration('case').perform(context)
     phase = LaunchConfiguration('phase').perform(context)
+    model_path = get_model_path(LaunchConfiguration('model').perform(context))
     generated = root / f'downloads/phase{phase}/generated' / case_id
     description = (generated / 'robot.urdf').read_text()
     camera = '/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/'
@@ -40,7 +46,7 @@ def setup(context):
                          (camera + 'depth_image', '/oakd/rgb/preview/depth'),
                          (camera + 'camera_info', '/oakd/rgb/preview/camera_info'), (lidar, '/scan')]),
         Node(package='yolo_ros', executable='yolo_node', name='yolo_node', namespace='yolo',
-             parameters=[str(root / 'config/person_detection.yaml')]),
+             parameters=[str(root / 'config/person_detection.yaml'), {'detection.model_path': str(model_path)}]),
         ExecuteProcess(cmd=['python3', str(root / 'scripts/person_detection_adapter.py')], output='screen'),
         ExecuteProcess(cmd=['python3', str(root / 'scripts/drive_virtual_people.py'), case_id, '--phase', phase], output='screen'),
     ]
@@ -50,6 +56,9 @@ def setup(context):
 
 
 def generate_launch_description():
+    catalog = model_catalog()
     return LaunchDescription([DeclareLaunchArgument('case', default_value='single_front'),
                               DeclareLaunchArgument('phase', default_value='2', choices=['2', '3']),
+                              DeclareLaunchArgument('model', default_value=catalog['default_model'],
+                                                    choices=list(catalog['models'])),
                               OpaqueFunction(function=setup)])
