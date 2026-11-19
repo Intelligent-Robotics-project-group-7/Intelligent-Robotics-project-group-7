@@ -18,11 +18,21 @@ def setup(context):
     root = ROOT
     case_id = LaunchConfiguration('case').perform(context)
     phase = LaunchConfiguration('phase').perform(context)
+    track = LaunchConfiguration('tracking').perform(context) == 'true'
+    use_depth = LaunchConfiguration('tracking_depth').perform(context)
+    if track and phase != '3':
+        raise ValueError('Tracking uses the Phase 3 RGB-D scene')
     model_path = get_model_path(LaunchConfiguration('model').perform(context))
     generated = root / f'downloads/phase{phase}/generated' / case_id
     description = (generated / 'robot.urdf').read_text()
     camera = '/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/'
     lidar = '/world/person_eval/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan'
+    detector_params = {'detection.model_path': str(model_path)}
+    adapter_args = []
+    if track:
+        from person_tracking import LOW_SCORE
+        detector_params['detection.threshold'] = LOW_SCORE
+        adapter_args = ['--ros-args', '-p', f'minimum_score:={LOW_SCORE}']
     actions = [
         SetEnvironmentVariable('GZ_SIM_RESOURCE_PATH', ':'.join([
             str(Path(share('turtlebot4_description')).parent),
@@ -46,12 +56,15 @@ def setup(context):
                          (camera + 'depth_image', '/oakd/rgb/preview/depth'),
                          (camera + 'camera_info', '/oakd/rgb/preview/camera_info'), (lidar, '/scan')]),
         Node(package='yolo_ros', executable='yolo_node', name='yolo_node', namespace='yolo',
-             parameters=[str(root / 'config/person_detection.yaml'), {'detection.model_path': str(model_path)}]),
-        ExecuteProcess(cmd=['python3', str(root / 'scripts/person_detection_adapter.py')], output='screen'),
+             parameters=[str(root / 'config/person_detection.yaml'), detector_params]),
+        ExecuteProcess(cmd=['python3', str(root / 'scripts/person_detection_adapter.py'), *adapter_args], output='screen'),
         ExecuteProcess(cmd=['python3', str(root / 'scripts/drive_virtual_people.py'), case_id, '--phase', phase], output='screen'),
     ]
     if phase == '3':
         actions.append(ExecuteProcess(cmd=['python3', str(root / 'scripts/person_depth_node.py')], output='screen'))
+    if track:
+        actions.append(ExecuteProcess(cmd=['python3', str(root / 'scripts/person_tracking_node.py'),
+                                           '--ros-args', '-p', f'use_depth:={use_depth}'], output='screen'))
     return actions
 
 
@@ -61,4 +74,6 @@ def generate_launch_description():
                               DeclareLaunchArgument('phase', default_value='2', choices=['2', '3']),
                               DeclareLaunchArgument('model', default_value=catalog['default_model'],
                                                     choices=list(catalog['models'])),
+                              DeclareLaunchArgument('tracking', default_value='false', choices=['false', 'true']),
+                              DeclareLaunchArgument('tracking_depth', default_value='true', choices=['false', 'true']),
                               OpaqueFunction(function=setup)])

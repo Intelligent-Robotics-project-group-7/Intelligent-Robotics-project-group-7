@@ -1,8 +1,10 @@
 # Proposed System Architecture (Design, Not an Implemented System)
 
-Date: 2026-11-10. The simulation foundation, sensor validation, 2D person detection, and camera-relative depth prototype are implemented. The architecture below describes the planned integration with tracking and navigation.
+Original design date 2026-11-10. The simulation implements sensor validation, 2D detection, camera-relative depth and explicit person-track selection. The diagram extends that setup with planned navigation.
 
 Phase 2 runs `yolo_ros` and publishes `/perception/people/detections2d` (`vision_msgs/Detection2DArray`). Phase 3 pairs those messages with same-stamp depth and camera calibration, then publishes `/perception/people/depth_estimates` with camera-frame positions. The evaluator is the sole subscriber to semantic truth. See the [Phase 3 report](phase3_depth.md) for the measured pipeline and its limits.
+
+The optional Phase 4 tracker subscribes to detections and same-stamp depth estimates. It publishes session-local tracks and an explicitly selected target on `/perception/people/tracks`. [Phase 4 tracking report](phase4_tracking.md)
 
 ## Node relationships and module boundaries
 

@@ -1,0 +1,823 @@
+{
+  "recorded_utc": "2026-11-18T23:46:31Z",
+  "cases": {
+    "two_crossing": {
+      "live": {
+        "frames": 60,
+        "truth_instances": 120,
+        "confirmed_track_boxes": 115,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.7574468085106383,
+        "first_selection_ns": 2400000000,
+        "states": {
+          "LOCKED": 22,
+          "OCCLUDED": 4,
+          "LOST": 32
+        },
+        "reasons": {
+          "observed": 22,
+          "overlapping_candidates": 2,
+          "missing_detection": 2,
+          "target_timeout": 32
+        },
+        "target_outcomes": {
+          "correct_person": 22,
+          "withheld": 36
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "2d_replay": {
+        "frames": 60,
+        "truth_instances": 120,
+        "confirmed_track_boxes": 113,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.7553648068669528,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 23,
+          "OCCLUDED": 4,
+          "LOST": 32
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 22,
+          "overlapping_candidates": 2,
+          "missing_detection": 2,
+          "target_timeout": 32
+        },
+        "target_outcomes": {
+          "correct_person": 23,
+          "withheld": 36
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "depth_replay": {
+        "frames": 60,
+        "truth_instances": 120,
+        "confirmed_track_boxes": 113,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.7553648068669528,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 23,
+          "OCCLUDED": 4,
+          "LOST": 32
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 22,
+          "overlapping_candidates": 2,
+          "missing_detection": 2,
+          "target_timeout": 32
+        },
+        "target_outcomes": {
+          "correct_person": 23,
+          "withheld": 36
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "graph": {
+        "truth_subscribers": [
+          "phase4_tracking_evaluator"
+        ],
+        "velocity_topics": []
+      }
+    },
+    "partial_occlusion": {
+      "live": {
+        "frames": 60,
+        "truth_instances": 44,
+        "confirmed_track_boxes": 37,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.5185185185185185,
+        "first_selection_ns": 2400000000,
+        "states": {
+          "LOCKED": 12,
+          "OCCLUDED": 6,
+          "LOST": 40
+        },
+        "reasons": {
+          "observed": 11,
+          "overlapping_candidates": 2,
+          "recovered": 1,
+          "missing_detection": 4,
+          "target_timeout": 40
+        },
+        "target_outcomes": {
+          "correct_person": 12,
+          "withheld": 46
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [
+          0.4
+        ],
+        "recovery_from_last_correct_s": [
+          0.6
+        ],
+        "still_withheld_at_end": true
+      },
+      "2d_replay": {
+        "frames": 60,
+        "truth_instances": 44,
+        "confirmed_track_boxes": 36,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.525,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 11,
+          "OCCLUDED": 4,
+          "LOST": 44
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 10,
+          "overlapping_candidates": 2,
+          "recovery_needs_consistent_depth": 2,
+          "target_timeout": 44
+        },
+        "target_outcomes": {
+          "correct_person": 11,
+          "withheld": 48
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "depth_replay": {
+        "frames": 60,
+        "truth_instances": 44,
+        "confirmed_track_boxes": 36,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.525,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 13,
+          "OCCLUDED": 6,
+          "LOST": 40
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 11,
+          "overlapping_candidates": 2,
+          "recovered": 1,
+          "missing_detection": 4,
+          "target_timeout": 40
+        },
+        "target_outcomes": {
+          "correct_person": 13,
+          "withheld": 46
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [
+          0.4
+        ],
+        "recovery_from_last_correct_s": [
+          0.6
+        ],
+        "still_withheld_at_end": true
+      },
+      "graph": {
+        "truth_subscribers": [
+          "phase4_tracking_evaluator"
+        ],
+        "velocity_topics": []
+      }
+    },
+    "torso_occlusion": {
+      "live": {
+        "frames": 60,
+        "truth_instances": 60,
+        "confirmed_track_boxes": 60,
+        "identity_switches": 0,
+        "idf1_at_iou_50": 1.0,
+        "first_selection_ns": 2400000000,
+        "states": {
+          "LOCKED": 58
+        },
+        "reasons": {
+          "observed": 58
+        },
+        "target_outcomes": {
+          "correct_person": 58
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": false
+      },
+      "2d_replay": {
+        "frames": 60,
+        "truth_instances": 60,
+        "confirmed_track_boxes": 59,
+        "identity_switches": 0,
+        "idf1_at_iou_50": 0.9915966386554622,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 59
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 58
+        },
+        "target_outcomes": {
+          "correct_person": 59
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": false
+      },
+      "depth_replay": {
+        "frames": 60,
+        "truth_instances": 60,
+        "confirmed_track_boxes": 59,
+        "identity_switches": 0,
+        "idf1_at_iou_50": 0.9915966386554622,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 59
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 58
+        },
+        "target_outcomes": {
+          "correct_person": 59
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": false
+      },
+      "graph": {
+        "truth_subscribers": [
+          "phase4_tracking_evaluator"
+        ],
+        "velocity_topics": []
+      }
+    },
+    "exit_return": {
+      "live": {
+        "frames": 60,
+        "truth_instances": 38,
+        "confirmed_track_boxes": 36,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.5675675675675675,
+        "first_selection_ns": 2400000000,
+        "states": {
+          "LOCKED": 12,
+          "OCCLUDED": 2,
+          "LOST": 44
+        },
+        "reasons": {
+          "observed": 12,
+          "missing_detection": 2,
+          "input_timeout": 44
+        },
+        "target_outcomes": {
+          "correct_person": 12,
+          "withheld": 46
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "2d_replay": {
+        "frames": 60,
+        "truth_instances": 38,
+        "confirmed_track_boxes": 35,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.5753424657534246,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 13,
+          "OCCLUDED": 4,
+          "LOST": 42
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 12,
+          "missing_detection": 4,
+          "target_timeout": 42
+        },
+        "target_outcomes": {
+          "correct_person": 13,
+          "withheld": 46
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "depth_replay": {
+        "frames": 60,
+        "truth_instances": 38,
+        "confirmed_track_boxes": 35,
+        "identity_switches": 1,
+        "idf1_at_iou_50": 0.5753424657534246,
+        "first_selection_ns": 2200000000,
+        "states": {
+          "LOCKED": 13,
+          "OCCLUDED": 4,
+          "LOST": 42
+        },
+        "reasons": {
+          "operator_selected": 1,
+          "observed": 12,
+          "missing_detection": 4,
+          "target_timeout": 42
+        },
+        "target_outcomes": {
+          "correct_person": 13,
+          "withheld": 46
+        },
+        "wrong_or_unverified_outputs": [],
+        "completed_withhold_periods_s": [],
+        "recovery_from_last_correct_s": [],
+        "still_withheld_at_end": true
+      },
+      "graph": {
+        "truth_subscribers": [
+          "phase4_tracking_evaluator"
+        ],
+        "velocity_topics": []
+      }
+    }
+  },
+  "controlled_crossing_replays": [
+    {
+      "side": "left",
+      "selected_label": 12,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 0.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 113,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7553648068669528,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 23,
+        "OCCLUDED": 4,
+        "LOST": 32
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 22,
+        "overlapping_candidates": 2,
+        "missing_detection": 2,
+        "target_timeout": 32
+      },
+      "target_outcomes": {
+        "correct_person": 23,
+        "withheld": 36
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "left",
+      "selected_label": 12,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 0.5,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 111,
+      "identity_switches": 0,
+      "idf1_at_iou_50": 0.961038961038961,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 20,
+        "OCCLUDED": 7,
+        "LOST": 32
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 18,
+        "missing_detection": 5,
+        "recovered": 1,
+        "overlapping_candidates": 2,
+        "target_timeout": 32
+      },
+      "target_outcomes": {
+        "correct_person": 20,
+        "withheld": 39
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [
+        0.6
+      ],
+      "recovery_from_last_correct_s": [
+        0.8
+      ],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "left",
+      "selected_label": 12,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 1.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 109,
+      "identity_switches": 0,
+      "idf1_at_iou_50": 0.9519650655021834,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 19,
+        "OCCLUDED": 4,
+        "LOST": 36
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 18,
+        "missing_detection": 4,
+        "target_timeout": 36
+      },
+      "target_outcomes": {
+        "correct_person": 19,
+        "withheld": 40
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "left",
+      "selected_label": 12,
+      "drop_start_s": 6.4,
+      "drop_duration_s": 1.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 109,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7685589519650655,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 21,
+        "OCCLUDED": 4,
+        "LOST": 34
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 20,
+        "missing_detection": 4,
+        "target_timeout": 34
+      },
+      "target_outcomes": {
+        "correct_person": 21,
+        "withheld": 38
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "left",
+      "selected_label": 12,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 3.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 102,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7477477477477478,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 19,
+        "OCCLUDED": 4,
+        "LOST": 36
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 18,
+        "missing_detection": 4,
+        "target_timeout": 36
+      },
+      "target_outcomes": {
+        "correct_person": 19,
+        "withheld": 40
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "selected_label": 11,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 0.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 113,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7553648068669528,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 23,
+        "OCCLUDED": 4,
+        "LOST": 32
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 22,
+        "overlapping_candidates": 4,
+        "target_timeout": 32
+      },
+      "target_outcomes": {
+        "correct_person": 23,
+        "withheld": 36
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "selected_label": 11,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 0.5,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 110,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7391304347826086,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 20,
+        "OCCLUDED": 7,
+        "LOST": 32
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 18,
+        "missing_detection": 3,
+        "recovered": 1,
+        "overlapping_candidates": 4,
+        "target_timeout": 32
+      },
+      "target_outcomes": {
+        "correct_person": 20,
+        "withheld": 39
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [
+        0.6
+      ],
+      "recovery_from_last_correct_s": [
+        0.8
+      ],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "selected_label": 11,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 1.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 108,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7280701754385965,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 19,
+        "OCCLUDED": 4,
+        "LOST": 36
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 18,
+        "missing_detection": 4,
+        "target_timeout": 36
+      },
+      "target_outcomes": {
+        "correct_person": 19,
+        "withheld": 40
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "selected_label": 11,
+      "drop_start_s": 6.4,
+      "drop_duration_s": 1.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 108,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7280701754385965,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 21,
+        "OCCLUDED": 4,
+        "LOST": 34
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 20,
+        "missing_detection": 4,
+        "target_timeout": 34
+      },
+      "target_outcomes": {
+        "correct_person": 21,
+        "withheld": 38
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "selected_label": 11,
+      "drop_start_s": 6.0,
+      "drop_duration_s": 3.0,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 97,
+      "identity_switches": 2,
+      "idf1_at_iou_50": 0.48847926267281105,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 19,
+        "OCCLUDED": 4,
+        "LOST": 36
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 18,
+        "missing_detection": 4,
+        "target_timeout": 36
+      },
+      "target_outcomes": {
+        "correct_person": 19,
+        "withheld": 40
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    }
+  ],
+  "pre_crossing_dropout_replays": [
+    {
+      "side": "left",
+      "use_depth": false,
+      "drop_start_s": 4.0,
+      "drop_duration_s": 0.4,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 111,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7619047619047619,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 9,
+        "OCCLUDED": 4,
+        "LOST": 46
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 8,
+        "missing_detection": 2,
+        "recovery_needs_consistent_depth": 2,
+        "target_timeout": 46
+      },
+      "target_outcomes": {
+        "correct_person": 9,
+        "withheld": 50
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "left",
+      "use_depth": true,
+      "drop_start_s": 4.0,
+      "drop_duration_s": 0.4,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 111,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7619047619047619,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 21,
+        "OCCLUDED": 6,
+        "LOST": 32
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 19,
+        "missing_detection": 4,
+        "recovered": 1,
+        "overlapping_candidates": 2,
+        "target_timeout": 32
+      },
+      "target_outcomes": {
+        "correct_person": 21,
+        "withheld": 38
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [
+        0.4
+      ],
+      "recovery_from_last_correct_s": [
+        0.6
+      ],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "use_depth": false,
+      "drop_start_s": 4.0,
+      "drop_duration_s": 0.4,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 111,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7445887445887446,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 9,
+        "OCCLUDED": 4,
+        "LOST": 46
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 8,
+        "missing_detection": 2,
+        "recovery_needs_consistent_depth": 2,
+        "target_timeout": 46
+      },
+      "target_outcomes": {
+        "correct_person": 9,
+        "withheld": 50
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [],
+      "recovery_from_last_correct_s": [],
+      "still_withheld_at_end": true
+    },
+    {
+      "side": "right",
+      "use_depth": true,
+      "drop_start_s": 4.0,
+      "drop_duration_s": 0.4,
+      "frames": 60,
+      "truth_instances": 120,
+      "confirmed_track_boxes": 111,
+      "identity_switches": 1,
+      "idf1_at_iou_50": 0.7445887445887446,
+      "first_selection_ns": 2200000000,
+      "states": {
+        "LOCKED": 21,
+        "OCCLUDED": 6,
+        "LOST": 32
+      },
+      "reasons": {
+        "operator_selected": 1,
+        "observed": 19,
+        "missing_detection": 2,
+        "recovered": 1,
+        "overlapping_candidates": 4,
+        "target_timeout": 32
+      },
+      "target_outcomes": {
+        "correct_person": 21,
+        "withheld": 38
+      },
+      "wrong_or_unverified_outputs": [],
+      "completed_withhold_periods_s": [
+        0.4
+      ],
+      "recovery_from_last_correct_s": [
+        0.6
+      ],
+      "still_withheld_at_end": true
+    }
+  ]
+}

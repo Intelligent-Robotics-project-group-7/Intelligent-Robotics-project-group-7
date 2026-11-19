@@ -10,6 +10,7 @@ from yolo_msgs.msg import DetectionArray
 class Adapter(Node):
     def __init__(self):
         super().__init__('person_detection_adapter', parameter_overrides=[Parameter('use_sim_time', value=True)])
+        self.minimum_score = self.declare_parameter('minimum_score', .25).value
         self.output = self.create_publisher(Detection2DArray, '/perception/people/detections2d', 10)
         self.input = self.create_subscription(DetectionArray, '/yolo/oakd/detections', self.receive, 10)
 
@@ -17,7 +18,7 @@ class Adapter(Node):
         result = Detection2DArray()
         result.header = msg.header
         for item in msg.detections:
-            if item.class_id != 0 or item.class_name != 'person' or item.score < .25:
+            if item.class_id != 0 or item.class_name != 'person' or item.score < self.minimum_score:
                 continue
             source = item.bbox
             values = [source.center.position.x, source.center.position.y, source.size.x, source.size.y, item.score]

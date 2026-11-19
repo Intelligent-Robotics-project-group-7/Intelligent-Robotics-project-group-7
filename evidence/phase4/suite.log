@@ -1,0 +1,16 @@
+Capturing tracking case two_crossing
+/workspace/downloads/phase2/models/yolo26s.onnx
+/workspace/downloads/phase3/generated/two_crossing
+{"frames": 60, "truth_instances": 120, "confirmed_track_boxes": 115, "identity_switches": 1, "idf1_at_iou_50": 0.7574468085106383, "first_selection_ns": 2400000000, "states": {"LOCKED": 22, "OCCLUDED": 4, "LOST": 32}, "reasons": {"observed": 22, "overlapping_candidates": 2, "missing_detection": 2, "target_timeout": 32}, "target_outcomes": {"correct_person": 22, "withheld": 36}, "completed_withhold_periods_s": [], "recovery_from_last_correct_s": [], "still_withheld_at_end": true}
+Capturing tracking case partial_occlusion
+/workspace/downloads/phase2/models/yolo26s.onnx
+/workspace/downloads/phase3/generated/partial_occlusion
+{"frames": 60, "truth_instances": 44, "confirmed_track_boxes": 37, "identity_switches": 1, "idf1_at_iou_50": 0.5185185185185185, "first_selection_ns": 2400000000, "states": {"LOCKED": 12, "OCCLUDED": 6, "LOST": 40}, "reasons": {"observed": 11, "overlapping_candidates": 2, "recovered": 1, "missing_detection": 4, "target_timeout": 40}, "target_outcomes": {"correct_person": 12, "withheld": 46}, "wrong_or_unverified_outputs": [], "completed_withhold_periods_s": [0.4], "recovery_from_last_correct_s": [0.6], "still_withheld_at_end": true}
+Capturing tracking case torso_occlusion
+/workspace/downloads/phase2/models/yolo26s.onnx
+/workspace/downloads/phase3/generated/torso_occlusion
+{"frames": 60, "truth_instances": 60, "confirmed_track_boxes": 60, "identity_switches": 0, "idf1_at_iou_50": 1.0, "first_selection_ns": 2400000000, "states": {"LOCKED": 58}, "reasons": {"observed": 58}, "target_outcomes": {"correct_person": 58}, "wrong_or_unverified_outputs": [], "completed_withhold_periods_s": [], "recovery_from_last_correct_s": [], "still_withheld_at_end": false}
+Capturing tracking case exit_return
+/workspace/downloads/phase2/models/yolo26s.onnx
+/workspace/downloads/phase3/generated/exit_return
+{"frames": 60, "truth_instances": 38, "confirmed_track_boxes": 36, "identity_switches": 1, "idf1_at_iou_50": 0.5675675675675675, "first_selection_ns": 2400000000, "states": {"LOCKED": 12, "OCCLUDED": 2, "LOST": 44}, "reasons": {"observed": 12, "missing_detection": 2, "input_timeout": 44}, "target_outcomes": {"correct_person": 12, "withheld": 46}, "wrong_or_unverified_outputs": [], "completed_withhold_periods_s": [], "recovery_from_last_correct_s": [], "still_withheld_at_end": true}

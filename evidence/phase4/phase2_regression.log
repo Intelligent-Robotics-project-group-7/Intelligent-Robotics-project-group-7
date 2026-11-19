@@ -1,0 +1,3 @@
+Running perception case: single_front
+Finished perception case: single_front
+{'frames': 60, 'tp': 60, 'fp': 0, 'prediction_coverage': 1.0}

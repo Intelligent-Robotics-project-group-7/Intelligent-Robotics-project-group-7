@@ -122,6 +122,20 @@ bash scripts/run_env.sh python3 -m pytest -q tests
 
 The estimator publishes `/perception/people/depth_estimates` with forward depth, straight-line camera range, optical-frame XYZ, and validity per detection. Captures and per-case simulation logs go under `downloads/phase3/`. The analysis regenerates `evidence/phase3/depth_report.json` and `evidence/phase3/measurements.jsonl`. See the [Phase 3 validation report](docs/phase3_depth.md).
 
+## Run Phase 4 person tracking
+
+After installing the perception stack, run the tracking scenarios and score the recorded tracks against the simulator labels.
+
+```bash
+bash scripts/setup_person_models.sh yolo26s
+TB4_MODEL=yolo26s bash scripts/run_tracking_suite.sh
+bash scripts/run_env.sh python3 scripts/score_tracking.py
+```
+
+The measurements go under `downloads/phase4/`. Each test sends one explicit initial selection through the same ROS interface an operator uses. The simulator keeps the robot stationary.
+
+In a running simulation, start the evaluation launch with `phase:=3 tracking:=true`. Read the session ID and a confirmed track ID from `/perception/people/tracks`. Publish a `std_msgs/msg/String` with JSON `{"session_id":"<session>","track_id":1}` to `/perception/people/select_target` within the same ROS graph. To clear the target, send the session ID with `"track_id":null`. After a target reaches `LOST`, send a new explicit selection to resume. The output carries the input image timestamp, confirmed and tentative tracks, and the selected target state. [Phase 4 validation report](docs/phase4_tracking.md)
+
 ## Rebuild and troubleshooting
 
 ```bash
@@ -143,6 +157,7 @@ bash scripts/verify_install.sh
 ## Reports and evidence
 
 - [Phase 3 depth accuracy, output coverage, and occlusion evaluation](docs/phase3_depth.md)
+- [Phase 4 tracking and target lock evaluation](docs/phase4_tracking.md)
 - [Four-model detection comparison from robotcv2](docs/robotcv2_model_comparison.md)
 - [Clean installation validation](docs/installation_validation.md)
 - [Phase 2 detection results, limitations, and reproduction](docs/phase2_detection.md)
@@ -155,4 +170,4 @@ bash scripts/verify_install.sh
 
 ![Person detection examples](evidence/phase2/detection_contact_sheet.png)
 
-Person mesh: OpenRobotics Scrubs, CC BY 4.0. Attribution is in the Phase 2 report. Identity tracking is planned for Phase 4.
+The person mesh is OpenRobotics Scrubs (CC BY 4.0). Attribution is in the Phase 2 report.

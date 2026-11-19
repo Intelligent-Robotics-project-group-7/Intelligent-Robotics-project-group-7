@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ros-jazzy-image-transport \
     ros-jazzy-vision-msgs \
     python3-colcon-common-extensions \
-    python3 python3-numpy python3-opencv python3-pytest \
+    python3 python3-numpy python3-opencv python3-pytest python3-scipy \
     build-essential git cmake curl ca-certificates libcurl4-openssl-dev \
     xvfb xauth mesa-utils libgl1-mesa-dri \
     && rm -rf /var/lib/apt/lists/*

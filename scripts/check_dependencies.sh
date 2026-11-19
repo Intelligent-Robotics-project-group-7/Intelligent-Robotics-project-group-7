@@ -5,5 +5,5 @@ apt-get update -qq
 apt-get --assume-no install --no-install-recommends \
   ros-jazzy-turtlebot4-simulator ros-jazzy-irobot-create-nodes \
   ros-jazzy-cv-bridge ros-jazzy-image-transport ros-jazzy-vision-msgs \
-  python3-colcon-common-extensions python3-pytest git cmake \
+  python3-colcon-common-extensions python3-pytest python3-scipy git cmake \
   xvfb xauth mesa-utils libgl1-mesa-dri
