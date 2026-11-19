@@ -27,7 +27,7 @@ sudo apt-get install --no-install-recommends -y git ca-certificates
 # Clone the requested branch into a directory you own
 git clone --branch main --single-branch \
   https://github.com/Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7.git robot-cv
-cd robot-cv/scr/robot-CV
+cd robot-cv/src/robot-CV
 
 # One-time host setup; automatically selects the account invoking sudo
 sudo bash scripts/bootstrap_host.sh

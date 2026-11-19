@@ -58,17 +58,17 @@ The teammate's current vision README describes `/perception/people/center_poses`
 
 The development setup used Ubuntu, ROS 2 Jazzy, Gazebo Harmonic, and a simulated TurtleBot 4 Lite. Runtime also needs TurtleBot 4 Navigation, Nav2, the robot simulation or hardware stack, mapping/localisation, and the input interfaces above; these are not included in this deliverable. Package dependencies are declared in [`package.xml`](package.xml).
 
-从主分支克隆小组仓库，然后在仓库根目录构建 `scr/meg_navigation/`。若仓库需要认证，请使用有权限的 GitHub 账号。
+从主分支克隆小组仓库，然后在仓库根目录构建 `src/meg_navigation/`。若仓库需要认证，请使用有权限的 GitHub 账号。
 
-From a fresh checkout of the team repository, build `scr/meg_navigation/` from the repository root. Authenticate with a GitHub account that has repository access if required.
+From a fresh checkout of the team repository, build `src/meg_navigation/` from the repository root. Authenticate with a GitHub account that has repository access if required.
 
 ```bash
 git clone --branch main --single-branch \
   https://github.com/Intelligent-Robotics-project-group-7/Intelligent-Robotics-project-group-7.git meg-nav
 cd meg-nav
 source /opt/ros/jazzy/setup.bash
-rosdep install --from-paths scr/meg_navigation --ignore-src --rosdistro jazzy -r -y
-colcon build --symlink-install --base-paths scr/meg_navigation --packages-select meg_navigation
+rosdep install --from-paths src/meg_navigation --ignore-src --rosdistro jazzy -r -y
+colcon build --symlink-install --base-paths src/meg_navigation --packages-select meg_navigation
 source install/setup.bash
 ```
 
@@ -117,7 +117,7 @@ The 3D scene used stationary person-shaped placeholders, not integrated person r
 在仓库根目录可独立重跑栅格单元测试： / Run the grid unit tests independently from the repository root:
 
 ```bash
-PYTHONPATH=scr/meg_navigation python3 -m unittest discover -s scr/meg_navigation/test -v
+PYTHONPATH=src/meg_navigation python3 -m unittest discover -s src/meg_navigation/test -v
 ```
 
 ## 7. 尚需联调与已知限制 / Pending integration and limitations

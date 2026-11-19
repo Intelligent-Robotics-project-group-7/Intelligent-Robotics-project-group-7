@@ -46,7 +46,7 @@ From the team repository root, build the package:
 
 ```bash
 source /opt/ros/jazzy/setup.bash
-colcon build --base-paths scr/localisation_mapping --packages-select localisation_mapping --symlink-install
+colcon build --base-paths src/localisation_mapping --packages-select localisation_mapping --symlink-install
 source install/setup.bash
 ```
 

@@ -36,7 +36,7 @@ ros2 pkg prefix --share turtlebot4_gz_bringup
 Run these commands from the team repository root. If you keep the world elsewhere in the repository, change the first line to enter that directory. Launch from the directory containing both `group7_test.sdf` and `people_assets/`. This launch leaves upstream SLAM, localisation, Nav2, and RViz off.
 
 ```bash
-cd scr/turtlebot4_scene
+cd src/turtlebot4_scene
 source /opt/ros/jazzy/setup.bash
 LIBGL_ALWAYS_SOFTWARE=1 ros2 launch turtlebot4_gz_bringup turtlebot4_gz.launch.py \
   world:=group7_test model:=standard \
