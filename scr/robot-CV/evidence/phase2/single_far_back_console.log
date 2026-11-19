@@ -1,0 +1,35 @@
+/workspace/downloads/phase2/generated/single_far_back
+{"progress": "single_far_back", "sim_s": 2.208, "rgb": 12, "truth": 12, "predictions": 11}
+{"progress": "single_far_back", "sim_s": 8.2, "rgb": 41, "truth": 41, "predictions": 41}
+{"progress": "single_far_back", "sim_s": 14.282, "rgb": 72, "truth": 72, "predictions": 72}
+{
+  "frames": 60,
+  "ground_truth_instances": 60,
+  "tp": 58,
+  "fp": 0,
+  "fn": 2,
+  "precision": 1.0,
+  "recall": 0.9666666666666667,
+  "negative_frames": 0,
+  "negative_frames_with_false_positives": 0,
+  "case": "single_far_back",
+  "collection_wall_s": 31.574568955999894,
+  "simulation_completed": true,
+  "rgb_messages_total": 76,
+  "truth_messages_total": 76,
+  "prediction_messages_total": 76,
+  "paired_rgb_truth_frames": 60,
+  "prediction_coverage": 1.0,
+  "subscriber_receipt_latency": {
+    "p50_ms": 44.27419349985939,
+    "p95_ms": 53.20535869998366,
+    "p99_ms": 54.871525299909074
+  },
+  "iou_threshold": 0.5,
+  "score_threshold": 0.25,
+  "annotation": "Visible-pixel boxes from Gazebo semantic labels 11/12; separate co-located sensor",
+  "motion_commands_sent": false,
+  "motion_command_scope": "robot base; synthetic person pose updates are enabled",
+  "tracking_enabled": false,
+  "recorded_utc": "2026-11-10T21:15:27Z"
+}

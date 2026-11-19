@@ -1,0 +1,30 @@
+{
+  "full_name": "nwojke/deep_sort",
+  "html_url": "https://github.com/nwojke/deep_sort",
+  "default_branch": "master",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2025-03-02T09:55:38Z",
+  "updated_at": "2026-11-07T10:58:36Z",
+  "license": {
+    "key": "gpl-3.0",
+    "name": "GNU General Public License v3.0",
+    "spdx_id": "GPL-3.0",
+    "url": "https://api.github.com/licenses/gpl-3.0",
+    "node_id": "MDc6TGljZW5zZTk="
+  },
+  "description": "Simple Online Realtime Tracking with a Deep Association Metric",
+  "commit_sha": "f08cf1dc470eeb1cd2add1cbf077d95ac6c48aab",
+  "commit_date": "2025-03-02T09:54:41Z",
+  "commit_subject": "Fix typos",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/nwojke/deep_sort/f08cf1dc470eeb1cd2add1cbf077d95ac6c48aab/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/nwojke/deep_sort/f08cf1dc470eeb1cd2add1cbf077d95ac6c48aab/LICENSE"
+    }
+  ]
+}

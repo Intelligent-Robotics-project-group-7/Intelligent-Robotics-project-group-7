@@ -1,0 +1,87 @@
+{
+  "base_image_id": "sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a",
+  "yolo_ros_commit": "94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+  "yolo_ros_version": "5.0.0",
+  "onnxruntime_version_verified_in_runtime_log": "1.20.0",
+  "huggingface_hub_cpp_commit": "a894c86dc701b97b6627bc3986e542a72faa0fe3",
+  "huggingface_hub_cpp_requested_tag": "1.1.5",
+  "assets": {
+    "model_repository_revision": "e046fc5125ee6b579f1801f0b6df68a60b949c42",
+    "person_asset": "OpenRobotics/Scrubs",
+    "person_asset_version": 2,
+    "files": [
+      {
+        "path": "downloads/phase2/models/yolo26n.onnx",
+        "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26n.onnx",
+        "bytes": 9887916,
+        "sha256": "4f44c33cea12d4b5785e5e7c0a20c13d0c62a77de607ce96a40d6036c7d7bbcf",
+        "license": "AGPL-3.0",
+        "immutable_artifact": true
+      },
+      {
+        "path": "downloads/phase2/model_card.md",
+        "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/raw/e046fc5125ee6b579f1801f0b6df68a60b949c42/README.md",
+        "bytes": 18947,
+        "sha256": "2a3c1ad29f8f13dacb539df0083b46b40e2096d8eca6ac40a94a637fef6ab568",
+        "license": "AGPL-3.0",
+        "immutable_artifact": true
+      },
+      {
+        "path": "downloads/phase2/source/yolo_ros.tar.gz",
+        "url": "https://codeload.github.com/mgonzs13/yolo_ros/tar.gz/94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+        "bytes": 255272,
+        "sha256": "5941b5c541e2cddfed2c522f330b13bf444f27666f454cce564fc148e5ebda7f",
+        "license": "MIT",
+        "immutable_artifact": true
+      },
+      {
+        "path": "downloads/phase2/scrubs.zip",
+        "url": "https://fuel.gazebosim.org/1.0/OpenRobotics/models/Scrubs/2/Scrubs.zip",
+        "bytes": 1028421,
+        "sha256": "1e4a5fbdfc8d02c688290d1c4e39430ec872bf3f976c5fc720cf6e98c740aea7",
+        "license": "CC-BY-4.0",
+        "immutable_artifact": true
+      },
+      {
+        "path": "downloads/phase2/scrubs_metadata.json",
+        "url": "https://fuel.gazebosim.org/1.0/OpenRobotics/models/Scrubs",
+        "bytes": 628,
+        "sha256": "219a27beb428c5f256774dab9c35396db747518690a26a531b6c1b1a7a3e85e4",
+        "license": "CC-BY-4.0",
+        "immutable_artifact": false
+      }
+    ]
+  },
+  "project_files": {
+    "config/person_detection.yaml": "0161b18fcf6f8c730b1984cbfbbed622328d707a0b9b501506e2c42a4e00127f",
+    "config/person_scenarios.json": "b02f23bc553de6441e4884a09b88d555c9d5b441b77e426777807b136f2fe1d9",
+    "config/phase2_assets.lock.json": "5265a8831234134872673f594b2893d9cc791680b45b6da4cea7df2028e6acb5",
+    "launch/person_detection_eval.launch.py": "678de3fa9d17f2ab060809b0e8b07a64dc40cc1f755ad890fca805d1f6b20a2c",
+    "launch/static_camera_smoke.launch.py": "b68c98514c465b1b6cfb5041c05a40ac91dd38fc9506ac988f683cecbb672f50",
+    "scripts/analyze_person_suite.sh": "63cb2b09453467283a75ae1069cdb1f4eff0188fa7637b38c7b3025aae6872cd",
+    "scripts/audit_environment.sh": "d7b26bc735acab10d345fe0f2d51441e24da736e9fa62f2460b87fab7377bfd5",
+    "scripts/audit_host.sh": "22114afb607c569f9ed6d8b8956691ee0e47cc5aea55874bf59a3b89d6eafd67",
+    "scripts/benchmark_person_pipeline.py": "1494f3912cbfa834c4b03a771e028340b0193610374454ec1253664483f83a8d",
+    "scripts/bootstrap_host.sh": "c3b7d02b09aeebd23c9389d685e749a94f1d803433c7fe8622fa3282b512513d",
+    "scripts/build_env.sh": "bf99be6ede809af9095101a00a32970511b052c9a9bd2c84fe2376fa455af6cd",
+    "scripts/build_perception.sh": "b862a6d01e50fd8c9e3820e8e9b052d906f4882a3caf9f1b7bdb2665fe1d439b",
+    "scripts/capture_sensor_smoke.py": "469dc265debab33b739ea302f94171645e7b2c3763a21e759379c2a0c86aa02e",
+    "scripts/check_dependencies.sh": "bbbfbab0dcf624c5b4049832f729872ffded2acaccfc14a05f8166c8762a0511",
+    "scripts/collect_person_detection.py": "237cce779d97bdf31c2f651cfb546fbcb1f3493d0d06a36e04414cf575873794",
+    "scripts/compare_hog_baseline.py": "6e451a622f9d2706415880d6c4633387328f8cc05355edafc302be291b668fb9",
+    "scripts/detection_metrics.py": "ff72e926d7b69b180e3d16432bf1816b7423caae6cd6b5592443f0b2b7bcf6ca",
+    "scripts/drive_virtual_people.py": "1ad1468ce84b0d1a9df7d7a30f0dde3a2a6bc7e7ef5ca9fefae68dcac2bc39d8",
+    "scripts/person_detection_adapter.py": "16ed6a228a9f85607d015aa946b9f92220d9d8679a2a24efdb614ea0b0a42cc2",
+    "scripts/prepare_person_world.py": "f0dbad91357c355767b6c1c1f73d02950f547ed4b1f2688e76b9da28b40a8af9",
+    "scripts/prepare_phase2_assets.py": "11c7264f2c26f9f9083cadebddf8e364db3a86e46f12c6ffc5c5198fae4c5576",
+    "scripts/record_perception_graph.py": "284d5425810f772de2e0083d695e14da80837fb972ddfc0a375fad0cf3490aeb",
+    "scripts/record_perception_provenance.py": "0c0106ac9acda5d71d6f973f1e971ec29e63fa7bf5dae1613bb08cfa9d018011",
+    "scripts/run_env.sh": "9971b782cd06c892ea06d806ff348d4f80868bae1323c5dc51f2117aade266a2",
+    "scripts/run_offline_benchmark.sh": "5221b90c7cb74404aea4c8f217d4d1623bb5b0bf283737de319c5f0e78434b72",
+    "scripts/run_person_case.sh": "8cc2d858735a7a8da2bbef85fb6c2f4f9174248895a96e01ba8d42e8c2d5fa7f",
+    "scripts/run_person_suite.sh": "e9948e1ac424f7360de077c8c3df3316e51e4b6e24f68c7e032a3b719e9d365a",
+    "scripts/run_smoke.sh": "a8a9a90583da2fe47e6a17166e5c971f2bf6a2c0ebb3a885563d0d10972da898",
+    "scripts/setup_perception.sh": "70c056b2809d34bc260a306797e9ae9905f5b57163112c0473bdaea3beeda571",
+    "scripts/summarize_person_suite.py": "7cc289f39af1476c565b547119c72c4e4d03a732e2eefcd2d89251d539bfdecc"
+  }
+}

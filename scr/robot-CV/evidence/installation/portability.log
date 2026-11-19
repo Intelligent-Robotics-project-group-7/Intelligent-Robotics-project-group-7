@@ -1,0 +1,2 @@
+PASS: non-default UID/GID, writable HOME, bind ownership, outside-cwd invocation, no TTY
+PASS: installation did not rewrite tracked scripts, launch files, or input locks

@@ -1,0 +1,30 @@
+{
+  "full_name": "turtlebot/turtlebot4_examples",
+  "html_url": "https://github.com/turtlebot/turtlebot4_examples",
+  "default_branch": "galactic",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2024-02-12T19:38:33Z",
+  "updated_at": "2024-12-17T16:36:28Z",
+  "license": {
+    "key": "apache-2.0",
+    "name": "Apache License 2.0",
+    "spdx_id": "Apache-2.0",
+    "url": "https://api.github.com/licenses/apache-2.0",
+    "node_id": "MDc6TGljZW5zZTI="
+  },
+  "description": null,
+  "commit_sha": "82c8bdfedf71d5399cd3eb18d54097557551b274",
+  "commit_date": "2022-05-25T13:26:33Z",
+  "commit_subject": "0.1.0",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/turtlebot/turtlebot4_examples/82c8bdfedf71d5399cd3eb18d54097557551b274/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/turtlebot/turtlebot4_examples/82c8bdfedf71d5399cd3eb18d54097557551b274/LICENSE"
+    }
+  ]
+}

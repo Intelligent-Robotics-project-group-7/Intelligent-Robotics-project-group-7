@@ -1,0 +1,31 @@
+{
+  "default_model": "yolo26n",
+  "models": {
+    "yolo26n": {
+      "file": "yolo26n.onnx",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26n.onnx"
+    },
+    "yolo26s": {
+      "file": "yolo26s.onnx",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26s.onnx"
+    },
+    "yolo26m": {
+      "file": "yolo26m.onnx",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26m.onnx"
+    },
+    "yolo26x-pose": {
+      "file": "yolo26x-pose.onnx",
+      "model_type": "Pose",
+      "local_export": true
+    },
+    "yolo26n-pose": {
+      "file": "yolo26n-pose.onnx",
+      "model_type": "Pose",
+      "local_export": true
+    },
+    "yolov8n": {
+      "file": "yolov8n.onnx",
+      "url": "https://huggingface.co/unileon-robotics/YOLO8-ONNX/resolve/66e5888954d3454da709847e77b36df31f756aa9/yolov8n.onnx"
+    }
+  }
+}

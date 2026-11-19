@@ -1,0 +1,34 @@
+/workspace/downloads/phase2/generated/single_front
+{"progress": "single_front", "sim_s": 2.241, "rgb": 12, "truth": 12, "predictions": 12}
+{"progress": "single_front", "sim_s": 8.2, "rgb": 41, "truth": 41, "predictions": 41}
+{"progress": "single_front", "sim_s": 14.133, "rgb": 71, "truth": 71, "predictions": 71}
+{
+  "frames": 60,
+  "ground_truth_instances": 60,
+  "tp": 60,
+  "fp": 0,
+  "fn": 0,
+  "precision": 1.0,
+  "recall": 1.0,
+  "negative_frames": 0,
+  "negative_frames_with_false_positives": 0,
+  "case": "single_front",
+  "collection_wall_s": 31.832084462999774,
+  "simulation_completed": true,
+  "rgb_messages_total": 77,
+  "truth_messages_total": 76,
+  "prediction_messages_total": 76,
+  "paired_rgb_truth_frames": 60,
+  "prediction_coverage": 1.0,
+  "subscriber_receipt_latency": {
+    "p50_ms": 44.77648149986635,
+    "p95_ms": 54.92870379998748,
+    "p99_ms": 62.61690144977364
+  },
+  "iou_threshold": 0.5,
+  "score_threshold": 0.25,
+  "annotation": "Visible-pixel boxes from Gazebo semantic labels 11/12; separate co-located sensor",
+  "motion_commands_sent": false,
+  "tracking_enabled": false,
+  "recorded_utc": "2026-11-10T21:12:35Z"
+}

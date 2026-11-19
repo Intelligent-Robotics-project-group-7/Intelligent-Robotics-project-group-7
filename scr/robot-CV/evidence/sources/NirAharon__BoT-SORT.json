@@ -1,0 +1,30 @@
+{
+  "full_name": "NirAharon/BoT-SORT",
+  "html_url": "https://github.com/NirAharon/BoT-SORT",
+  "default_branch": "main",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2024-08-08T18:45:51Z",
+  "updated_at": "2026-11-10T06:28:21Z",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "description": "BoT-SORT: Robust Associations Multi-Pedestrian Tracking",
+  "commit_sha": "251985436d6712aaf682aaaf5f71edb4987224bd",
+  "commit_date": "2022-10-30T15:12:42Z",
+  "commit_subject": "Restore track.py",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/NirAharon/BoT-SORT/251985436d6712aaf682aaaf5f71edb4987224bd/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/NirAharon/BoT-SORT/251985436d6712aaf682aaaf5f71edb4987224bd/LICENSE"
+    }
+  ]
+}

@@ -1,0 +1,137 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2026-11-10-20-40-08-351078-43280a0a93a6-22
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [42]
+[INFO] [robot_state_publisher-2]: process started with pid [43]
+[INFO] [joint_state_publisher-3]: process started with pid [44]
+[INFO] [create-4]: process started with pid [46]
+[INFO] [parameter_bridge-5]: process started with pid [47]
+[INFO] [static_transform_publisher-6]: process started with pid [48]
+[INFO] [static_transform_publisher-7]: process started with pid [49]
+[static_transform_publisher-6] [INFO] [1794343208.887604982] [static_transform_publisher_fZ0gZraOa7ZacleH]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-6] rotation: ('0.499952', '-0.500000', '0.500000', '0.500048')
+[static_transform_publisher-6] from 'oakd_rgb_camera_optical_frame' to 'turtlebot4/oakd_rgb_camera_frame/rgbd_camera'
+[static_transform_publisher-7] [INFO] [1794343208.890550189] [static_transform_publisher_njzmmLiWzQgirwdU]: Spinning until stopped - publishing transform
+[static_transform_publisher-7] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-7] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-7] from 'rplidar_link' to 'turtlebot4/rplidar_link/rplidar'
+[robot_state_publisher-2] [WARN] [1794343208.903590332] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1794343208.903773063] [robot_state_publisher]: Robot initialized
+[create-4] [INFO] [1794343208.907417888] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[parameter_bridge-5] [INFO] [1794343208.914227656] [sensor_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343208.915459586] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (gz.msgs.Image) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343208.917634897] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (gz.msgs.Image) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343208.918100134] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (gz.msgs.CameraInfo) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794343208.918637551] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (gz.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[joint_state_publisher-3] [INFO] [1794343209.257102903] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[create-4] [INFO] [1794343209.385828165] [ros_gz_sim]: Entity creation successful.
+[joint_state_publisher-3] [INFO] [1794343209.393457329] [joint_state_publisher]: Got description, configuring robot
+[INFO] [create-4]: process has finished cleanly [pid 46]
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot4"]/joint[@name="wheel_drop_left_joint"]/physics/ode/provide_feedback:<urdf-string>:L0]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot4"]/joint[@name="wheel_drop_right_joint"]/physics/ode/provide_feedback:<urdf-string>:L0]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gazebo-1] [INFO] [1794343211.281142322] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['bumper_joint'] (Entity='97') is skipped.
+[gazebo-1] [INFO] [1794343211.281264150] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_caster_joint'] (Entity='98') is skipped.
+[gazebo-1] [INFO] [1794343211.281274615] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_bottom_weight_block_joint'] (Entity='99') is skipped.
+[gazebo-1] [INFO] [1794343211.281281029] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_top_weight_block_joint'] (Entity='100') is skipped.
+[gazebo-1] [INFO] [1794343211.281287043] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_bottom_weight_block_joint'] (Entity='101') is skipped.
+[gazebo-1] [INFO] [1794343211.281293137] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_top_weight_block_joint'] (Entity='102') is skipped.
+[gazebo-1] [INFO] [1794343211.281299158] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['imu_joint'] (Entity='103') is skipped.
+[gazebo-1] [INFO] [1794343211.281305209] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_center_left_joint'] (Entity='104') is skipped.
+[gazebo-1] [INFO] [1794343211.281311224] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_center_right_joint'] (Entity='105') is skipped.
+[gazebo-1] [INFO] [1794343211.281317479] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_left_joint'] (Entity='106') is skipped.
+[gazebo-1] [INFO] [1794343211.281323528] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_right_joint'] (Entity='107') is skipped.
+[gazebo-1] [INFO] [1794343211.281329314] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_left_joint'] (Entity='108') is skipped.
+[gazebo-1] [INFO] [1794343211.281335430] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_right_joint'] (Entity='109') is skipped.
+[gazebo-1] [INFO] [1794343211.281341151] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_side_left_joint'] (Entity='110') is skipped.
+[gazebo-1] [INFO] [1794343211.281347040] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_omni_joint'] (Entity='111') is skipped.
+[gazebo-1] [INFO] [1794343211.281353144] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['mouse_joint'] (Entity='112') is skipped.
+[gazebo-1] [INFO] [1794343211.281358872] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_tower_standoff_joint'] (Entity='113') is skipped.
+[gazebo-1] [INFO] [1794343211.281364670] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_tower_standoff_joint'] (Entity='114') is skipped.
+[gazebo-1] [INFO] [1794343211.281370361] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_camera_bracket_joint'] (Entity='115') is skipped.
+[gazebo-1] [INFO] [1794343211.281376223] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_joint'] (Entity='116') is skipped.
+[gazebo-1] [INFO] [1794343211.281382125] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_imu_joint'] (Entity='117') is skipped.
+[gazebo-1] [INFO] [1794343211.281387967] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_left_camera_joint'] (Entity='118') is skipped.
+[gazebo-1] [INFO] [1794343211.281393795] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_left_camera_optical_joint'] (Entity='119') is skipped.
+[gazebo-1] [INFO] [1794343211.281399635] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_rgb_camera_joint'] (Entity='120') is skipped.
+[gazebo-1] [INFO] [1794343211.281405399] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_rgb_camera_optical_joint'] (Entity='121') is skipped.
+[gazebo-1] [INFO] [1794343211.281411566] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_right_camera_joint'] (Entity='122') is skipped.
+[gazebo-1] [INFO] [1794343211.281417279] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_right_camera_optical_joint'] (Entity='123') is skipped.
+[gazebo-1] [INFO] [1794343211.281423119] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['rear_left_tower_standoff_joint'] (Entity='124') is skipped.
+[gazebo-1] [INFO] [1794343211.281428805] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['rear_right_tower_standoff_joint'] (Entity='125') is skipped.
+[gazebo-1] [INFO] [1794343211.281455599] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['rplidar_joint'] (Entity='126') is skipped.
+[gazebo-1] [INFO] [1794343211.281462076] [turtlebot4.gz_ros_control]: [gz_ros2_control] Fixed joint ['tower_sensor_plate_joint'] (Entity='127') is skipped.
+[gazebo-1] [INFO] [1794343211.282033293] [turtlebot4.gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1794343211.293229035] [turtlebot4.controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1794343211.293284407] [turtlebot4.controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1794343211.300702130] [turtlebot4.controller_manager]: Subscribing to '/turtlebot4/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1794343211.300776077] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343212.301045947] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343213.300850883] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343213.300870508] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343214.300983627] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343215.300862060] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343215.301063862] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343216.300869335] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343217.300913779] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343217.301162127] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343218.300868401] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343219.300892356] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343219.301317598] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343220.300877375] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343221.300869552] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343221.301507373] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343222.300910615] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343223.301049729] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343223.301629887] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343224.300874122] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343225.300907944] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343225.301748984] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343226.300915173] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343227.300935735] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343227.301993593] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343228.300904965] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343229.300888948] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343229.302570291] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343230.300903239] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343231.300936596] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343231.302701038] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343232.300917617] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343233.300914011] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343233.302816731] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343234.300911082] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343235.300976076] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343235.302953856] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343236.300919247] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343237.300867183] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343237.303112430] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343238.300892688] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343239.300894591] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343239.303220385] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343240.300871921] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343241.300893679] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343241.303346224] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343242.300899760] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343243.300991945] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343243.303499233] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343244.300873072] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343245.300898195] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343245.303662923] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343246.301148199] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343247.300919395] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343247.303780167] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343248.300993190] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343249.300929269] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343249.303919764] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343250.300925491] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343251.300930756] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343251.304041127] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343252.300920819] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343253.300884985] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343253.304162227] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343254.300893161] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343255.301001224] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343255.304292904] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343256.300891563] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343257.300894515] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [WARN] [1794343257.304424175] [turtlebot4.gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794343258.300916716] [turtlebot4.controller_manager]: Waiting for data on 'robot_description' topic to finish initialization

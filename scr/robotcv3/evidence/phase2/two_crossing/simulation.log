@@ -1,0 +1,135 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2026-11-10-21-15-31-888284-0df96260b95e-62
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [81]
+[INFO] [robot_state_publisher-2]: process started with pid [82]
+[INFO] [joint_state_publisher-3]: process started with pid [83]
+[INFO] [create-4]: process started with pid [84]
+[INFO] [parameter_bridge-5]: process started with pid [86]
+[INFO] [yolo_node-6]: process started with pid [87]
+[INFO] [python3-7]: process started with pid [88]
+[INFO] [python3-8]: process started with pid [89]
+[create-4] [INFO] [1794345332.291381571] [ros_gz_sim]: Waiting messages on topic [robot_description].
+[robot_state_publisher-2] [WARN] [1794345332.295892949] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-2] [INFO] [1794345332.296639348] [robot_state_publisher]: Robot initialized
+[parameter_bridge-5] [INFO] [1794345332.351651886] [sensor_bridge]: Creating GZ->ROS Bridge: [/clock (gz.msgs.Clock) -> /clock (rosgraph_msgs/msg/Clock)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794345332.353359893] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (gz.msgs.Image) -> /world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794345332.356162648] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (gz.msgs.Image) -> /world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794345332.356596967] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (gz.msgs.CameraInfo) -> /world/person_eval/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794345332.357213633] [sensor_bridge]: Creating GZ->ROS Bridge: [/world/person_eval/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (gz.msgs.LaserScan) -> /world/person_eval/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-5] [INFO] [1794345332.357772948] [sensor_bridge]: Creating GZ->ROS Bridge: [/evaluation/semantic/labels_map (gz.msgs.Image) -> /evaluation/semantic/labels_map (sensor_msgs/msg/Image)] (Lazy 0)
+[yolo_node-6] [INFO] [1794345332.460042943] [yolo.yolo_node]: Configured 1 plugin(s)
+[yolo_node-6] [INFO] [model.cpp:Model:121] Using 2 threads for the ONNX Runtime session.
+[yolo_node-6] [INFO] [model.cpp:Model:140] Execution provider chain: cpu
+[yolo_node-6] [INFO] [model.cpp:Model:235] Using execution provider: cpu
+[yolo_node-6] [INFO] [model.cpp:load_class_names:496] Loaded 80 class names from the ONNX metadata.
+[yolo_node-6] [INFO] [model.cpp:Model:396] Model loaded: /workspace/downloads/phase2/models/yolo26n.onnx
+[yolo_node-6] [INFO] [model.cpp:Model:397]   task=detect  model_type='YOLO'  provider=cpu  device='cpu' (id=0)  n_threads=2
+[yolo_node-6] [INFO] [model.cpp:Model:402]   provider chain (requested 'cpu'): cpu
+[yolo_node-6] [INFO] [model.cpp:Model:404]   tensorrt: fp16=on  engine_cache=on
+[yolo_node-6] [INFO] [model.cpp:Model:408]   qnn: htp_performance_mode='burst'  context_cache=on
+[yolo_node-6] [INFO] [model.cpp:Model:411]   cuda_graph=off
+[yolo_node-6] [INFO] [model.cpp:Model:412]   input: name='images' shape=[1, 3, 480, 640] dtype=float32  channel_order=rgb  batch=1  image=640x480
+[yolo_node-6] [INFO] [model.cpp:Model:424]   output[0]: name='output0' shape=[1, 84, 6300] dtype=float32
+[yolo_node-6] [INFO] [model.cpp:Model:430]   onnxruntime=1.20.0  classes=80 (ONNX metadata)
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: end2end=False
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: description=Ultralytics YOLO26n model trained on /home/lq/codes/ultralytics/ultralytics/cfg/datasets/coco.yaml
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: channels=3
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: author=Ultralytics
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: docs=https://docs.ultralytics.com
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: head=Detect
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: version=8.4.174
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: batch=1
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: license=AGPL-3.0 License (https://ultralytics.com/license)
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: stride=32
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: task=detect
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: date=2026-10-09T11:59:48.296460+02:00
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: imgsz=[480, 640]
+[yolo_node-6] [INFO] [model.cpp:Model:442]   metadata: names=<80 classes>
+[yolo_node-6] [INFO] [model.cpp:Model:451]   metadata: args={'data': None, 'batch': 1, 'fraction': 1.0, 'quantize': None, 'nms': None, 'dynamic': False, 'simplify': True, 'opset': 12}
+[yolo_node-6] [INFO] [1794345332.572707840] [yolo.yolo_node]: Activated
+[joint_state_publisher-3] [INFO] [1794345332.830504866] [joint_state_publisher]: Waiting for robot_description to be published on the robot_description topic...
+[joint_state_publisher-3] [INFO] [1794345332.886512716] [joint_state_publisher]: Got description, configuring robot
+[create-4] [INFO] [1794345332.914805477] [ros_gz_sim]: Entity creation successful.
+[INFO] [create-4]: process has finished cleanly [pid 84]
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot4"]/joint[@name="wheel_drop_left_joint"]/physics/ode/provide_feedback:<urdf-string>:L0]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gazebo-1] [1;33mWarning [Utils.cc:132][0m [/sdf/model[@name="turtlebot4"]/joint[@name="wheel_drop_right_joint"]/physics/ode/provide_feedback:<urdf-string>:L0]: XML Element[provide_feedback], child of element[ode], not defined in SDF. Copying[provide_feedback] as children of [ode].
+[gazebo-1] [INFO] [1794345334.739017554] [gz_ros_control]: [gz_ros2_control] Fixed joint ['bumper_joint'] (Entity='100') is skipped.
+[gazebo-1] [INFO] [1794345334.739137586] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_caster_joint'] (Entity='101') is skipped.
+[gazebo-1] [INFO] [1794345334.739147466] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_bottom_weight_block_joint'] (Entity='102') is skipped.
+[gazebo-1] [INFO] [1794345334.739155555] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_top_weight_block_joint'] (Entity='103') is skipped.
+[gazebo-1] [INFO] [1794345334.739162645] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_bottom_weight_block_joint'] (Entity='104') is skipped.
+[gazebo-1] [INFO] [1794345334.739169748] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_top_weight_block_joint'] (Entity='105') is skipped.
+[gazebo-1] [INFO] [1794345334.739176593] [gz_ros_control]: [gz_ros2_control] Fixed joint ['imu_joint'] (Entity='106') is skipped.
+[gazebo-1] [INFO] [1794345334.739182727] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_center_left_joint'] (Entity='107') is skipped.
+[gazebo-1] [INFO] [1794345334.739189604] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_center_right_joint'] (Entity='108') is skipped.
+[gazebo-1] [INFO] [1794345334.739196541] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_left_joint'] (Entity='109') is skipped.
+[gazebo-1] [INFO] [1794345334.739203439] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_front_right_joint'] (Entity='110') is skipped.
+[gazebo-1] [INFO] [1794345334.739210222] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_left_joint'] (Entity='111') is skipped.
+[gazebo-1] [INFO] [1794345334.739216881] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_right_joint'] (Entity='112') is skipped.
+[gazebo-1] [INFO] [1794345334.739223558] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_intensity_side_left_joint'] (Entity='113') is skipped.
+[gazebo-1] [INFO] [1794345334.739230099] [gz_ros_control]: [gz_ros2_control] Fixed joint ['ir_omni_joint'] (Entity='114') is skipped.
+[gazebo-1] [INFO] [1794345334.739236234] [gz_ros_control]: [gz_ros2_control] Fixed joint ['mouse_joint'] (Entity='115') is skipped.
+[gazebo-1] [INFO] [1794345334.739242221] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_left_tower_standoff_joint'] (Entity='116') is skipped.
+[gazebo-1] [INFO] [1794345334.739249206] [gz_ros_control]: [gz_ros2_control] Fixed joint ['front_right_tower_standoff_joint'] (Entity='117') is skipped.
+[gazebo-1] [INFO] [1794345334.739256049] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_camera_bracket_joint'] (Entity='118') is skipped.
+[gazebo-1] [INFO] [1794345334.739262838] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_joint'] (Entity='119') is skipped.
+[gazebo-1] [INFO] [1794345334.739268997] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_imu_joint'] (Entity='120') is skipped.
+[gazebo-1] [INFO] [1794345334.739275214] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_left_camera_joint'] (Entity='121') is skipped.
+[gazebo-1] [INFO] [1794345334.739281933] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_left_camera_optical_joint'] (Entity='122') is skipped.
+[gazebo-1] [INFO] [1794345334.739288824] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_rgb_camera_joint'] (Entity='123') is skipped.
+[gazebo-1] [INFO] [1794345334.739295355] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_rgb_camera_optical_joint'] (Entity='124') is skipped.
+[gazebo-1] [INFO] [1794345334.739302050] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_right_camera_joint'] (Entity='125') is skipped.
+[gazebo-1] [INFO] [1794345334.739308683] [gz_ros_control]: [gz_ros2_control] Fixed joint ['oakd_right_camera_optical_joint'] (Entity='126') is skipped.
+[gazebo-1] [INFO] [1794345334.739315160] [gz_ros_control]: [gz_ros2_control] Fixed joint ['rear_left_tower_standoff_joint'] (Entity='127') is skipped.
+[gazebo-1] [INFO] [1794345334.739321812] [gz_ros_control]: [gz_ros2_control] Fixed joint ['rear_right_tower_standoff_joint'] (Entity='128') is skipped.
+[gazebo-1] [INFO] [1794345334.739328948] [gz_ros_control]: [gz_ros2_control] Fixed joint ['rplidar_joint'] (Entity='129') is skipped.
+[gazebo-1] [INFO] [1794345334.739335117] [gz_ros_control]: [gz_ros2_control] Fixed joint ['tower_sensor_plate_joint'] (Entity='130') is skipped.
+[gazebo-1] [INFO] [1794345334.740199244] [gz_ros_control]: Loading controller_manager
+[gazebo-1] [INFO] [1794345334.754130405] [controller_manager]: Using ROS clock for triggering controller manager cycles.
+[gazebo-1] [WARN] [1794345334.754185581] [controller_manager]: The resource manager is not yet initialized, will wait for the robot description to initialize it..
+[gazebo-1] [INFO] [1794345334.760139577] [controller_manager]: Subscribing to '/robot_description' topic for robot description.
+[gazebo-1] [WARN] [1794345334.760209594] [gz_ros_control]: Waiting RM to load and initialize hardware...
+[gazebo-1] [WARN] [1794345335.760350994] [controller_manager]: Waiting for data on 'robot_description' topic to finish initialization
+[gazebo-1] [INFO] [1794345336.182128204] [controller_manager]: Received robot description from topic.
+[gazebo-1] [INFO] [1794345336.182253731] [controller_manager]: Enforcing command limits is disabled. Command limits from URDF will be ignored.
+[gazebo-1] [INFO] [1794345336.188434151] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1794345336.188536052] [gz_ros_control]: Loading joint: left_wheel_joint
+[gazebo-1] [INFO] [1794345336.188545993] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794345336.188554185] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794345336.188560451] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794345336.188569268] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794345336.188574653] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794345336.188630283] [gz_ros_control]: Loading sensor: imu
+[gazebo-1] [INFO] [1794345336.188639325] [gz_ros_control]: 	State:
+[gazebo-1] [WARN] [1794345336.188648162] [gz_ros_control]: IMU sensor 'imu' not found in hardware_info, skipping.
+[gazebo-1] [INFO] [1794345336.188734345] [controller_manager]: Initialize hardware 'left_wheel_controller' 
+[gazebo-1] [WARN] [1794345336.188751376] [controller_manager.hardware_component.system.left_wheel_controller]: Executor is not available during hardware component initialization for 'left_wheel_controller'. Skipping node creation!
+[gazebo-1] [INFO] [1794345336.188802759] [controller_manager]: Successful initialization of hardware 'left_wheel_controller'
+[gazebo-1] [INFO] [1794345336.188962196] [gz_ros_control]: The position_proportional_gain has been set to: 0.1
+[gazebo-1] [INFO] [1794345336.188982818] [gz_ros_control]: Loading joint: right_wheel_joint
+[gazebo-1] [INFO] [1794345336.188989550] [gz_ros_control]: 	State:
+[gazebo-1] [INFO] [1794345336.188995352] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794345336.189001040] [gz_ros_control]: 		 position
+[gazebo-1] [INFO] [1794345336.189007013] [gz_ros_control]: 	Command:
+[gazebo-1] [INFO] [1794345336.189012395] [gz_ros_control]: 		 velocity
+[gazebo-1] [INFO] [1794345336.189025350] [gz_ros_control]: Loading sensor: imu
+[gazebo-1] [INFO] [1794345336.189031526] [gz_ros_control]: 	State:
+[gazebo-1] [WARN] [1794345336.189037195] [gz_ros_control]: IMU sensor 'imu' not found in hardware_info, skipping.
+[gazebo-1] [INFO] [1794345336.189056627] [controller_manager]: Initialize hardware 'right_wheel_controller' 
+[gazebo-1] [WARN] [1794345336.189064708] [controller_manager.hardware_component.system.right_wheel_controller]: Executor is not available during hardware component initialization for 'right_wheel_controller'. Skipping node creation!
+[gazebo-1] [INFO] [1794345336.189079410] [controller_manager]: Successful initialization of hardware 'right_wheel_controller'
+[gazebo-1] [INFO] [1794345336.189139104] [controller_manager]: Activating component 'right_wheel_controller'.
+[gazebo-1] [INFO] [1794345336.189151444] [resource_manager]: 'configure' hardware 'right_wheel_controller' 
+[gazebo-1] [INFO] [1794345336.189157314] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1794345336.189164068] [resource_manager]: Successful 'configure' of hardware 'right_wheel_controller'
+[gazebo-1] [INFO] [1794345336.189171078] [resource_manager]: 'activate' hardware 'right_wheel_controller' 
+[gazebo-1] [INFO] [1794345336.189185061] [resource_manager]: Successful 'activate' of hardware 'right_wheel_controller'
+[gazebo-1] [INFO] [1794345336.189249583] [controller_manager]: Activating component 'left_wheel_controller'.
+[gazebo-1] [INFO] [1794345336.189256468] [resource_manager]: 'configure' hardware 'left_wheel_controller' 
+[gazebo-1] [INFO] [1794345336.189259944] [gz_ros_control]: System Successfully configured!
+[gazebo-1] [INFO] [1794345336.189285362] [resource_manager]: Successful 'configure' of hardware 'left_wheel_controller'
+[gazebo-1] [INFO] [1794345336.189289774] [resource_manager]: 'activate' hardware 'left_wheel_controller' 
+[gazebo-1] [INFO] [1794345336.189294292] [resource_manager]: Successful 'activate' of hardware 'left_wheel_controller'
+[gazebo-1] [WARN] [1794345336.189309208] [controller_manager]: Component 'right_wheel_controller' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [WARN] [1794345336.189316543] [controller_manager]: Component 'left_wheel_controller' does not have read or write statistics initialized, skipping registration.
+[gazebo-1] [INFO] [1794345336.189327607] [controller_manager]: Resource Manager has been successfully initialized. Starting Controller Manager services...

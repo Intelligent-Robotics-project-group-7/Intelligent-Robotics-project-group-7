@@ -1,0 +1,22 @@
+/yolo/yolo_node:
+  ros__parameters:
+    use_sim_time: true
+    plugins: ["detection"]
+    cameras: ["oakd"]
+    oakd:
+      rgb_topic: /oakd/rgb/preview/image_raw
+      image_reliability: 2
+    detection:
+      plugin: yolo_ros/DetectionPlugin
+      cameras: ["oakd"]
+      model_type: YOLO
+      model_path: /workspace/downloads/phase2/models/yolo26n.onnx
+      model_repo: ""
+      model_filename: ""
+      provider: cpu
+      device: cpu
+      n_threads: 2
+      max_fps: 10
+      threshold: 0.25
+      iou: 0.45
+      max_det: 100

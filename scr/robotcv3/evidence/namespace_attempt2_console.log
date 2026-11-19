@@ -1,0 +1,162 @@
+{
+  "scope": "stationary Gazebo virtual sensors only",
+  "motion_commands_sent": false,
+  "wall_observation_s": 45.043310107000025,
+  "topics": [
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/joint_states",
+      [
+        "sensor_msgs/msg/JointState"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/camera_info",
+      [
+        "sensor_msgs/msg/CameraInfo"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/depth",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/image_raw",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/parameter_events",
+      [
+        "rcl_interfaces/msg/ParameterEvent"
+      ]
+    ],
+    [
+      "/robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/rosout",
+      [
+        "rcl_interfaces/msg/Log"
+      ]
+    ],
+    [
+      "/scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/tf",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/tf_static",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/activity",
+      [
+        "controller_manager_msgs/msg/ControllerManagerActivity"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/introspection_data/full",
+      [
+        "pal_statistics_msgs/msg/Statistics"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/introspection_data/names",
+      [
+        "pal_statistics_msgs/msg/StatisticsNames"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/introspection_data/values",
+      [
+        "pal_statistics_msgs/msg/StatisticsValues"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/statistics/full",
+      [
+        "pal_statistics_msgs/msg/Statistics"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/statistics/names",
+      [
+        "pal_statistics_msgs/msg/StatisticsNames"
+      ]
+    ],
+    [
+      "/turtlebot4/controller_manager/statistics/values",
+      [
+        "pal_statistics_msgs/msg/StatisticsValues"
+      ]
+    ],
+    [
+      "/turtlebot4/diagnostics",
+      [
+        "diagnostic_msgs/msg/DiagnosticArray"
+      ]
+    ],
+    [
+      "/turtlebot4/robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ]
+  ],
+  "nodes": [
+    "step1_sensor_observer",
+    "robot_state_publisher",
+    "joint_state_publisher",
+    "gz_ros_control",
+    "controller_manager",
+    "sensor_bridge",
+    "static_transform_publisher_fZ0gZraOa7ZacleH",
+    "static_transform_publisher_njzmmLiWzQgirwdU"
+  ],
+  "streams": {},
+  "checks": {
+    "rgb_messages": false,
+    "depth_messages": false,
+    "scan_messages": false,
+    "clock_messages": false,
+    "camera_info_messages": false,
+    "camera_transform_available": true
+  },
+  "camera_to_base_transform": {
+    "base": "base_link",
+    "camera_frame": "oakd_rgb_camera_optical_frame",
+    "translation": [
+      -0.05960000000000001,
+      0.0,
+      0.24353
+    ],
+    "quaternion_xyzw": [
+      -0.5,
+      0.4999999999999999,
+      -0.5,
+      0.5000000000000001
+    ]
+  },
+  "pass": false
+}

@@ -1,0 +1,35 @@
+/workspace/downloads/phase2/generated/partial_occlusion
+{"progress": "partial_occlusion", "sim_s": 2.4, "rgb": 12, "truth": 12, "predictions": 12}
+{"progress": "partial_occlusion", "sim_s": 8.187, "rgb": 41, "truth": 41, "predictions": 41}
+{"progress": "partial_occlusion", "sim_s": 14.18, "rgb": 71, "truth": 71, "predictions": 71}
+{
+  "frames": 60,
+  "ground_truth_instances": 44,
+  "tp": 18,
+  "fp": 0,
+  "fn": 26,
+  "precision": 1.0,
+  "recall": 0.4090909090909091,
+  "negative_frames": 16,
+  "negative_frames_with_false_positives": 0,
+  "case": "partial_occlusion",
+  "collection_wall_s": 31.759309331999702,
+  "simulation_completed": true,
+  "rgb_messages_total": 77,
+  "truth_messages_total": 76,
+  "prediction_messages_total": 76,
+  "paired_rgb_truth_frames": 60,
+  "prediction_coverage": 1.0,
+  "subscriber_receipt_latency": {
+    "p50_ms": 42.58647550000205,
+    "p95_ms": 54.59402259991747,
+    "p99_ms": 59.62073109976245
+  },
+  "iou_threshold": 0.5,
+  "score_threshold": 0.25,
+  "annotation": "Visible-pixel boxes from Gazebo semantic labels 11/12; separate co-located sensor",
+  "motion_commands_sent": false,
+  "motion_command_scope": "robot base; synthetic person pose updates are enabled",
+  "tracking_enabled": false,
+  "recorded_utc": "2026-11-10T21:16:40Z"
+}

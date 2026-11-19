@@ -1,0 +1,13 @@
+* text=auto eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.sdf text eol=lf
+*.log text eol=lf
+*.txt text eol=lf
+*.tsv text eol=lf
+Dockerfile text eol=lf
+*.png binary
+# Preserve captured logs and upstream snapshots as collected.
+evidence/** -text

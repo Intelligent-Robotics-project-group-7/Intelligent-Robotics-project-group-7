@@ -1,0 +1,30 @@
+{
+  "full_name": "ros-navigation/navigation2",
+  "html_url": "https://github.com/ros-navigation/navigation2",
+  "default_branch": "main",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2026-11-10T00:34:52Z",
+  "updated_at": "2026-11-10T15:08:15Z",
+  "license": {
+    "key": "other",
+    "name": "Other",
+    "spdx_id": "NOASSERTION",
+    "url": null,
+    "node_id": "MDc6TGljZW5zZTA="
+  },
+  "description": "ROS 2 Navigation Framework and System",
+  "commit_sha": "3b7ec4355be91ab32da850e9a77382300c1ca560",
+  "commit_date": "2026-11-10T00:34:49Z",
+  "commit_subject": "\ud83d\udee0\ufe0f Bump docker/login-action from 4.7.0 to 4.8.0 (#6765)",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/3b7ec4355be91ab32da850e9a77382300c1ca560/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/3b7ec4355be91ab32da850e9a77382300c1ca560/LICENSE"
+    }
+  ]
+}

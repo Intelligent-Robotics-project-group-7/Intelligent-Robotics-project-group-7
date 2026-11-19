@@ -1,0 +1,25 @@
+{
+  "sensor_hz": 5,
+  "warmup_sim_s": 2,
+  "case_duration_sim_s": 12,
+  "evaluation_iou": 0.5,
+  "cases": [
+    {"id": "empty", "category": "negative", "actors": []},
+    {"id": "single_front", "category": "single", "actors": [
+      {"label": 11, "animation": "stand", "waypoints": [[0, 3.5, -0.8, 3.14159], [14, 3.5, 0.8, 3.14159]]}
+    ]},
+    {"id": "single_far_back", "category": "distance_view", "actors": [
+      {"label": 11, "animation": "walk", "waypoints": [[0, 5.5, -1, 0], [14, 6, 1, 0]]}
+    ]},
+    {"id": "two_crossing", "category": "multiple", "actors": [
+      {"label": 11, "animation": "walk", "waypoints": [[0, 3.5, -1.1, 1.5708], [14, 3.5, 1.1, 1.5708]]},
+      {"label": 12, "animation": "walk", "waypoints": [[0, 4.5, 1.2, -1.5708], [14, 4.5, -1.2, -1.5708]]}
+    ]},
+    {"id": "partial_occlusion", "category": "occlusion", "occluder": true, "actors": [
+      {"label": 11, "animation": "walk", "waypoints": [[0, 4, -0.9, 1.5708], [14, 4, 0.9, 1.5708]]}
+    ]},
+    {"id": "exit_return", "category": "field_of_view", "actors": [
+      {"label": 11, "animation": "walk", "waypoints": [[0, 3.5, 0, 1.5708], [5, 3.5, 3, 1.5708], [9, 3.5, 3, -1.5708], [14, 3.5, 0, -1.5708]]}
+    ]}
+  ]
+}

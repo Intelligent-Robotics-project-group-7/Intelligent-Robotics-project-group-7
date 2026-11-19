@@ -1,0 +1,57 @@
+Starting >>> yolo_hfhub_vendor
+Starting >>> yolo_msgs
+--- stderr: yolo_hfhub_vendor
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    ONNXRUNTIME_VERSION
+    ONNX_GPU
+
+
+---
+Finished <<< yolo_hfhub_vendor [8.08s]
+Starting >>> yolo_onnxruntime_vendor
+--- stderr: yolo_onnxruntime_vendor
+  % Total    % Received % Xferd  Average Speed   Time    Time     Time  Current
+                                 Dload  Upload   Total   Spent    Left  Speed
+  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0  0     0    0     0    0     0      0      0 --:--:-- --:--:-- --:--:--     0
+ 46 6039k   46 2783k    0     0  4168k      0  0:00:01 --:--:--  0:00:01 4168k100 6039k  100 6039k    0     0  7781k      0 --:--:-- --:--:-- --:--:-- 29.4M
+---
+Finished <<< yolo_onnxruntime_vendor [4.51s]
+--- stderr: yolo_msgs
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    ONNXRUNTIME_VERSION
+    ONNX_GPU
+
+
+---
+Finished <<< yolo_msgs [17.4s]
+Starting >>> yolo_ros
+--- stderr: yolo_ros
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    ONNXRUNTIME_VERSION
+    ONNX_GPU
+
+
+---
+[Processing: yolo_ros]
+[Processing: yolo_ros]
+Finished <<< yolo_ros [1min 1s]
+Starting >>> yolo_bringup
+Finished <<< yolo_bringup [1.30s]
+--- stderr: yolo_bringup
+CMake Warning:
+  Manually-specified variables were not used by the project:
+
+    ONNXRUNTIME_VERSION
+    ONNX_GPU
+
+
+---
+
+Summary: 5 packages finished [1min 20s]
+  5 packages had stderr output: yolo_bringup yolo_hfhub_vendor yolo_msgs yolo_onnxruntime_vendor yolo_ros

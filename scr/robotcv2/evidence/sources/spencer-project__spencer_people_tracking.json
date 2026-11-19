@@ -1,0 +1,20 @@
+{
+  "full_name": "spencer-project/spencer_people_tracking",
+  "html_url": "https://github.com/spencer-project/spencer_people_tracking",
+  "default_branch": "master",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2021-02-02T14:51:30Z",
+  "updated_at": "2026-10-19T06:04:53Z",
+  "license": null,
+  "description": "Multi-modal ROS-based people detection and tracking framework for mobile robots developed within the context of the EU FP7 project SPENCER.",
+  "commit_sha": "09b256ba4bc22c5cae8a5ae88960de1a387cfd7f",
+  "commit_date": "2020-09-22T21:24:24Z",
+  "commit_subject": "Add missing link-time dependency to diagnostic_updater",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/spencer-project/spencer_people_tracking/09b256ba4bc22c5cae8a5ae88960de1a387cfd7f/README.md"
+    }
+  ]
+}

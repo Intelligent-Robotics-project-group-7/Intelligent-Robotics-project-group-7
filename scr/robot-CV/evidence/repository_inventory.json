@@ -1,0 +1,265 @@
+{
+  "collected_at_utc": "2026-11-10T20:27:20.333474+00:00",
+  "repositories": [
+    {
+      "full_name": "turtlebot/turtlebot4_examples",
+      "html_url": "https://github.com/turtlebot/turtlebot4_examples",
+      "default_branch": "galactic",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2024-02-12T19:38:33Z",
+      "updated_at": "2024-12-17T16:36:28Z",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": null,
+      "commit_sha": "82c8bdfedf71d5399cd3eb18d54097557551b274",
+      "commit_date": "2022-05-25T13:26:33Z",
+      "commit_subject": "0.1.0",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/turtlebot/turtlebot4_examples/82c8bdfedf71d5399cd3eb18d54097557551b274/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/turtlebot/turtlebot4_examples/82c8bdfedf71d5399cd3eb18d54097557551b274/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "turtlebot/turtlebot4_simulator",
+      "html_url": "https://github.com/turtlebot/turtlebot4_simulator",
+      "default_branch": "jazzy",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2025-03-06T16:52:05Z",
+      "updated_at": "2026-11-09T13:19:52Z",
+      "license": {
+        "key": "apache-2.0",
+        "name": "Apache License 2.0",
+        "spdx_id": "Apache-2.0",
+        "url": "https://api.github.com/licenses/apache-2.0",
+        "node_id": "MDc6TGljZW5zZTI="
+      },
+      "description": "TurtleBot 4 Simulator packages",
+      "commit_sha": "b7d0f3b973258481f6cd8137bef9240fb567f566",
+      "commit_date": "2024-10-30T21:11:19Z",
+      "commit_subject": "Fix tag order",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/turtlebot/turtlebot4_simulator/b7d0f3b973258481f6cd8137bef9240fb567f566/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/turtlebot/turtlebot4_simulator/b7d0f3b973258481f6cd8137bef9240fb567f566/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "luxonis/depthai-ros",
+      "html_url": "https://github.com/luxonis/depthai-ros",
+      "default_branch": "develop",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-11-04T07:57:00Z",
+      "updated_at": "2026-11-08T23:58:44Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "description": "Official ROS Driver for DepthAI Sensors.",
+      "commit_sha": "3462a2fb92fccc4fc4123322a751aa4217a68505",
+      "commit_date": "2026-11-04T07:56:56Z",
+      "commit_subject": "Add option to use submodule for building in docker, update .gitignore",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/luxonis/depthai-ros/3462a2fb92fccc4fc4123322a751aa4217a68505/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/luxonis/depthai-ros/3462a2fb92fccc4fc4123322a751aa4217a68505/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "mgonzs13/yolo_ros",
+      "html_url": "https://github.com/mgonzs13/yolo_ros",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-11-04T10:32:32Z",
+      "updated_at": "2026-11-10T17:58:35Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "description": "Ultralytics YOLOv8, YOLOv9, YOLOv10, YOLOv11, YOLOv12 for ROS 2",
+      "commit_sha": "94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+      "commit_date": "2026-11-04T10:32:31Z",
+      "commit_subject": "Add support for OpenCV 5 (#127)",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/mgonzs13/yolo_ros/94d2dd500cb26027ee9c019f4d3a02029ac615cc/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/mgonzs13/yolo_ros/94d2dd500cb26027ee9c019f4d3a02029ac615cc/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "spencer-project/spencer_people_tracking",
+      "html_url": "https://github.com/spencer-project/spencer_people_tracking",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2021-02-02T14:51:30Z",
+      "updated_at": "2026-10-19T06:04:53Z",
+      "license": null,
+      "description": "Multi-modal ROS-based people detection and tracking framework for mobile robots developed within the context of the EU FP7 project SPENCER.",
+      "commit_sha": "09b256ba4bc22c5cae8a5ae88960de1a387cfd7f",
+      "commit_date": "2020-09-22T21:24:24Z",
+      "commit_subject": "Add missing link-time dependency to diagnostic_updater",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/spencer-project/spencer_people_tracking/09b256ba4bc22c5cae8a5ae88960de1a387cfd7f/README.md"
+        }
+      ]
+    },
+    {
+      "full_name": "ros-navigation/navigation2",
+      "html_url": "https://github.com/ros-navigation/navigation2",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2026-11-10T00:34:52Z",
+      "updated_at": "2026-11-10T15:08:15Z",
+      "license": {
+        "key": "other",
+        "name": "Other",
+        "spdx_id": "NOASSERTION",
+        "url": null,
+        "node_id": "MDc6TGljZW5zZTA="
+      },
+      "description": "ROS 2 Navigation Framework and System",
+      "commit_sha": "3b7ec4355be91ab32da850e9a77382300c1ca560",
+      "commit_date": "2026-11-10T00:34:49Z",
+      "commit_subject": "\ud83d\udee0\ufe0f Bump docker/login-action from 4.7.0 to 4.8.0 (#6765)",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/3b7ec4355be91ab32da850e9a77382300c1ca560/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/ros-navigation/navigation2/3b7ec4355be91ab32da850e9a77382300c1ca560/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "NirAharon/BoT-SORT",
+      "html_url": "https://github.com/NirAharon/BoT-SORT",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2024-08-08T18:45:51Z",
+      "updated_at": "2026-11-10T06:28:21Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "description": "BoT-SORT: Robust Associations Multi-Pedestrian Tracking",
+      "commit_sha": "251985436d6712aaf682aaaf5f71edb4987224bd",
+      "commit_date": "2022-10-30T15:12:42Z",
+      "commit_subject": "Restore track.py",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/NirAharon/BoT-SORT/251985436d6712aaf682aaaf5f71edb4987224bd/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/NirAharon/BoT-SORT/251985436d6712aaf682aaaf5f71edb4987224bd/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "nwojke/deep_sort",
+      "html_url": "https://github.com/nwojke/deep_sort",
+      "default_branch": "master",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2025-03-02T09:55:38Z",
+      "updated_at": "2026-11-07T10:58:36Z",
+      "license": {
+        "key": "gpl-3.0",
+        "name": "GNU General Public License v3.0",
+        "spdx_id": "GPL-3.0",
+        "url": "https://api.github.com/licenses/gpl-3.0",
+        "node_id": "MDc6TGljZW5zZTk="
+      },
+      "description": "Simple Online Realtime Tracking with a Deep Association Metric",
+      "commit_sha": "f08cf1dc470eeb1cd2add1cbf077d95ac6c48aab",
+      "commit_date": "2025-03-02T09:54:41Z",
+      "commit_subject": "Fix typos",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/nwojke/deep_sort/f08cf1dc470eeb1cd2add1cbf077d95ac6c48aab/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/nwojke/deep_sort/f08cf1dc470eeb1cd2add1cbf077d95ac6c48aab/LICENSE"
+        }
+      ]
+    },
+    {
+      "full_name": "FoundationVision/ByteTrack",
+      "html_url": "https://github.com/FoundationVision/ByteTrack",
+      "default_branch": "main",
+      "archived": false,
+      "disabled": false,
+      "pushed_at": "2024-06-19T11:45:05Z",
+      "updated_at": "2026-11-10T18:42:20Z",
+      "license": {
+        "key": "mit",
+        "name": "MIT License",
+        "spdx_id": "MIT",
+        "url": "https://api.github.com/licenses/mit",
+        "node_id": "MDc6TGljZW5zZTEz"
+      },
+      "description": "[ECCV 2022] ByteTrack: Multi-Object Tracking by Associating Every Detection Box",
+      "commit_sha": "d1bf0191adff59bc8fcfeaa0b33d3d1642552a99",
+      "commit_date": "2022-12-11T07:05:00Z",
+      "commit_subject": "Merge pull request #296 from SkalskiP/main",
+      "downloaded_files": [
+        {
+          "name": "README.md",
+          "url": "https://raw.githubusercontent.com/ifzhang/ByteTrack/d1bf0191adff59bc8fcfeaa0b33d3d1642552a99/README.md"
+        },
+        {
+          "name": "LICENSE",
+          "url": "https://raw.githubusercontent.com/ifzhang/ByteTrack/d1bf0191adff59bc8fcfeaa0b33d3d1642552a99/LICENSE"
+        }
+      ]
+    }
+  ]
+}

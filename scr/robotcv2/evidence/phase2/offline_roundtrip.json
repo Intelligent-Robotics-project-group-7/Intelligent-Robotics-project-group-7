@@ -1,0 +1,13 @@
+{
+  "mode": "sequential one-in-flight ROS roundtrip, max_fps=0, two ONNX threads, no Gazebo",
+  "scope": "RGB publish to standard detection receipt; excludes PNG decode, message creation and sensor acquisition",
+  "samples_requested": 120,
+  "timeouts": 0,
+  "warmup_samples_excluded": 5,
+  "measured_samples": 115,
+  "p50_ms": 35.41740699984075,
+  "p95_ms": 40.150484799778496,
+  "p99_ms": 41.79668870025125,
+  "reciprocal_mean_roundtrip_hz": 27.973569105613077,
+  "robot_motion_commands_sent": false
+}

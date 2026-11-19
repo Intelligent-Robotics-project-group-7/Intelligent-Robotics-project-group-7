@@ -1,0 +1,226 @@
+[
+    {
+        "Id": "c70b0532134727728af1eddc9192ca8fffd4fa913d678370e320a5cf38b98086",
+        "Created": "2026-11-10T20:44:05.917775746Z",
+        "Path": "/ros_entrypoint.sh",
+        "Args": [
+            "bash",
+            "scripts/run_smoke.sh"
+        ],
+        "State": {
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 26520,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2026-11-10T20:44:05.947682898Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        },
+        "Image": "sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a",
+        "ResolvConfPath": "/var/lib/docker/containers/c70b0532134727728af1eddc9192ca8fffd4fa913d678370e320a5cf38b98086/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/c70b0532134727728af1eddc9192ca8fffd4fa913d678370e320a5cf38b98086/hostname",
+        "HostsPath": "/var/lib/docker/containers/c70b0532134727728af1eddc9192ca8fffd4fa913d678370e320a5cf38b98086/hosts",
+        "LogPath": "/var/lib/docker/containers/c70b0532134727728af1eddc9192ca8fffd4fa913d678370e320a5cf38b98086/c70b0532134727728af1eddc9192ca8fffd4fa913d678370e320a5cf38b98086-json.log",
+        "Name": "/tb4-step1-smoke",
+        "RestartCount": 0,
+        "Driver": "overlayfs",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": {
+            "Binds": null,
+            "ContainerIDFile": "",
+            "LogConfig": {
+                "Type": "json-file",
+                "Config": {}
+            },
+            "NetworkMode": "none",
+            "PortBindings": {},
+            "RestartPolicy": {
+                "Name": "no",
+                "MaximumRetryCount": 0
+            },
+            "AutoRemove": true,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                0,
+                0
+            ],
+            "CapAdd": null,
+            "CapDrop": [
+                "ALL"
+            ],
+            "CgroupnsMode": "private",
+            "Dns": null,
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": [
+                "no-new-privileges"
+            ],
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 536870912,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 4294967296,
+            "NanoCpus": 4000000000,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 8589934592,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": 1024,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "Mounts": [
+                {
+                    "Type": "bind",
+                    "Source": "/home/john/projects/turtlebot4_person_following",
+                    "Target": "/workspace"
+                }
+            ],
+            "MaskedPaths": [
+                "/proc/acpi",
+                "/proc/asound",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/sys/devices/virtual/powercap",
+                "/sys/firmware"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ],
+            "Init": true
+        },
+        "Storage": {
+            "RootFS": {
+                "Snapshot": {
+                    "Name": "overlayfs"
+                }
+            }
+        },
+        "Mounts": [
+            {
+                "Type": "bind",
+                "Source": "/home/john/projects/turtlebot4_person_following",
+                "Destination": "/workspace",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            }
+        ],
+        "Config": {
+            "Hostname": "c70b05321347",
+            "Domainname": "",
+            "User": "1000:1000",
+            "AttachStdin": false,
+            "AttachStdout": true,
+            "AttachStderr": true,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "LC_ALL=C.UTF-8",
+                "ROS_DISTRO=jazzy",
+                "ROS_DOMAIN_ID=84",
+                "ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST",
+                "LIBGL_ALWAYS_SOFTWARE=1",
+                "QT_X11_NO_MITSHM=1"
+            ],
+            "Cmd": [
+                "bash",
+                "scripts/run_smoke.sh"
+            ],
+            "Image": "turtlebot4-research:jazzy",
+            "Volumes": null,
+            "WorkingDir": "/workspace",
+            "Entrypoint": [
+                "/ros_entrypoint.sh"
+            ],
+            "Labels": {
+                "org.opencontainers.image.version": "24.04"
+            }
+        },
+        "NetworkSettings": {
+            "SandboxID": "8c4e66b6e808e1fbdbdb772c1e59c0c2784ea48e5d3d71d61fdeef7633580191",
+            "SandboxKey": "/var/run/docker/netns/8c4e66b6e808",
+            "Ports": {},
+            "Networks": {
+                "none": {
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "a18d9380b80850123ec2469b253c93c26b809dd838ba39b08b9eb2dc418c724c",
+                    "EndpointID": "f6e46bf777e2dd5090530533085cf8134a7bc1c4f11c1d2f9f404682ad029c25",
+                    "Gateway": "",
+                    "IPAddress": "",
+                    "MacAddress": "",
+                    "IPPrefixLen": 0,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                }
+            }
+        },
+        "ImageManifestDescriptor": {
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "digest": "sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a",
+            "size": 2921,
+            "platform": {
+                "architecture": "amd64",
+                "os": "linux"
+            }
+        }
+    }
+]

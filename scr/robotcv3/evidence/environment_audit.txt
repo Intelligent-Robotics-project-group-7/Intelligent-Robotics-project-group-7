@@ -1,0 +1,154 @@
+PRETTY_NAME="Ubuntu 24.04.5 LTS"
+NAME="Ubuntu"
+VERSION_ID="24.04"
+VERSION="24.04.5 LTS (Noble Numbat)"
+VERSION_CODENAME=noble
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=noble
+LOGO=ubuntu-logo
+/opt/ros/jazzy/lib/python3.12/site-packages/ros2doctor/api/__init__.py: 162: UserWarning: Fail to call PackageReport class functions.
+/opt/ros/jazzy/lib/python3.12/site-packages/ros2doctor/api/__init__.py: 162: UserWarning: Fail to call RosdistroReport class functions.
+
+   NETWORK CONFIGURATION
+inet    : 127.0.0.1
+inet4   : ['127.0.0.1']
+inet6   : ['::1']
+netmask : 255.0.0.0
+device  : lo
+flags   : 73<UP,RUNNING,LOOPBACK>
+mtu     : 65536
+
+   PLATFORM INFORMATION
+system           : Linux
+platform info    : Linux-7.0.0-42-generic-x86_64-with-glibc2.39
+release          : 7.0.0-42-generic
+processor        : x86_64
+
+   QOS COMPATIBILITY LIST
+compatibility status    : No publisher/subscriber pairs found
+
+   RMW MIDDLEWARE
+middleware name    : rmw_fastrtps_cpp
+
+   TOPIC LIST
+topic               : none
+publisher count     : 0
+subscriber count    : 0
+8.15.0
+OpenCV 4.6.0
+NumPy 1.26.4
+/opt/ros/jazzy
+/opt/ros/jazzy
+/opt/ros/jazzy
+/opt/ros/jazzy
+/opt/ros/jazzy
+/opt/ros/jazzy
+Package not found
+#goal definition
+
+string pose_topic  # Topic to publish the pose of the object to follow
+string tracked_frame  # Target frame to follow (Optional, used if pose_topic is not set)
+builtin_interfaces/Duration max_duration
+	int32 sec
+	uint32 nanosec
+
+---
+#result definition
+
+# Error codes
+# Note: The expected priority order of the errors should match the message order
+uint16 NONE=0
+uint16 TF_ERROR=901
+uint16 FAILED_TO_DETECT_OBJECT=902
+uint16 FAILED_TO_CONTROL=903
+uint16 TIMEOUT=904
+uint16 UNKNOWN=999
+
+builtin_interfaces/Duration total_elapsed_time
+	int32 sec
+	uint32 nanosec
+uint16 error_code 0  # Contextual error code, if any
+uint16 num_retries 0  # Number of retries attempted
+string error_msg  # Error message, if any
+---
+#feedback definition
+
+uint16 NONE=0
+uint16 INITIAL_PERCEPTION=1
+uint16 CONTROLLING=2
+uint16 STOPPING=3
+uint16 RETRY=4
+
+uint16 state  # Current following state
+builtin_interfaces/Duration following_time
+	int32 sec
+	uint32 nanosec
+uint16 num_retries 0  # Number of retries attempted
+ros-jazzy-gz-cmake-vendor	0.0.12-1noble.20260618.173318
+ros-jazzy-gz-common-vendor	0.0.10-1noble.20260905.033536
+ros-jazzy-gz-dartsim-vendor	0.0.3-1noble.20260225.232143
+ros-jazzy-gz-fuel-tools-vendor	0.0.6-1noble.20260905.065120
+ros-jazzy-gz-gui-vendor	0.0.5-1noble.20260905.071619
+ros-jazzy-gz-math-vendor	0.0.11-1noble.20260905.031649
+ros-jazzy-gz-msgs-vendor	0.0.8-1noble.20260905.033532
+ros-jazzy-gz-ogre-next-vendor	0.0.5-1noble.20260225.232146
+ros-jazzy-gz-physics-vendor	0.0.9-1noble.20260905.065116
+ros-jazzy-gz-plugin-vendor	0.0.5-1noble.20260820.145930
+ros-jazzy-gz-rendering-vendor	0.0.7-1noble.20260905.065113
+ros-jazzy-gz-ros2-control	1.2.20-1noble.20261006.040504
+ros-jazzy-gz-sensors-vendor	0.0.6-1noble.20260905.071631
+ros-jazzy-gz-sim-vendor	0.0.13-1noble.20260905.073557
+ros-jazzy-gz-tools-vendor	0.0.8-1noble.20260820.143431
+ros-jazzy-gz-transport-vendor	0.0.9-1noble.20260905.065154
+ros-jazzy-gz-utils-vendor	0.0.5-1noble.20260618.173807
+ros-jazzy-nav2-amcl	1.3.13-1noble.20260921.024928
+ros-jazzy-nav2-behavior-tree	1.3.13-1noble.20260921.024958
+ros-jazzy-nav2-behaviors	1.3.13-1noble.20260921.031747
+ros-jazzy-nav2-bringup	1.3.13-1noble.20261006.042503
+ros-jazzy-nav2-bt-navigator	1.3.13-1noble.20260921.031756
+ros-jazzy-nav2-collision-monitor	1.3.13-1noble.20260921.030324
+ros-jazzy-nav2-common	1.3.13-1noble.20260920.234759
+ros-jazzy-nav2-constrained-smoother	1.3.13-1noble.20260921.031757
+ros-jazzy-nav2-controller	1.3.13-1noble.20260921.031754
+ros-jazzy-nav2-core	1.3.13-1noble.20260921.031435
+ros-jazzy-nav2-costmap-2d	1.3.13-1noble.20260921.024946
+ros-jazzy-nav2-dwb-controller	1.3.13-1noble.20260921.033150
+ros-jazzy-nav2-graceful-controller	1.3.13-1noble.20260921.031753
+ros-jazzy-nav2-lifecycle-manager	1.3.13-1noble.20260921.025008
+ros-jazzy-nav2-map-server	1.3.13-1noble.20260921.024942
+ros-jazzy-nav2-minimal-tb3-sim	1.0.1-1noble.20261006.041307
+ros-jazzy-nav2-minimal-tb4-description	1.0.1-1noble.20260915.195305
+ros-jazzy-nav2-minimal-tb4-sim	1.0.1-1noble.20261006.041301
+ros-jazzy-nav2-mppi-controller	1.3.13-1noble.20260921.031754
+ros-jazzy-nav2-msgs	1.3.13-1noble.20260921.023049
+ros-jazzy-nav2-navfn-planner	1.3.13-1noble.20260921.031752
+ros-jazzy-nav2-planner	1.3.13-1noble.20260921.031801
+ros-jazzy-nav2-regulated-pure-pursuit-controller	1.3.13-1noble.20260921.031808
+ros-jazzy-nav2-rotation-shim-controller	1.3.13-1noble.20260921.032338
+ros-jazzy-nav2-route	1.3.13-1noble.20260921.031810
+ros-jazzy-nav2-rviz-plugins	1.3.13-1noble.20260921.032725
+ros-jazzy-nav2-simple-commander	1.3.13-1noble.20260921.030016
+ros-jazzy-nav2-smac-planner	1.3.13-1noble.20260921.031850
+ros-jazzy-nav2-smoother	1.3.13-1noble.20260921.031906
+ros-jazzy-nav2-theta-star-planner	1.3.13-1noble.20260921.031959
+ros-jazzy-nav2-util	1.3.13-1noble.20260921.024419
+ros-jazzy-nav2-velocity-smoother	1.3.13-1noble.20260921.024954
+ros-jazzy-nav2-voxel-grid	1.3.13-1noble.20260921.023047
+ros-jazzy-nav2-waypoint-follower	1.3.13-1noble.20260921.031750
+ros-jazzy-opennav-docking	1.3.13-1noble.20260921.032237
+ros-jazzy-opennav-docking-bt	1.3.13-1noble.20260921.032200
+ros-jazzy-opennav-docking-core	1.3.13-1noble.20260921.030003
+ros-jazzy-turtlebot4-description	2.1.1-1noble.20261006.041007
+ros-jazzy-turtlebot4-gz-bringup	2.0.2-1noble.20261006.045255
+ros-jazzy-turtlebot4-gz-gui-plugins	2.0.2-1noble.20260905.074348
+ros-jazzy-turtlebot4-gz-toolbox	2.0.2-1noble.20260912.162937
+ros-jazzy-turtlebot4-msgs	2.1.1-1noble.20260911.095127
+ros-jazzy-turtlebot4-navigation	2.1.1-1noble.20261006.044110
+ros-jazzy-turtlebot4-node	2.1.1-1noble.20260912.162937
+ros-jazzy-turtlebot4-simulator	2.0.2-1noble.20261006.050425
+ros-jazzy-turtlebot4-viz	2.0.1-1noble.20261006.043247

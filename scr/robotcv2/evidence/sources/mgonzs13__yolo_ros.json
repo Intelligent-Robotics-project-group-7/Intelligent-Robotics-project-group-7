@@ -1,0 +1,30 @@
+{
+  "full_name": "mgonzs13/yolo_ros",
+  "html_url": "https://github.com/mgonzs13/yolo_ros",
+  "default_branch": "main",
+  "archived": false,
+  "disabled": false,
+  "pushed_at": "2026-11-04T10:32:32Z",
+  "updated_at": "2026-11-10T17:58:35Z",
+  "license": {
+    "key": "mit",
+    "name": "MIT License",
+    "spdx_id": "MIT",
+    "url": "https://api.github.com/licenses/mit",
+    "node_id": "MDc6TGljZW5zZTEz"
+  },
+  "description": "Ultralytics YOLOv8, YOLOv9, YOLOv10, YOLOv11, YOLOv12 for ROS 2",
+  "commit_sha": "94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+  "commit_date": "2026-11-04T10:32:31Z",
+  "commit_subject": "Add support for OpenCV 5 (#127)",
+  "downloaded_files": [
+    {
+      "name": "README.md",
+      "url": "https://raw.githubusercontent.com/mgonzs13/yolo_ros/94d2dd500cb26027ee9c019f4d3a02029ac615cc/README.md"
+    },
+    {
+      "name": "LICENSE",
+      "url": "https://raw.githubusercontent.com/mgonzs13/yolo_ros/94d2dd500cb26027ee9c019f4d3a02029ac615cc/LICENSE"
+    }
+  ]
+}

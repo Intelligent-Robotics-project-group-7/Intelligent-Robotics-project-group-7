@@ -1,0 +1,70 @@
+[
+    {
+        "Architecture": "amd64",
+        "Config": {
+            "Cmd": [
+                "bash"
+            ],
+            "Entrypoint": [
+                "/ros_entrypoint.sh"
+            ],
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "LANG=C.UTF-8",
+                "LC_ALL=C.UTF-8",
+                "ROS_DISTRO=jazzy",
+                "ROS_DOMAIN_ID=84",
+                "ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST",
+                "LIBGL_ALWAYS_SOFTWARE=1",
+                "QT_X11_NO_MITSHM=1"
+            ],
+            "Labels": {
+                "org.opencontainers.image.version": "24.04"
+            },
+            "Shell": [
+                "/bin/bash",
+                "-o",
+                "pipefail",
+                "-c"
+            ],
+            "User": "1000:1000",
+            "WorkingDir": "/workspace"
+        },
+        "Created": "2026-11-10T20:38:41.605581673Z",
+        "Descriptor": {
+            "digest": "sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a",
+            "mediaType": "application/vnd.oci.image.manifest.v1+json",
+            "size": 2921
+        },
+        "Id": "sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a",
+        "Metadata": {
+            "LastTagTime": "2026-11-10T20:38:41.648579303Z"
+        },
+        "Os": "linux",
+        "Parent": "sha256:1903b3cf12f45d05c754780fda86d98cbef0cf928b7fd32636fca95758e588e5",
+        "RepoDigests": [
+            "turtlebot4-research@sha256:40ff6b2de422b7c143d393aef97b4ec5c2b4eaccd1ac50f5d37fb9fcb4f6d11a"
+        ],
+        "RepoTags": [
+            "turtlebot4-research:jazzy"
+        ],
+        "RootFS": {
+            "Layers": [
+                "sha256:bec87777bc2fb2edcdf9af11df1531469e7df911309c1413082b18fcb8610278",
+                "sha256:8236540eaf39f032b90c41e82006bc897595cf6ccc559a9f8f32de88683849c7",
+                "sha256:078f862b0363d11de0058ef263389143f735c01dee16ff7710eb0806cc54c6fc",
+                "sha256:e0d2df635de6229f2ff365b4c640a21a09309fb603dcf57ab15d1fa4c48df852",
+                "sha256:154ea48fb59634cc116597b044c11a80b1f312c57d435780bc8244a5afe84e4a",
+                "sha256:2d199ee7fe34c74ca2cd19dcc7af17e7ec13fa530b7ccbbd9b1aca2862f54c8a",
+                "sha256:0eeb5f9ac7a7fe74bc0642bd80015341fd216a1a95b12fdf74f11e48b5d60875",
+                "sha256:8dfe80f8ce2c37138d9098f71b6d14fb487480587ff20c0eaf1ef270ae70861e",
+                "sha256:e78e7bb7e0778aa45e7815f05d4c3de1d809b72c60fa6969cdffd6323edbf463",
+                "sha256:3e7dd82b56ccfe37fecf814a0effbb00e40c25945ade79f9014ba90b57b718cd",
+                "sha256:ac15e4f1f9eb70358656d7b1493cad21a4117cd35ea204ffe0f32186c71d1f68",
+                "sha256:3345bf79a1fe265b7033f9e940d044edebe61490967e4d23b51339bcc66582d8"
+            ],
+            "Type": "layers"
+        },
+        "Size": 1220706944
+    }
+]

@@ -1,0 +1,25 @@
+21:03:55: Added resource location '/opt/ros/jazzy/share/irobot_create_description/meshes' of type 'FileSystem' to resource group 'General' with recursive option
+21:03:55: Initialising resource group General
+21:03:55: Can't assign material scene::Material(65466) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65465) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Added resource location '/opt/ros/jazzy/share/turtlebot4_description/meshes' of type 'FileSystem' to resource group 'General' with recursive option
+21:03:55: Initialising resource group General
+21:03:55: Can't assign material scene::Material(65458) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65452) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65446) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65440) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65440) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65440) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65440) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65419) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65419) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:55: Can't assign material scene::Material(65408) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65402) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65419) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65419) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65388) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65382) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65376) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Can't assign material scene::Material(65376) because this Material does not exist. Have you forgotten to define it in a .material script?
+21:03:56: Texture memory budget exceeded. Stalling GPU.
+21:03:56: Stalling was not enough. Freeing memory.

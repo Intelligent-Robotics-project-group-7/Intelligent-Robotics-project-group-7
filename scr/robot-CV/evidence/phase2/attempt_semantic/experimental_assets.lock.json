@@ -1,0 +1,62 @@
+{
+  "model_repository_revision": "e046fc5125ee6b579f1801f0b6df68a60b949c42",
+  "actor_version": 1,
+  "files": [
+    {
+      "path": "downloads/phase2/models/yolo26n.onnx",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/resolve/e046fc5125ee6b579f1801f0b6df68a60b949c42/yolo26n.onnx",
+      "bytes": 9887916,
+      "sha256": "4f44c33cea12d4b5785e5e7c0a20c13d0c62a77de607ce96a40d6036c7d7bbcf",
+      "license": "AGPL-3.0",
+      "immutable_artifact": true
+    },
+    {
+      "path": "downloads/phase2/actor.zip",
+      "url": "https://fuel.gazebosim.org/1.0/Mingfei/models/actor/1/actor.zip",
+      "bytes": 11222368,
+      "sha256": "edd48c4e609c32e88ab63dc770c1fd0a6c7847d28340a3ce88b65f01ae04e5b4",
+      "license": "CC-BY-4.0",
+      "immutable_artifact": true
+    },
+    {
+      "path": "downloads/phase2/actor_metadata.json",
+      "url": "https://fuel.gazebosim.org/1.0/Mingfei/models/actor",
+      "bytes": 604,
+      "sha256": "062775d3d2bc8e4185e7f0098d34d15b4a27286bc72c011d16f06f75746c9847",
+      "license": "CC-BY-4.0",
+      "immutable_artifact": false
+    },
+    {
+      "path": "downloads/phase2/model_card.md",
+      "url": "https://huggingface.co/unileon-robotics/YOLO26-ONNX/raw/e046fc5125ee6b579f1801f0b6df68a60b949c42/README.md",
+      "bytes": 18947,
+      "sha256": "2a3c1ad29f8f13dacb539df0083b46b40e2096d8eca6ac40a94a637fef6ab568",
+      "license": "AGPL-3.0",
+      "immutable_artifact": true
+    },
+    {
+      "path": "downloads/phase2/source/yolo_ros.tar.gz",
+      "url": "https://codeload.github.com/mgonzs13/yolo_ros/tar.gz/94d2dd500cb26027ee9c019f4d3a02029ac615cc",
+      "bytes": 255272,
+      "sha256": "5941b5c541e2cddfed2c522f330b13bf444f27666f454cce564fc148e5ebda7f",
+      "license": "MIT",
+      "immutable_artifact": true
+    },
+    {
+      "path": "downloads/phase2/scrubs.zip",
+      "url": "https://fuel.gazebosim.org/1.0/OpenRobotics/models/Scrubs/2/Scrubs.zip",
+      "bytes": 1028421,
+      "sha256": "1e4a5fbdfc8d02c688290d1c4e39430ec872bf3f976c5fc720cf6e98c740aea7",
+      "license": "CC-BY-4.0",
+      "immutable_artifact": true
+    },
+    {
+      "path": "downloads/phase2/scrubs_metadata.json",
+      "url": "https://fuel.gazebosim.org/1.0/OpenRobotics/models/Scrubs",
+      "bytes": 628,
+      "sha256": "219a27beb428c5f256774dab9c35396db747518690a26a531b6c1b1a7a3e85e4",
+      "license": "CC-BY-4.0",
+      "immutable_artifact": false
+    }
+  ]
+}

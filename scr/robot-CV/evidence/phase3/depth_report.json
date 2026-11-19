@@ -1,0 +1,2582 @@
+{
+  "recorded_utc": "2026-11-11T20:34:34Z",
+  "cases": [
+    {
+      "case": "plane_1m",
+      "expected_frames": 110,
+      "frames": 110,
+      "stream_counts": {
+        "rgb": 110,
+        "depth": 109,
+        "labels": 110,
+        "info": 110,
+        "boxes": 110,
+        "output": 103
+      },
+      "pose_snapshots": 1477,
+      "pose_entity_names": [
+        "depth_plane",
+        "oakd_rgb_camera_frame",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "plane",
+      "reference_z_m": 1.0080979760947046,
+      "depth_valid_fraction": 0.990909090909091,
+      "depth_z": {
+        "n": 109,
+        "mean_m": 3.877816383557331e-07,
+        "std_m": 0.0,
+        "mae_m": 3.877816383557331e-07,
+        "p95_abs_m": 3.877816383557331e-07
+      },
+      "rgb_plate_iou_mean": 1.0,
+      "depth_plate_iou_mean": 0.9812368071300135
+    },
+    {
+      "case": "plane_2m",
+      "expected_frames": 110,
+      "frames": 110,
+      "stream_counts": {
+        "rgb": 110,
+        "depth": 109,
+        "labels": 110,
+        "info": 110,
+        "boxes": 110,
+        "output": 105
+      },
+      "pose_snapshots": 1543,
+      "pose_entity_names": [
+        "depth_plane",
+        "oakd_rgb_camera_frame",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "plane",
+      "reference_z_m": 2.008107650829238,
+      "depth_valid_fraction": 0.990909090909091,
+      "depth_z": {
+        "n": 109,
+        "mean_m": 9.650460057741839e-07,
+        "std_m": 0.0,
+        "mae_m": 9.650460057741839e-07,
+        "p95_abs_m": 9.650460057741839e-07
+      },
+      "rgb_plate_iou_mean": 1.0,
+      "depth_plate_iou_mean": 0.9845021309569937
+    },
+    {
+      "case": "plane_3m",
+      "expected_frames": 110,
+      "frames": 110,
+      "stream_counts": {
+        "rgb": 110,
+        "depth": 109,
+        "labels": 110,
+        "info": 110,
+        "boxes": 110,
+        "output": 101
+      },
+      "pose_snapshots": 1517,
+      "pose_entity_names": [
+        "depth_plane",
+        "oakd_rgb_camera_frame",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "plane",
+      "reference_z_m": 3.008117325563773,
+      "depth_valid_fraction": 0.990909090909091,
+      "depth_z": {
+        "n": 109,
+        "mean_m": 1.0654732145454204e-06,
+        "std_m": 0.0,
+        "mae_m": 1.0654732145454204e-06,
+        "p95_abs_m": 1.0654732145454204e-06
+      },
+      "rgb_plate_iou_mean": 1.0,
+      "depth_plate_iou_mean": 0.9662162162162157
+    },
+    {
+      "case": "person_1m",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 60,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 58
+      },
+      "pose_snapshots": 833,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "ideal",
+      "visible_instances": 60,
+      "matched_boxes": 0,
+      "torso_references": 60,
+      "numeric_outputs": 0,
+      "numeric_output_rate": 0.0,
+      "on_target_outputs": 0,
+      "on_target_output_rate": 0.0,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {},
+      "statuses": {
+        "detector_miss": 60
+      },
+      "torso_z": {
+        "n": 0
+      },
+      "torso_position": {
+        "n": 0
+      },
+      "on_target_torso_z": {
+        "n": 0
+      },
+      "on_target_torso_position": {
+        "n": 0
+      },
+      "selected_ray_z": {
+        "n": 0
+      },
+      "selected_ray_position": {
+        "n": 0
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 0,
+        "torso_references": 60,
+        "numeric_outputs": 60,
+        "numeric_output_rate": 1.0,
+        "on_target_outputs": 60,
+        "on_target_output_rate": 1.0,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 60
+        },
+        "statuses": {
+          "valid": 60
+        },
+        "torso_z": {
+          "n": 60,
+          "mean_m": 0.041856430439233705,
+          "std_m": 0.0,
+          "mae_m": 0.041856430439233705,
+          "p95_abs_m": 0.041856430439233705
+        },
+        "torso_position": {
+          "n": 60,
+          "mean_m": 0.31343802965907946,
+          "std_m": 5.551115123125783e-17,
+          "mae_m": 0.31343802965907946,
+          "p95_abs_m": 0.3134380296590795
+        },
+        "on_target_torso_z": {
+          "n": 60,
+          "mean_m": 0.041856430439233705,
+          "std_m": 0.0,
+          "mae_m": 0.041856430439233705,
+          "p95_abs_m": 0.041856430439233705
+        },
+        "on_target_torso_position": {
+          "n": 60,
+          "mean_m": 0.31343802965907946,
+          "std_m": 5.551115123125783e-17,
+          "mae_m": 0.31343802965907946,
+          "p95_abs_m": 0.3134380296590795
+        },
+        "selected_ray_z": {
+          "n": 60,
+          "mean_m": 0.010182740624843145,
+          "std_m": 0.0,
+          "mae_m": 0.010182740624843145,
+          "p95_abs_m": 0.010182740624843145
+        },
+        "selected_ray_position": {
+          "n": 60,
+          "mean_m": 0.010379251671576143,
+          "std_m": 1.734723475976807e-18,
+          "mae_m": 0.010379251671576143,
+          "p95_abs_m": 0.010379251671576141
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "person_2m",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 59,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 57
+      },
+      "pose_snapshots": 833,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "ideal",
+      "visible_instances": 60,
+      "matched_boxes": 60,
+      "torso_references": 60,
+      "numeric_outputs": 57,
+      "numeric_output_rate": 0.95,
+      "on_target_outputs": 57,
+      "on_target_output_rate": 0.95,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 57
+      },
+      "statuses": {
+        "valid": 57,
+        "missing_range_message": 3
+      },
+      "torso_z": {
+        "n": 57,
+        "mean_m": -0.0029661746382099174,
+        "std_m": 0.0,
+        "mae_m": 0.0029661746382099174,
+        "p95_abs_m": 0.0029661746382099174
+      },
+      "torso_position": {
+        "n": 57,
+        "mean_m": 0.17255864902925946,
+        "std_m": 0.0,
+        "mae_m": 0.17255864902925946,
+        "p95_abs_m": 0.17255864902925946
+      },
+      "on_target_torso_z": {
+        "n": 57,
+        "mean_m": -0.0029661746382099174,
+        "std_m": 0.0,
+        "mae_m": 0.0029661746382099174,
+        "p95_abs_m": 0.0029661746382099174
+      },
+      "on_target_torso_position": {
+        "n": 57,
+        "mean_m": 0.17255864902925946,
+        "std_m": 0.0,
+        "mae_m": 0.17255864902925946,
+        "p95_abs_m": 0.17255864902925946
+      },
+      "selected_ray_z": {
+        "n": 57,
+        "mean_m": 0.018970119448881828,
+        "std_m": 0.0,
+        "mae_m": 0.018970119448881828,
+        "p95_abs_m": 0.018970119448881828
+      },
+      "selected_ray_position": {
+        "n": 57,
+        "mean_m": 0.019687235205994528,
+        "std_m": 3.469446951953614e-18,
+        "mae_m": 0.019687235205994528,
+        "p95_abs_m": 0.01968723520599453
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 60,
+        "torso_references": 60,
+        "numeric_outputs": 59,
+        "numeric_output_rate": 0.9833333333333333,
+        "on_target_outputs": 59,
+        "on_target_output_rate": 0.9833333333333333,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 59
+        },
+        "statuses": {
+          "valid": 59,
+          "missing_depth_or_calibration": 1
+        },
+        "torso_z": {
+          "n": 59,
+          "mean_m": -0.0037846656202655815,
+          "std_m": 0.0,
+          "mae_m": 0.0037846656202655815,
+          "p95_abs_m": 0.0037846656202655815
+        },
+        "torso_position": {
+          "n": 59,
+          "mean_m": 0.20741824694054725,
+          "std_m": 8.326672684688674e-17,
+          "mae_m": 0.20741824694054725,
+          "p95_abs_m": 0.20741824694054734
+        },
+        "on_target_torso_z": {
+          "n": 59,
+          "mean_m": -0.0037846656202655815,
+          "std_m": 0.0,
+          "mae_m": 0.0037846656202655815,
+          "p95_abs_m": 0.0037846656202655815
+        },
+        "on_target_torso_position": {
+          "n": 59,
+          "mean_m": 0.20741824694054725,
+          "std_m": 8.326672684688674e-17,
+          "mae_m": 0.20741824694054725,
+          "p95_abs_m": 0.20741824694054734
+        },
+        "selected_ray_z": {
+          "n": 59,
+          "mean_m": 0.003170592764048852,
+          "std_m": 0.0,
+          "mae_m": 0.003170592764048852,
+          "p95_abs_m": 0.003170592764048852
+        },
+        "selected_ray_position": {
+          "n": 59,
+          "mean_m": 0.003275630522446088,
+          "std_m": 0.0,
+          "mae_m": 0.003275630522446088,
+          "p95_abs_m": 0.003275630522446088
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "person_3m",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 59,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 58
+      },
+      "pose_snapshots": 829,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "ideal",
+      "visible_instances": 60,
+      "matched_boxes": 60,
+      "torso_references": 60,
+      "numeric_outputs": 58,
+      "numeric_output_rate": 0.9666666666666667,
+      "on_target_outputs": 58,
+      "on_target_output_rate": 0.9666666666666667,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 58
+      },
+      "statuses": {
+        "valid": 58,
+        "missing_range_message": 2
+      },
+      "torso_z": {
+        "n": 58,
+        "mean_m": -0.0029801714230925924,
+        "std_m": 0.0,
+        "mae_m": 0.0029801714230925924,
+        "p95_abs_m": 0.0029801714230925924
+      },
+      "torso_position": {
+        "n": 58,
+        "mean_m": 0.06855219489426649,
+        "std_m": 0.0,
+        "mae_m": 0.06855219489426649,
+        "p95_abs_m": 0.06855219489426649
+      },
+      "on_target_torso_z": {
+        "n": 58,
+        "mean_m": -0.0029801714230925924,
+        "std_m": 0.0,
+        "mae_m": 0.0029801714230925924,
+        "p95_abs_m": 0.0029801714230925924
+      },
+      "on_target_torso_position": {
+        "n": 58,
+        "mean_m": 0.06855219489426649,
+        "std_m": 0.0,
+        "mae_m": 0.06855219489426649,
+        "p95_abs_m": 0.06855219489426649
+      },
+      "selected_ray_z": {
+        "n": 58,
+        "mean_m": 0.00765748300307223,
+        "std_m": 0.0,
+        "mae_m": 0.00765748300307223,
+        "p95_abs_m": 0.00765748300307223
+      },
+      "selected_ray_position": {
+        "n": 58,
+        "mean_m": 0.007838642714855674,
+        "std_m": 0.0,
+        "mae_m": 0.007838642714855674,
+        "p95_abs_m": 0.007838642714855674
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 60,
+        "torso_references": 60,
+        "numeric_outputs": 59,
+        "numeric_output_rate": 0.9833333333333333,
+        "on_target_outputs": 59,
+        "on_target_output_rate": 0.9833333333333333,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 59
+        },
+        "statuses": {
+          "valid": 59,
+          "missing_depth_or_calibration": 1
+        },
+        "torso_z": {
+          "n": 59,
+          "mean_m": -0.002878605108395327,
+          "std_m": 0.0,
+          "mae_m": 0.002878605108395327,
+          "p95_abs_m": 0.002878605108395327
+        },
+        "torso_position": {
+          "n": 59,
+          "mean_m": 0.06852623452397733,
+          "std_m": 0.0,
+          "mae_m": 0.06852623452397733,
+          "p95_abs_m": 0.06852623452397733
+        },
+        "on_target_torso_z": {
+          "n": 59,
+          "mean_m": -0.002878605108395327,
+          "std_m": 0.0,
+          "mae_m": 0.002878605108395327,
+          "p95_abs_m": 0.002878605108395327
+        },
+        "on_target_torso_position": {
+          "n": 59,
+          "mean_m": 0.06852623452397733,
+          "std_m": 0.0,
+          "mae_m": 0.06852623452397733,
+          "p95_abs_m": 0.06852623452397733
+        },
+        "selected_ray_z": {
+          "n": 59,
+          "mean_m": 0.007759049317769495,
+          "std_m": 0.0,
+          "mae_m": 0.007759049317769495,
+          "p95_abs_m": 0.007759049317769495
+        },
+        "selected_ray_position": {
+          "n": 59,
+          "mean_m": 0.00794261187188248,
+          "std_m": 0.0,
+          "mae_m": 0.00794261187188248,
+          "p95_abs_m": 0.00794261187188248
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "person_2m_off_axis",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 57,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 58
+      },
+      "pose_snapshots": 852,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "ideal",
+      "visible_instances": 60,
+      "matched_boxes": 60,
+      "torso_references": 60,
+      "numeric_outputs": 58,
+      "numeric_output_rate": 0.9666666666666667,
+      "on_target_outputs": 58,
+      "on_target_output_rate": 0.9666666666666667,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 58
+      },
+      "statuses": {
+        "valid": 58,
+        "missing_range_message": 2
+      },
+      "torso_z": {
+        "n": 58,
+        "mean_m": -0.0039969886848665315,
+        "std_m": 0.0,
+        "mae_m": 0.0039969886848665315,
+        "p95_abs_m": 0.0039969886848665315
+      },
+      "torso_position": {
+        "n": 58,
+        "mean_m": 0.1818240616126668,
+        "std_m": 0.0,
+        "mae_m": 0.1818240616126668,
+        "p95_abs_m": 0.1818240616126668
+      },
+      "on_target_torso_z": {
+        "n": 58,
+        "mean_m": -0.0039969886848665315,
+        "std_m": 0.0,
+        "mae_m": 0.0039969886848665315,
+        "p95_abs_m": 0.0039969886848665315
+      },
+      "on_target_torso_position": {
+        "n": 58,
+        "mean_m": 0.1818240616126668,
+        "std_m": 0.0,
+        "mae_m": 0.1818240616126668,
+        "p95_abs_m": 0.1818240616126668
+      },
+      "selected_ray_z": {
+        "n": 58,
+        "mean_m": 0.005579000795264966,
+        "std_m": 0.0,
+        "mae_m": 0.005579000795264966,
+        "p95_abs_m": 0.005579000795264966
+      },
+      "selected_ray_position": {
+        "n": 58,
+        "mean_m": 0.006013702695271119,
+        "std_m": 8.673617379884035e-19,
+        "mae_m": 0.006013702695271119,
+        "p95_abs_m": 0.0060137026952711186
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 60,
+        "torso_references": 60,
+        "numeric_outputs": 57,
+        "numeric_output_rate": 0.95,
+        "on_target_outputs": 57,
+        "on_target_output_rate": 0.95,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 57
+        },
+        "statuses": {
+          "valid": 57,
+          "missing_depth_or_calibration": 3
+        },
+        "torso_z": {
+          "n": 57,
+          "mean_m": -0.0039969886848665315,
+          "std_m": 0.0,
+          "mae_m": 0.0039969886848665315,
+          "p95_abs_m": 0.0039969886848665315
+        },
+        "torso_position": {
+          "n": 57,
+          "mean_m": 0.1818240616126668,
+          "std_m": 0.0,
+          "mae_m": 0.1818240616126668,
+          "p95_abs_m": 0.1818240616126668
+        },
+        "on_target_torso_z": {
+          "n": 57,
+          "mean_m": -0.0039969886848665315,
+          "std_m": 0.0,
+          "mae_m": 0.0039969886848665315,
+          "p95_abs_m": 0.0039969886848665315
+        },
+        "on_target_torso_position": {
+          "n": 57,
+          "mean_m": 0.1818240616126668,
+          "std_m": 0.0,
+          "mae_m": 0.1818240616126668,
+          "p95_abs_m": 0.1818240616126668
+        },
+        "selected_ray_z": {
+          "n": 57,
+          "mean_m": 0.005579000795264966,
+          "std_m": 0.0,
+          "mae_m": 0.005579000795264966,
+          "p95_abs_m": 0.005579000795264966
+        },
+        "selected_ray_position": {
+          "n": 57,
+          "mean_m": 0.006013702695271119,
+          "std_m": 8.673617379884035e-19,
+          "mae_m": 0.006013702695271119,
+          "p95_abs_m": 0.0060137026952711186
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "torso_occlusion",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 59,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 55
+      },
+      "pose_snapshots": 834,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "occlusion",
+      "visible_instances": 60,
+      "matched_boxes": 42,
+      "torso_references": 60,
+      "numeric_outputs": 37,
+      "numeric_output_rate": 0.6166666666666667,
+      "on_target_outputs": 37,
+      "on_target_output_rate": 0.6166666666666667,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 37
+      },
+      "statuses": {
+        "valid": 37,
+        "detector_miss": 18,
+        "missing_range_message": 5
+      },
+      "torso_z": {
+        "n": 37,
+        "mean_m": -0.0029177708761470105,
+        "std_m": 0.0026799081892152758,
+        "mae_m": 0.0029177708761470105,
+        "p95_abs_m": 0.00541740145800671
+      },
+      "torso_position": {
+        "n": 37,
+        "mean_m": 0.07250963365314414,
+        "std_m": 0.018454871460724286,
+        "mae_m": 0.07250963365314414,
+        "p95_abs_m": 0.09161939261058347
+      },
+      "on_target_torso_z": {
+        "n": 37,
+        "mean_m": -0.0029177708761470105,
+        "std_m": 0.0026799081892152758,
+        "mae_m": 0.0029177708761470105,
+        "p95_abs_m": 0.00541740145800671
+      },
+      "on_target_torso_position": {
+        "n": 37,
+        "mean_m": 0.07250963365314414,
+        "std_m": 0.018454871460724286,
+        "mae_m": 0.07250963365314414,
+        "p95_abs_m": 0.09161939261058347
+      },
+      "selected_ray_z": {
+        "n": 37,
+        "mean_m": 0.007874927919414798,
+        "std_m": 0.006950929320181423,
+        "mae_m": 0.009925620094944448,
+        "p95_abs_m": 0.015873451761856467
+      },
+      "selected_ray_position": {
+        "n": 37,
+        "mean_m": 0.010137436880330844,
+        "std_m": 0.0034617833282960322,
+        "mae_m": 0.010137436880330844,
+        "p95_abs_m": 0.01610994723029481
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 42,
+        "torso_references": 60,
+        "numeric_outputs": 59,
+        "numeric_output_rate": 0.9833333333333333,
+        "on_target_outputs": 59,
+        "on_target_output_rate": 0.9833333333333333,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 59
+        },
+        "statuses": {
+          "valid": 59,
+          "missing_depth_or_calibration": 1
+        },
+        "torso_z": {
+          "n": 59,
+          "mean_m": -0.004315240535622901,
+          "std_m": 0.003976546171953947,
+          "mae_m": 0.004315240535622901,
+          "p95_abs_m": 0.013412529386805924
+        },
+        "torso_position": {
+          "n": 59,
+          "mean_m": 0.08511795255419366,
+          "std_m": 0.0259009948729267,
+          "mae_m": 0.08511795255419366,
+          "p95_abs_m": 0.14829387434857616
+        },
+        "on_target_torso_z": {
+          "n": 59,
+          "mean_m": -0.004315240535622901,
+          "std_m": 0.003976546171953947,
+          "mae_m": 0.004315240535622901,
+          "p95_abs_m": 0.013412529386805924
+        },
+        "on_target_torso_position": {
+          "n": 59,
+          "mean_m": 0.08511795255419366,
+          "std_m": 0.0259009948729267,
+          "mae_m": 0.08511795255419366,
+          "p95_abs_m": 0.14829387434857616
+        },
+        "selected_ray_z": {
+          "n": 59,
+          "mean_m": 0.0059761012555663235,
+          "std_m": 0.009920012252253353,
+          "mae_m": 0.011038338368509187,
+          "p95_abs_m": 0.019329073423906884
+        },
+        "selected_ray_position": {
+          "n": 59,
+          "mean_m": 0.011241136415158351,
+          "std_m": 0.003513366378447285,
+          "mae_m": 0.011241136415158351,
+          "p95_abs_m": 0.019579093485894816
+        }
+      },
+      "occluded": {
+        "visible_instances": 38,
+        "matched_boxes": 20,
+        "torso_references": 38,
+        "numeric_outputs": 20,
+        "numeric_output_rate": 0.5263157894736842,
+        "on_target_outputs": 20,
+        "on_target_output_rate": 0.5263157894736842,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 20
+        },
+        "statuses": {
+          "valid": 20,
+          "detector_miss": 18
+        },
+        "torso_z": {
+          "n": 20,
+          "mean_m": -0.002926478183220027,
+          "std_m": 0.0036385607006864476,
+          "mae_m": 0.002926478183220027,
+          "p95_abs_m": 0.013681289780873573
+        },
+        "torso_position": {
+          "n": 20,
+          "mean_m": 0.06883166576241588,
+          "std_m": 0.023822354464611787,
+          "mae_m": 0.06883166576241588,
+          "p95_abs_m": 0.11954343903932685
+        },
+        "on_target_torso_z": {
+          "n": 20,
+          "mean_m": -0.002926478183220027,
+          "std_m": 0.0036385607006864476,
+          "mae_m": 0.002926478183220027,
+          "p95_abs_m": 0.013681289780873573
+        },
+        "on_target_torso_position": {
+          "n": 20,
+          "mean_m": 0.06883166576241588,
+          "std_m": 0.023822354464611787,
+          "mae_m": 0.06883166576241588,
+          "p95_abs_m": 0.11954343903932685
+        },
+        "selected_ray_z": {
+          "n": 20,
+          "mean_m": 0.0066236529865713045,
+          "std_m": 0.009239619177520603,
+          "mae_m": 0.010417433511301154,
+          "p95_abs_m": 0.018968902623649253
+        },
+        "selected_ray_position": {
+          "n": 20,
+          "mean_m": 0.010597623696582579,
+          "std_m": 0.004589977837415232,
+          "mae_m": 0.010597623696582579,
+          "p95_abs_m": 0.0191486576629907
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "empty",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 60,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 57
+      },
+      "pose_snapshots": 829,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "negative",
+      "visible_instances": 0,
+      "matched_boxes": 0,
+      "torso_references": 0,
+      "numeric_outputs": 0,
+      "numeric_output_rate": null,
+      "on_target_outputs": 0,
+      "on_target_output_rate": null,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {},
+      "statuses": {},
+      "torso_z": {
+        "n": 0
+      },
+      "torso_position": {
+        "n": 0
+      },
+      "on_target_torso_z": {
+        "n": 0
+      },
+      "on_target_torso_position": {
+        "n": 0
+      },
+      "selected_ray_z": {
+        "n": 0
+      },
+      "selected_ray_position": {
+        "n": 0
+      },
+      "truth_box": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "single_front",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 58,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 57
+      },
+      "pose_snapshots": 837,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "single",
+      "visible_instances": 60,
+      "matched_boxes": 60,
+      "torso_references": 60,
+      "numeric_outputs": 57,
+      "numeric_output_rate": 0.95,
+      "on_target_outputs": 57,
+      "on_target_output_rate": 0.95,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 57
+      },
+      "statuses": {
+        "valid": 57,
+        "missing_range_message": 3
+      },
+      "torso_z": {
+        "n": 57,
+        "mean_m": -0.0030182946914656043,
+        "std_m": 0.0003999142771518126,
+        "mae_m": 0.0030182946914656043,
+        "p95_abs_m": 0.0038703624623379618
+      },
+      "torso_position": {
+        "n": 57,
+        "mean_m": 0.07777357774397196,
+        "std_m": 0.005714845428126485,
+        "mae_m": 0.07777357774397196,
+        "p95_abs_m": 0.08492863136207292
+      },
+      "on_target_torso_z": {
+        "n": 57,
+        "mean_m": -0.0030182946914656043,
+        "std_m": 0.0003999142771518126,
+        "mae_m": 0.0030182946914656043,
+        "p95_abs_m": 0.0038703624623379618
+      },
+      "on_target_torso_position": {
+        "n": 57,
+        "mean_m": 0.07777357774397196,
+        "std_m": 0.005714845428126485,
+        "mae_m": 0.07777357774397196,
+        "p95_abs_m": 0.08492863136207292
+      },
+      "selected_ray_z": {
+        "n": 57,
+        "mean_m": 0.009230525711508182,
+        "std_m": 0.0007930429800935252,
+        "mae_m": 0.009230525711508182,
+        "p95_abs_m": 0.01019597260165188
+      },
+      "selected_ray_position": {
+        "n": 57,
+        "mean_m": 0.009440858284519054,
+        "std_m": 0.0008026598083325132,
+        "mae_m": 0.009440858284519054,
+        "p95_abs_m": 0.010488129073757874
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 60,
+        "torso_references": 60,
+        "numeric_outputs": 58,
+        "numeric_output_rate": 0.9666666666666667,
+        "on_target_outputs": 58,
+        "on_target_output_rate": 0.9666666666666667,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 58
+        },
+        "statuses": {
+          "valid": 58,
+          "missing_depth_or_calibration": 2
+        },
+        "torso_z": {
+          "n": 58,
+          "mean_m": -0.0031397730295682834,
+          "std_m": 0.0003896035150927024,
+          "mae_m": 0.0031397730295682834,
+          "p95_abs_m": 0.0038703624623379618
+        },
+        "torso_position": {
+          "n": 58,
+          "mean_m": 0.08057375447142215,
+          "std_m": 0.0025028154645626824,
+          "mae_m": 0.08057375447142215,
+          "p95_abs_m": 0.08499544923422245
+        },
+        "on_target_torso_z": {
+          "n": 58,
+          "mean_m": -0.0031397730295682834,
+          "std_m": 0.0003896035150927024,
+          "mae_m": 0.0031397730295682834,
+          "p95_abs_m": 0.0038703624623379618
+        },
+        "on_target_torso_position": {
+          "n": 58,
+          "mean_m": 0.08057375447142215,
+          "std_m": 0.0025028154645626824,
+          "mae_m": 0.08057375447142215,
+          "p95_abs_m": 0.08499544923422245
+        },
+        "selected_ray_z": {
+          "n": 58,
+          "mean_m": 0.009278641716494148,
+          "std_m": 0.0004134293083837728,
+          "mae_m": 0.009278641716494148,
+          "p95_abs_m": 0.009861877423393839
+        },
+        "selected_ray_position": {
+          "n": 58,
+          "mean_m": 0.009491798837722528,
+          "std_m": 0.0004224857176833652,
+          "mae_m": 0.009491798837722528,
+          "p95_abs_m": 0.010148526267249032
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "single_far_back",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 60,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 58
+      },
+      "pose_snapshots": 864,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "distance_view",
+      "visible_instances": 60,
+      "matched_boxes": 58,
+      "torso_references": 60,
+      "numeric_outputs": 56,
+      "numeric_output_rate": 0.9333333333333333,
+      "on_target_outputs": 56,
+      "on_target_output_rate": 0.9333333333333333,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 56
+      },
+      "statuses": {
+        "valid": 56,
+        "missing_range_message": 2,
+        "detector_miss": 2
+      },
+      "torso_z": {
+        "n": 56,
+        "mean_m": -0.005699744208033938,
+        "std_m": 0.0018807089020375204,
+        "mae_m": 0.005699744208033938,
+        "p95_abs_m": 0.008621060235798339
+      },
+      "torso_position": {
+        "n": 56,
+        "mean_m": 0.05021070940767266,
+        "std_m": 0.01159174900911718,
+        "mae_m": 0.05021070940767266,
+        "p95_abs_m": 0.07355399071315245
+      },
+      "on_target_torso_z": {
+        "n": 56,
+        "mean_m": -0.005699744208033938,
+        "std_m": 0.0018807089020375204,
+        "mae_m": 0.005699744208033938,
+        "p95_abs_m": 0.008621060235798339
+      },
+      "on_target_torso_position": {
+        "n": 56,
+        "mean_m": 0.05021070940767266,
+        "std_m": 0.01159174900911718,
+        "mae_m": 0.05021070940767266,
+        "p95_abs_m": 0.07355399071315245
+      },
+      "selected_ray_z": {
+        "n": 56,
+        "mean_m": 0.01127477114546511,
+        "std_m": 0.0020665341315033088,
+        "mae_m": 0.01127477114546511,
+        "p95_abs_m": 0.014431918711539815
+      },
+      "selected_ray_position": {
+        "n": 56,
+        "mean_m": 0.011388513863936387,
+        "std_m": 0.002079955164440939,
+        "mae_m": 0.011388513863936387,
+        "p95_abs_m": 0.014660830424093607
+      },
+      "truth_box": {
+        "visible_instances": 60,
+        "matched_boxes": 58,
+        "torso_references": 60,
+        "numeric_outputs": 60,
+        "numeric_output_rate": 1.0,
+        "on_target_outputs": 60,
+        "on_target_output_rate": 1.0,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 60
+        },
+        "statuses": {
+          "valid": 60
+        },
+        "torso_z": {
+          "n": 60,
+          "mean_m": -0.006820843919746,
+          "std_m": 0.0019938890645759674,
+          "mae_m": 0.006820843919746,
+          "p95_abs_m": 0.009943329675495605
+        },
+        "torso_position": {
+          "n": 60,
+          "mean_m": 0.04541079061468042,
+          "std_m": 0.013219411384930888,
+          "mae_m": 0.04541079061468042,
+          "p95_abs_m": 0.07355399071315245
+        },
+        "on_target_torso_z": {
+          "n": 60,
+          "mean_m": -0.006820843919746,
+          "std_m": 0.0019938890645759674,
+          "mae_m": 0.006820843919746,
+          "p95_abs_m": 0.009943329675495605
+        },
+        "on_target_torso_position": {
+          "n": 60,
+          "mean_m": 0.04541079061468042,
+          "std_m": 0.013219411384930888,
+          "mae_m": 0.04541079061468042,
+          "p95_abs_m": 0.07355399071315245
+        },
+        "selected_ray_z": {
+          "n": 60,
+          "mean_m": 0.009777153371013102,
+          "std_m": 0.001906634818732089,
+          "mae_m": 0.009777153371013102,
+          "p95_abs_m": 0.013283560647549209
+        },
+        "selected_ray_position": {
+          "n": 60,
+          "mean_m": 0.00987825529801133,
+          "std_m": 0.0019189418092487968,
+          "mae_m": 0.00987825529801133,
+          "p95_abs_m": 0.013403284221544635
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "two_crossing",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 59,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 57
+      },
+      "pose_snapshots": 841,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "person_2",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "multiple",
+      "visible_instances": 120,
+      "matched_boxes": 82,
+      "torso_references": 118,
+      "numeric_outputs": 76,
+      "numeric_output_rate": 0.6333333333333333,
+      "on_target_outputs": 76,
+      "on_target_output_rate": 0.6333333333333333,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 76
+      },
+      "statuses": {
+        "valid": 76,
+        "missing_range_message": 6,
+        "detector_miss": 38
+      },
+      "torso_z": {
+        "n": 76,
+        "mean_m": -0.00448606830393804,
+        "std_m": 0.006775957842119047,
+        "mae_m": 0.007383709640659802,
+        "p95_abs_m": 0.012399944271492713
+      },
+      "torso_position": {
+        "n": 76,
+        "mean_m": 0.07171149829103833,
+        "std_m": 0.02252991824693689,
+        "mae_m": 0.07171149829103833,
+        "p95_abs_m": 0.10210326830431955
+      },
+      "on_target_torso_z": {
+        "n": 76,
+        "mean_m": -0.00448606830393804,
+        "std_m": 0.006775957842119047,
+        "mae_m": 0.007383709640659802,
+        "p95_abs_m": 0.012399944271492713
+      },
+      "on_target_torso_position": {
+        "n": 76,
+        "mean_m": 0.07171149829103833,
+        "std_m": 0.02252991824693689,
+        "mae_m": 0.07171149829103833,
+        "p95_abs_m": 0.10210326830431955
+      },
+      "selected_ray_z": {
+        "n": 76,
+        "mean_m": 0.0021321643186970225,
+        "std_m": 0.010231677524168563,
+        "mae_m": 0.009092396484086926,
+        "p95_abs_m": 0.01882967971411631
+      },
+      "selected_ray_position": {
+        "n": 76,
+        "mean_m": 0.009304962537907144,
+        "std_m": 0.005231886757920766,
+        "mae_m": 0.009304962537907144,
+        "p95_abs_m": 0.019129320457935334
+      },
+      "truth_box": {
+        "visible_instances": 120,
+        "matched_boxes": 82,
+        "torso_references": 118,
+        "numeric_outputs": 118,
+        "numeric_output_rate": 0.9833333333333333,
+        "on_target_outputs": 116,
+        "on_target_output_rate": 0.9666666666666667,
+        "wrong_surface_outputs": 2,
+        "surface_counts": {
+          "target_person": 116,
+          "other_person": 2
+        },
+        "statuses": {
+          "valid": 118,
+          "missing_depth_or_calibration": 2
+        },
+        "torso_z": {
+          "n": 116,
+          "mean_m": -0.005092415156412049,
+          "std_m": 0.009361163013790759,
+          "mae_m": 0.00968055920759888,
+          "p95_abs_m": 0.015747100844598294
+        },
+        "torso_position": {
+          "n": 116,
+          "mean_m": 0.07449775483275438,
+          "std_m": 0.023000630726738015,
+          "mae_m": 0.07449775483275438,
+          "p95_abs_m": 0.10608201154079394
+        },
+        "on_target_torso_z": {
+          "n": 116,
+          "mean_m": -0.005092415156412049,
+          "std_m": 0.009361163013790759,
+          "mae_m": 0.00968055920759888,
+          "p95_abs_m": 0.015747100844598294
+        },
+        "on_target_torso_position": {
+          "n": 116,
+          "mean_m": 0.07449775483275438,
+          "std_m": 0.023000630726738015,
+          "mae_m": 0.07449775483275438,
+          "p95_abs_m": 0.10608201154079394
+        },
+        "selected_ray_z": {
+          "n": 116,
+          "mean_m": 0.0004252745573107076,
+          "std_m": 0.012201189582983574,
+          "mae_m": 0.011043988262361247,
+          "p95_abs_m": 0.019271985974821604
+        },
+        "selected_ray_position": {
+          "n": 116,
+          "mean_m": 0.011285066406098216,
+          "std_m": 0.00527046188277687,
+          "mae_m": 0.011285066406098216,
+          "p95_abs_m": 0.019556950302718618
+        }
+      },
+      "occluded": {
+        "visible_instances": 6,
+        "matched_boxes": 0,
+        "torso_references": 4,
+        "numeric_outputs": 0,
+        "numeric_output_rate": 0.0,
+        "on_target_outputs": 0,
+        "on_target_output_rate": 0.0,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {
+          "detector_miss": 6
+        },
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "partial_occlusion",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 58,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 55
+      },
+      "pose_snapshots": 842,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "occlusion",
+      "visible_instances": 44,
+      "matched_boxes": 18,
+      "torso_references": 38,
+      "numeric_outputs": 16,
+      "numeric_output_rate": 0.36363636363636365,
+      "on_target_outputs": 16,
+      "on_target_output_rate": 0.36363636363636365,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 16
+      },
+      "statuses": {
+        "valid": 16,
+        "detector_miss": 26,
+        "missing_range_message": 2
+      },
+      "torso_z": {
+        "n": 16,
+        "mean_m": -0.008330448151853687,
+        "std_m": 0.0015743712291451204,
+        "mae_m": 0.008330448151853687,
+        "p95_abs_m": 0.010978779606241829
+      },
+      "torso_position": {
+        "n": 16,
+        "mean_m": 0.08046021793263633,
+        "std_m": 0.011945368205071404,
+        "mae_m": 0.08046021793263633,
+        "p95_abs_m": 0.10072071450821377
+      },
+      "on_target_torso_z": {
+        "n": 16,
+        "mean_m": -0.008330448151853687,
+        "std_m": 0.0015743712291451204,
+        "mae_m": 0.008330448151853687,
+        "p95_abs_m": 0.010978779606241829
+      },
+      "on_target_torso_position": {
+        "n": 16,
+        "mean_m": 0.08046021793263633,
+        "std_m": 0.011945368205071404,
+        "mae_m": 0.08046021793263633,
+        "p95_abs_m": 0.10072071450821377
+      },
+      "selected_ray_z": {
+        "n": 16,
+        "mean_m": -0.0065187458012683774,
+        "std_m": 0.001644546385762875,
+        "mae_m": 0.0065187458012683774,
+        "p95_abs_m": 0.009288833052044532
+      },
+      "selected_ray_position": {
+        "n": 16,
+        "mean_m": 0.00669104428584753,
+        "std_m": 0.0016866057538505337,
+        "mae_m": 0.00669104428584753,
+        "p95_abs_m": 0.009542105541964632
+      },
+      "truth_box": {
+        "visible_instances": 44,
+        "matched_boxes": 18,
+        "torso_references": 38,
+        "numeric_outputs": 34,
+        "numeric_output_rate": 0.7727272727272727,
+        "on_target_outputs": 34,
+        "on_target_output_rate": 0.7727272727272727,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 34
+        },
+        "statuses": {
+          "valid": 34,
+          "insufficient_depth": 8,
+          "missing_depth_or_calibration": 2
+        },
+        "torso_z": {
+          "n": 34,
+          "mean_m": -0.011030804034987862,
+          "std_m": 0.006657881991555594,
+          "mae_m": 0.011610321839384244,
+          "p95_abs_m": 0.018031885564204764
+        },
+        "torso_position": {
+          "n": 34,
+          "mean_m": 0.0901249546872071,
+          "std_m": 0.037032827803982836,
+          "mae_m": 0.0901249546872071,
+          "p95_abs_m": 0.12093438582799339
+        },
+        "on_target_torso_z": {
+          "n": 34,
+          "mean_m": -0.011030804034987862,
+          "std_m": 0.006657881991555594,
+          "mae_m": 0.011610321839384244,
+          "p95_abs_m": 0.018031885564204764
+        },
+        "on_target_torso_position": {
+          "n": 34,
+          "mean_m": 0.0901249546872071,
+          "std_m": 0.037032827803982836,
+          "mae_m": 0.0901249546872071,
+          "p95_abs_m": 0.12093438582799339
+        },
+        "selected_ray_z": {
+          "n": 34,
+          "mean_m": -0.01084367508040341,
+          "std_m": 0.005692079086659897,
+          "mae_m": 0.01127348697485483,
+          "p95_abs_m": 0.01737822217579943
+        },
+        "selected_ray_position": {
+          "n": 34,
+          "mean_m": 0.011532284182770173,
+          "std_m": 0.004880395982812803,
+          "mae_m": 0.011532284182770173,
+          "p95_abs_m": 0.01778279392427555
+        }
+      },
+      "occluded": {
+        "visible_instances": 20,
+        "matched_boxes": 0,
+        "torso_references": 14,
+        "numeric_outputs": 0,
+        "numeric_output_rate": 0.0,
+        "on_target_outputs": 0,
+        "on_target_output_rate": 0.0,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {
+          "detector_miss": 20
+        },
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    },
+    {
+      "case": "exit_return",
+      "expected_frames": 60,
+      "frames": 60,
+      "stream_counts": {
+        "rgb": 60,
+        "depth": 58,
+        "labels": 60,
+        "info": 60,
+        "boxes": 60,
+        "output": 58
+      },
+      "pose_snapshots": 836,
+      "pose_entity_names": [
+        "oakd_rgb_camera_frame",
+        "person_1",
+        "turtlebot4"
+      ],
+      "observed_pose_names_if_missing": [],
+      "truth_subscribers": [
+        "phase3_depth_evaluator"
+      ],
+      "velocity_topics": [],
+      "category": "field_of_view",
+      "visible_instances": 38,
+      "matched_boxes": 34,
+      "torso_references": 38,
+      "numeric_outputs": 31,
+      "numeric_output_rate": 0.8157894736842105,
+      "on_target_outputs": 31,
+      "on_target_output_rate": 0.8157894736842105,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 31
+      },
+      "statuses": {
+        "valid": 31,
+        "missing_range_message": 1,
+        "detector_miss": 4,
+        "insufficient_depth": 2
+      },
+      "torso_z": {
+        "n": 31,
+        "mean_m": 0.007519659641845136,
+        "std_m": 0.022270702903813347,
+        "mae_m": 0.018570913285601315,
+        "p95_abs_m": 0.049308543075626377
+      },
+      "torso_position": {
+        "n": 31,
+        "mean_m": 0.05583893482347713,
+        "std_m": 0.022954811064931645,
+        "mae_m": 0.05583893482347713,
+        "p95_abs_m": 0.09564819400640578
+      },
+      "on_target_torso_z": {
+        "n": 31,
+        "mean_m": 0.007519659641845136,
+        "std_m": 0.022270702903813347,
+        "mae_m": 0.018570913285601315,
+        "p95_abs_m": 0.049308543075626377
+      },
+      "on_target_torso_position": {
+        "n": 31,
+        "mean_m": 0.05583893482347713,
+        "std_m": 0.022954811064931645,
+        "mae_m": 0.05583893482347713,
+        "p95_abs_m": 0.09564819400640578
+      },
+      "selected_ray_z": {
+        "n": 31,
+        "mean_m": 0.008999941999091692,
+        "std_m": 0.008047440985920891,
+        "mae_m": 0.009960151278911302,
+        "p95_abs_m": 0.01964208139532886
+      },
+      "selected_ray_position": {
+        "n": 31,
+        "mean_m": 0.011207001953645275,
+        "std_m": 0.007721938228858529,
+        "mae_m": 0.011207001953645275,
+        "p95_abs_m": 0.02252090002969321
+      },
+      "truth_box": {
+        "visible_instances": 38,
+        "matched_boxes": 34,
+        "torso_references": 38,
+        "numeric_outputs": 35,
+        "numeric_output_rate": 0.9210526315789473,
+        "on_target_outputs": 35,
+        "on_target_output_rate": 0.9210526315789473,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {
+          "target_person": 35
+        },
+        "statuses": {
+          "valid": 35,
+          "missing_depth_or_calibration": 2,
+          "insufficient_depth": 1
+        },
+        "torso_z": {
+          "n": 35,
+          "mean_m": 0.00941597453192266,
+          "std_m": 0.023476353909406732,
+          "mae_m": 0.021400723530186624,
+          "p95_abs_m": 0.04451846254018034
+        },
+        "torso_position": {
+          "n": 35,
+          "mean_m": 0.06737026617810735,
+          "std_m": 0.02242827330485093,
+          "mae_m": 0.06737026617810735,
+          "p95_abs_m": 0.10399895456107729
+        },
+        "on_target_torso_z": {
+          "n": 35,
+          "mean_m": 0.00941597453192266,
+          "std_m": 0.023476353909406732,
+          "mae_m": 0.021400723530186624,
+          "p95_abs_m": 0.04451846254018034
+        },
+        "on_target_torso_position": {
+          "n": 35,
+          "mean_m": 0.06737026617810735,
+          "std_m": 0.02242827330485093,
+          "mae_m": 0.06737026617810735,
+          "p95_abs_m": 0.10399895456107729
+        },
+        "selected_ray_z": {
+          "n": 35,
+          "mean_m": 0.0076405506788159525,
+          "std_m": 0.008449827223508078,
+          "mae_m": 0.009398804770856854,
+          "p95_abs_m": 0.01867729441996757
+        },
+        "selected_ray_position": {
+          "n": 35,
+          "mean_m": 0.01046260049838769,
+          "std_m": 0.007129549683155244,
+          "mae_m": 0.01046260049838769,
+          "p95_abs_m": 0.021612594188232553
+        }
+      },
+      "occluded": {
+        "visible_instances": 0,
+        "matched_boxes": 0,
+        "torso_references": 0,
+        "numeric_outputs": 0,
+        "numeric_output_rate": null,
+        "on_target_outputs": 0,
+        "on_target_output_rate": null,
+        "wrong_surface_outputs": 0,
+        "surface_counts": {},
+        "statuses": {},
+        "torso_z": {
+          "n": 0
+        },
+        "torso_position": {
+          "n": 0
+        },
+        "on_target_torso_z": {
+          "n": 0
+        },
+        "on_target_torso_position": {
+          "n": 0
+        },
+        "selected_ray_z": {
+          "n": 0
+        },
+        "selected_ray_position": {
+          "n": 0
+        }
+      },
+      "unmatched_boxes": 0,
+      "unmatched_numeric_outputs": 0
+    }
+  ],
+  "overall": {
+    "visible_instances": 622,
+    "matched_boxes": 474,
+    "torso_references": 614,
+    "numeric_outputs": 446,
+    "numeric_output_rate": 0.7170418006430869,
+    "on_target_outputs": 446,
+    "on_target_output_rate": 0.7170418006430869,
+    "wrong_surface_outputs": 0,
+    "surface_counts": {
+      "target_person": 446
+    },
+    "statuses": {
+      "detector_miss": 148,
+      "valid": 446,
+      "missing_range_message": 26,
+      "insufficient_depth": 2
+    },
+    "torso_z": {
+      "n": 446,
+      "mean_m": -0.003170520512897365,
+      "std_m": 0.007317854778675198,
+      "mae_m": 0.005477759307385467,
+      "p95_abs_m": 0.012158162597464828
+    },
+    "torso_position": {
+      "n": 446,
+      "mean_m": 0.09586067334538387,
+      "std_m": 0.050549417538003266,
+      "mae_m": 0.09586067334538387,
+      "p95_abs_m": 0.1818240616126668
+    },
+    "on_target_torso_z": {
+      "n": 446,
+      "mean_m": -0.003170520512897365,
+      "std_m": 0.007317854778675198,
+      "mae_m": 0.005477759307385467,
+      "p95_abs_m": 0.012158162597464828
+    },
+    "on_target_torso_position": {
+      "n": 446,
+      "mean_m": 0.09586067334538387,
+      "std_m": 0.050549417538003266,
+      "mae_m": 0.09586067334538387,
+      "p95_abs_m": 0.1818240616126668
+    },
+    "selected_ray_z": {
+      "n": 446,
+      "mean_m": 0.008149450917001578,
+      "std_m": 0.00763137262303475,
+      "mae_m": 0.010040077841618677,
+      "p95_abs_m": 0.018970119448881828
+    },
+    "selected_ray_position": {
+      "n": 446,
+      "mean_m": 0.01039961934017223,
+      "std_m": 0.005089040467923872,
+      "mae_m": 0.01039961934017223,
+      "p95_abs_m": 0.01968723520599453
+    }
+  },
+  "ideal": {
+    "visible_instances": 240,
+    "matched_boxes": 180,
+    "torso_references": 240,
+    "numeric_outputs": 173,
+    "numeric_output_rate": 0.7208333333333333,
+    "on_target_outputs": 173,
+    "on_target_output_rate": 0.7208333333333333,
+    "wrong_surface_outputs": 0,
+    "surface_counts": {
+      "target_person": 173
+    },
+    "statuses": {
+      "detector_miss": 60,
+      "valid": 173,
+      "missing_range_message": 7
+    },
+    "torso_z": {
+      "n": 173,
+      "mean_m": -0.003316458038379159,
+      "std_m": 0.0004833291931806346,
+      "mae_m": 0.003316458038379159,
+      "p95_abs_m": 0.0039969886848665315
+    },
+    "torso_position": {
+      "n": 173,
+      "mean_m": 0.1407957564859533,
+      "std_m": 0.051444373083056806,
+      "mae_m": 0.1407957564859533,
+      "p95_abs_m": 0.1818240616126668
+    },
+    "on_target_torso_z": {
+      "n": 173,
+      "mean_m": -0.003316458038379159,
+      "std_m": 0.0004833291931806346,
+      "mae_m": 0.003316458038379159,
+      "p95_abs_m": 0.0039969886848665315
+    },
+    "on_target_torso_position": {
+      "n": 173,
+      "mean_m": 0.1407957564859533,
+      "std_m": 0.051444373083056806,
+      "mae_m": 0.1407957564859533,
+      "p95_abs_m": 0.1818240616126668
+    },
+    "selected_ray_z": {
+      "n": 173,
+      "mean_m": 0.010687935658322668,
+      "std_m": 0.00586771917648313,
+      "mae_m": 0.010687935658322668,
+      "p95_abs_m": 0.018970119448881828
+    },
+    "selected_ray_position": {
+      "n": 173,
+      "mean_m": 0.011130684627335503,
+      "std_m": 0.006044368873949627,
+      "mae_m": 0.011130684627335503,
+      "p95_abs_m": 0.01968723520599453
+    }
+  },
+  "occluded": {
+    "visible_instances": 64,
+    "matched_boxes": 20,
+    "torso_references": 56,
+    "numeric_outputs": 20,
+    "numeric_output_rate": 0.3125,
+    "on_target_outputs": 20,
+    "on_target_output_rate": 0.3125,
+    "wrong_surface_outputs": 0,
+    "surface_counts": {
+      "target_person": 20
+    },
+    "statuses": {
+      "valid": 20,
+      "detector_miss": 44
+    },
+    "torso_z": {
+      "n": 20,
+      "mean_m": -0.002926478183220027,
+      "std_m": 0.0036385607006864476,
+      "mae_m": 0.002926478183220027,
+      "p95_abs_m": 0.013681289780873573
+    },
+    "torso_position": {
+      "n": 20,
+      "mean_m": 0.06883166576241588,
+      "std_m": 0.023822354464611787,
+      "mae_m": 0.06883166576241588,
+      "p95_abs_m": 0.11954343903932685
+    },
+    "on_target_torso_z": {
+      "n": 20,
+      "mean_m": -0.002926478183220027,
+      "std_m": 0.0036385607006864476,
+      "mae_m": 0.002926478183220027,
+      "p95_abs_m": 0.013681289780873573
+    },
+    "on_target_torso_position": {
+      "n": 20,
+      "mean_m": 0.06883166576241588,
+      "std_m": 0.023822354464611787,
+      "mae_m": 0.06883166576241588,
+      "p95_abs_m": 0.11954343903932685
+    },
+    "selected_ray_z": {
+      "n": 20,
+      "mean_m": 0.0066236529865713045,
+      "std_m": 0.009239619177520603,
+      "mae_m": 0.010417433511301154,
+      "p95_abs_m": 0.018968902623649253
+    },
+    "selected_ray_position": {
+      "n": 20,
+      "mean_m": 0.010597623696582579,
+      "std_m": 0.004589977837415232,
+      "mae_m": 0.010597623696582579,
+      "p95_abs_m": 0.0191486576629907
+    }
+  },
+  "goal_p95_m": 0.1,
+  "truth_box": {
+    "overall": {
+      "visible_instances": 622,
+      "matched_boxes": 474,
+      "torso_references": 614,
+      "numeric_outputs": 599,
+      "numeric_output_rate": 0.9630225080385852,
+      "on_target_outputs": 597,
+      "on_target_output_rate": 0.9598070739549839,
+      "wrong_surface_outputs": 2,
+      "surface_counts": {
+        "target_person": 597,
+        "other_person": 2
+      },
+      "statuses": {
+        "valid": 599,
+        "missing_depth_or_calibration": 14,
+        "insufficient_depth": 9
+      },
+      "torso_z": {
+        "n": 597,
+        "mean_m": 0.0006838516735478608,
+        "std_m": 0.016057678388933728,
+        "mae_m": 0.010460678309984834,
+        "p95_abs_m": 0.041856430439233705
+      },
+      "torso_position": {
+        "n": 597,
+        "mean_m": 0.12049381814236645,
+        "std_m": 0.08296504485728248,
+        "mae_m": 0.12049381814236645,
+        "p95_abs_m": 0.3134380296590795
+      },
+      "on_target_torso_z": {
+        "n": 597,
+        "mean_m": 0.0006838516735478608,
+        "std_m": 0.016057678388933728,
+        "mae_m": 0.010460678309984834,
+        "p95_abs_m": 0.041856430439233705
+      },
+      "on_target_torso_position": {
+        "n": 597,
+        "mean_m": 0.12049381814236645,
+        "std_m": 0.08296504485728248,
+        "mae_m": 0.12049381814236645,
+        "p95_abs_m": 0.3134380296590795
+      },
+      "selected_ray_z": {
+        "n": 597,
+        "mean_m": 0.005023891007063181,
+        "std_m": 0.008474430340377086,
+        "mae_m": 0.008950130843829852,
+        "p95_abs_m": 0.017709083482780663
+      },
+      "selected_ray_position": {
+        "n": 597,
+        "mean_m": 0.0092147663934983,
+        "std_m": 0.0042177246104614765,
+        "mae_m": 0.0092147663934983,
+        "p95_abs_m": 0.01807662601379919
+      }
+    },
+    "ideal": {
+      "visible_instances": 240,
+      "matched_boxes": 180,
+      "torso_references": 240,
+      "numeric_outputs": 235,
+      "numeric_output_rate": 0.9791666666666666,
+      "on_target_outputs": 235,
+      "on_target_output_rate": 0.9791666666666666,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 235
+      },
+      "statuses": {
+        "valid": 235,
+        "missing_depth_or_calibration": 5
+      },
+      "torso_z": {
+        "n": 235,
+        "mean_m": 0.008044359567343133,
+        "std_m": 0.01980275208866513,
+        "mae_m": 0.013329136827159185,
+        "p95_abs_m": 0.041856430439233705
+      },
+      "torso_position": {
+        "n": 235,
+        "mean_m": 0.19340841573563292,
+        "std_m": 0.08761118105273193,
+        "mae_m": 0.19340841573563292,
+        "p95_abs_m": 0.3134380296590795
+      },
+      "on_target_torso_z": {
+        "n": 235,
+        "mean_m": 0.008044359567343133,
+        "std_m": 0.01980275208866513,
+        "mae_m": 0.013329136827159185,
+        "p95_abs_m": 0.041856430439233705
+      },
+      "on_target_torso_position": {
+        "n": 235,
+        "mean_m": 0.19340841573563292,
+        "std_m": 0.08761118105273193,
+        "mae_m": 0.19340841573563292,
+        "p95_abs_m": 0.3134380296590795
+      },
+      "selected_ray_z": {
+        "n": 235,
+        "mean_m": 0.0066970909176509545,
+        "std_m": 0.0026097323046885904,
+        "mae_m": 0.0066970909176509545,
+        "p95_abs_m": 0.010182740624843145
+      },
+      "selected_ray_position": {
+        "n": 235,
+        "mean_m": 0.006925159383788968,
+        "std_m": 0.0026175350657598674,
+        "mae_m": 0.006925159383788968,
+        "p95_abs_m": 0.010379251671576141
+      }
+    },
+    "occluded": {
+      "visible_instances": 64,
+      "matched_boxes": 20,
+      "torso_references": 56,
+      "numeric_outputs": 53,
+      "numeric_output_rate": 0.828125,
+      "on_target_outputs": 51,
+      "on_target_output_rate": 0.796875,
+      "wrong_surface_outputs": 2,
+      "surface_counts": {
+        "target_person": 51,
+        "other_person": 2
+      },
+      "statuses": {
+        "valid": 53,
+        "missing_depth_or_calibration": 3,
+        "insufficient_depth": 8
+      },
+      "torso_z": {
+        "n": 51,
+        "mean_m": -0.004877359653807131,
+        "std_m": 0.006794481691642982,
+        "mae_m": 0.0059471634012350115,
+        "p95_abs_m": 0.014768824677174663
+      },
+      "torso_position": {
+        "n": 51,
+        "mean_m": 0.08337491507521362,
+        "std_m": 0.03987649524318532,
+        "mae_m": 0.08337491507521362,
+        "p95_abs_m": 0.14966137599141038
+      },
+      "on_target_torso_z": {
+        "n": 51,
+        "mean_m": -0.004877359653807131,
+        "std_m": 0.006794481691642982,
+        "mae_m": 0.0059471634012350115,
+        "p95_abs_m": 0.014768824677174663
+      },
+      "on_target_torso_position": {
+        "n": 51,
+        "mean_m": 0.08337491507521362,
+        "std_m": 0.03987649524318532,
+        "mae_m": 0.08337491507521362,
+        "p95_abs_m": 0.14966137599141038
+      },
+      "selected_ray_z": {
+        "n": 51,
+        "mean_m": 0.0013999823208337584,
+        "std_m": 0.011956018812087457,
+        "mae_m": 0.010916363603685779,
+        "p95_abs_m": 0.019329073423906884
+      },
+      "selected_ray_position": {
+        "n": 51,
+        "mean_m": 0.01108115468006385,
+        "std_m": 0.005130249391124822,
+        "mae_m": 0.01108115468006385,
+        "p95_abs_m": 0.019579093485894816
+      }
+    }
+  },
+  "same_input_comparison": {
+    "live": {
+      "visible_instances": 438,
+      "matched_boxes": 438,
+      "torso_references": 438,
+      "numeric_outputs": 437,
+      "numeric_output_rate": 0.997716894977169,
+      "on_target_outputs": 437,
+      "on_target_output_rate": 0.997716894977169,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 437
+      },
+      "statuses": {
+        "valid": 437,
+        "insufficient_depth": 1
+      },
+      "torso_z": {
+        "n": 437,
+        "mean_m": -0.003091235750056022,
+        "std_m": 0.007320049569900109,
+        "mae_m": 0.005445992048320767,
+        "p95_abs_m": 0.012116106653156499
+      },
+      "torso_position": {
+        "n": 437,
+        "mean_m": 0.09524188857720337,
+        "std_m": 0.05039414844772164,
+        "mae_m": 0.09524188857720337,
+        "p95_abs_m": 0.1818240616126668
+      },
+      "on_target_torso_z": {
+        "n": 437,
+        "mean_m": -0.003091235750056022,
+        "std_m": 0.007320049569900109,
+        "mae_m": 0.005445992048320767,
+        "p95_abs_m": 0.012116106653156499
+      },
+      "on_target_torso_position": {
+        "n": 437,
+        "mean_m": 0.09524188857720337,
+        "std_m": 0.05039414844772164,
+        "mae_m": 0.09524188857720337,
+        "p95_abs_m": 0.1818240616126668
+      },
+      "selected_ray_z": {
+        "n": 437,
+        "mean_m": 0.008178795460806017,
+        "std_m": 0.007640699111593864,
+        "mae_m": 0.010072252247106386,
+        "p95_abs_m": 0.018970119448881828
+      },
+      "selected_ray_position": {
+        "n": 437,
+        "mean_m": 0.010431506098984312,
+        "std_m": 0.005089013621230992,
+        "mae_m": 0.010431506098984312,
+        "p95_abs_m": 0.01968723520599453
+      }
+    },
+    "median": {
+      "visible_instances": 438,
+      "matched_boxes": 438,
+      "torso_references": 438,
+      "numeric_outputs": 437,
+      "numeric_output_rate": 0.997716894977169,
+      "on_target_outputs": 437,
+      "on_target_output_rate": 0.997716894977169,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 437
+      },
+      "statuses": {
+        "valid": 437,
+        "insufficient_depth": 1
+      },
+      "torso_z": {
+        "n": 437,
+        "mean_m": -0.002076945828629358,
+        "std_m": 0.009284826260629748,
+        "mae_m": 0.0057845926212054515,
+        "p95_abs_m": 0.018435833085316933
+      },
+      "torso_position": {
+        "n": 437,
+        "mean_m": 0.098814281117013,
+        "std_m": 0.05094530157428666,
+        "mae_m": 0.098814281117013,
+        "p95_abs_m": 0.19074768183364468
+      },
+      "on_target_torso_z": {
+        "n": 437,
+        "mean_m": -0.002076945828629358,
+        "std_m": 0.009284826260629748,
+        "mae_m": 0.0057845926212054515,
+        "p95_abs_m": 0.018435833085316933
+      },
+      "on_target_torso_position": {
+        "n": 437,
+        "mean_m": 0.098814281117013,
+        "std_m": 0.05094530157428666,
+        "mae_m": 0.098814281117013,
+        "p95_abs_m": 0.19074768183364468
+      },
+      "selected_ray_z": {
+        "n": 437,
+        "mean_m": 0.00799445267622694,
+        "std_m": 0.007018737265445105,
+        "mae_m": 0.009322304178837433,
+        "p95_abs_m": 0.019020425769072258
+      },
+      "selected_ray_position": {
+        "n": 437,
+        "mean_m": 0.00964187624802347,
+        "std_m": 0.0053226839534228215,
+        "mae_m": 0.00964187624802347,
+        "p95_abs_m": 0.019739443225064
+      }
+    }
+  },
+  "same_input_occlusion_comparison": {
+    "live": {
+      "visible_instances": 20,
+      "matched_boxes": 20,
+      "torso_references": 20,
+      "numeric_outputs": 20,
+      "numeric_output_rate": 1.0,
+      "on_target_outputs": 20,
+      "on_target_output_rate": 1.0,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 20
+      },
+      "statuses": {
+        "valid": 20
+      },
+      "torso_z": {
+        "n": 20,
+        "mean_m": -0.002926478183220027,
+        "std_m": 0.0036385607006864476,
+        "mae_m": 0.002926478183220027,
+        "p95_abs_m": 0.013681289780873573
+      },
+      "torso_position": {
+        "n": 20,
+        "mean_m": 0.06883166576241588,
+        "std_m": 0.023822354464611787,
+        "mae_m": 0.06883166576241588,
+        "p95_abs_m": 0.11954343903932685
+      },
+      "on_target_torso_z": {
+        "n": 20,
+        "mean_m": -0.002926478183220027,
+        "std_m": 0.0036385607006864476,
+        "mae_m": 0.002926478183220027,
+        "p95_abs_m": 0.013681289780873573
+      },
+      "on_target_torso_position": {
+        "n": 20,
+        "mean_m": 0.06883166576241588,
+        "std_m": 0.023822354464611787,
+        "mae_m": 0.06883166576241588,
+        "p95_abs_m": 0.11954343903932685
+      },
+      "selected_ray_z": {
+        "n": 20,
+        "mean_m": 0.0066236529865713045,
+        "std_m": 0.009239619177520603,
+        "mae_m": 0.010417433511301154,
+        "p95_abs_m": 0.018968902623649253
+      },
+      "selected_ray_position": {
+        "n": 20,
+        "mean_m": 0.010597623696582579,
+        "std_m": 0.004589977837415232,
+        "mae_m": 0.010597623696582579,
+        "p95_abs_m": 0.0191486576629907
+      }
+    },
+    "median": {
+      "visible_instances": 20,
+      "matched_boxes": 20,
+      "torso_references": 20,
+      "numeric_outputs": 20,
+      "numeric_output_rate": 1.0,
+      "on_target_outputs": 20,
+      "on_target_output_rate": 1.0,
+      "wrong_surface_outputs": 0,
+      "surface_counts": {
+        "target_person": 20
+      },
+      "statuses": {
+        "valid": 20
+      },
+      "torso_z": {
+        "n": 20,
+        "mean_m": -0.004080018794487117,
+        "std_m": 0.004962473849337995,
+        "mae_m": 0.004080018794487117,
+        "p95_abs_m": 0.018435833085316933
+      },
+      "torso_position": {
+        "n": 20,
+        "mean_m": 0.06019247592371424,
+        "std_m": 0.016670047081153966,
+        "mae_m": 0.06019247592371424,
+        "p95_abs_m": 0.0913752069567766
+      },
+      "on_target_torso_z": {
+        "n": 20,
+        "mean_m": -0.004080018794487117,
+        "std_m": 0.004962473849337995,
+        "mae_m": 0.004080018794487117,
+        "p95_abs_m": 0.018435833085316933
+      },
+      "on_target_torso_position": {
+        "n": 20,
+        "mean_m": 0.06019247592371424,
+        "std_m": 0.016670047081153966,
+        "mae_m": 0.06019247592371424,
+        "p95_abs_m": 0.0913752069567766
+      },
+      "selected_ray_z": {
+        "n": 20,
+        "mean_m": 0.005660723224480036,
+        "std_m": 0.0027942564268917166,
+        "mae_m": 0.00574547714129241,
+        "p95_abs_m": 0.00898079785975714
+      },
+      "selected_ray_position": {
+        "n": 20,
+        "mean_m": 0.005864350206480677,
+        "std_m": 0.0026719297619481903,
+        "mae_m": 0.005864350206480677,
+        "p95_abs_m": 0.009170759507939993
+      }
+    }
+  },
+  "maximum_pose_delta_ms": 8.0,
+  "wrong_surface_example": {
+    "case": "two_crossing",
+    "stamp_ns": 7200000000,
+    "method": "truth_box",
+    "target_label": 12,
+    "selected_label": 11,
+    "depth_z_m": 3.408590316772461
+  }
+}

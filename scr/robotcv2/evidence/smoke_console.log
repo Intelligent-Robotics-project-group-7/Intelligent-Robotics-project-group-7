@@ -1,0 +1,239 @@
+Observer initialized; collecting stationary virtual sensors.
+{
+  "scope": "stationary Gazebo virtual sensors only",
+  "recorded_utc": "2026-11-10T20:46:15Z",
+  "motion_commands_sent": false,
+  "wall_observation_s": 45.00016177899988,
+  "topics": [
+    [
+      "/clock",
+      [
+        "rosgraph_msgs/msg/Clock"
+      ]
+    ],
+    [
+      "/controller_manager/activity",
+      [
+        "controller_manager_msgs/msg/ControllerManagerActivity"
+      ]
+    ],
+    [
+      "/controller_manager/introspection_data/full",
+      [
+        "pal_statistics_msgs/msg/Statistics"
+      ]
+    ],
+    [
+      "/controller_manager/introspection_data/names",
+      [
+        "pal_statistics_msgs/msg/StatisticsNames"
+      ]
+    ],
+    [
+      "/controller_manager/introspection_data/values",
+      [
+        "pal_statistics_msgs/msg/StatisticsValues"
+      ]
+    ],
+    [
+      "/controller_manager/statistics/full",
+      [
+        "pal_statistics_msgs/msg/Statistics"
+      ]
+    ],
+    [
+      "/controller_manager/statistics/names",
+      [
+        "pal_statistics_msgs/msg/StatisticsNames"
+      ]
+    ],
+    [
+      "/controller_manager/statistics/values",
+      [
+        "pal_statistics_msgs/msg/StatisticsValues"
+      ]
+    ],
+    [
+      "/diagnostics",
+      [
+        "diagnostic_msgs/msg/DiagnosticArray"
+      ]
+    ],
+    [
+      "/joint_states",
+      [
+        "sensor_msgs/msg/JointState"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/camera_info",
+      [
+        "sensor_msgs/msg/CameraInfo"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/depth",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/oakd/rgb/preview/image_raw",
+      [
+        "sensor_msgs/msg/Image"
+      ]
+    ],
+    [
+      "/parameter_events",
+      [
+        "rcl_interfaces/msg/ParameterEvent"
+      ]
+    ],
+    [
+      "/robot_description",
+      [
+        "std_msgs/msg/String"
+      ]
+    ],
+    [
+      "/rosout",
+      [
+        "rcl_interfaces/msg/Log"
+      ]
+    ],
+    [
+      "/scan",
+      [
+        "sensor_msgs/msg/LaserScan"
+      ]
+    ],
+    [
+      "/tf",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ],
+    [
+      "/tf_static",
+      [
+        "tf2_msgs/msg/TFMessage"
+      ]
+    ]
+  ],
+  "nodes": [
+    "step1_sensor_observer",
+    "robot_state_publisher",
+    "joint_state_publisher",
+    "gz_ros_control",
+    "controller_manager",
+    "sensor_bridge",
+    "static_transform_publisher_8HH68f1MG22ZCH4z",
+    "static_transform_publisher_JoeVVKH35cpArs10"
+  ],
+  "streams": {
+    "clock": {
+      "count": 23570,
+      "frame_id": null,
+      "wall_receive_hz": 581.518675865513,
+      "source_time_span_s": 23.569000000000003,
+      "sim_time_hz": 999.9999999999999,
+      "sim_to_wall_ratio_observed": 0.5815186758655131
+    },
+    "camera_info": {
+      "count": 715,
+      "frame_id": "oakd_rgb_camera_optical_frame",
+      "wall_receive_hz": 17.995150873611205,
+      "source_time_span_s": 23.559,
+      "sim_time_hz": 30.30688908697313,
+      "sim_to_wall_ratio_observed": 0.5937643689515496
+    },
+    "depth": {
+      "count": 712,
+      "frame_id": "oakd_rgb_camera_optical_frame",
+      "wall_receive_hz": 17.993495672008866,
+      "source_time_span_s": 23.559,
+      "sim_time_hz": 30.179549216859797,
+      "sim_to_wall_ratio_observed": 0.5962148587016272,
+      "width": 320,
+      "height": 240,
+      "encoding": "32FC1",
+      "finite_positive_fraction": 0.72109375,
+      "center_roi_median_m": 2.9580886363983154,
+      "center_roi_definition": "11x11 at image center; geometric plane, not a person"
+    },
+    "rgb": {
+      "count": 715,
+      "frame_id": "oakd_rgb_camera_optical_frame",
+      "wall_receive_hz": 18.069308190939296,
+      "source_time_span_s": 23.559,
+      "sim_time_hz": 30.30688908697313,
+      "sim_to_wall_ratio_observed": 0.5962112488380097,
+      "width": 320,
+      "height": 240,
+      "encoding": "rgb8"
+    },
+    "scan": {
+      "count": 1473,
+      "frame_id": "turtlebot4/rplidar_link/rplidar",
+      "wall_receive_hz": 37.42927303636444,
+      "source_time_span_s": 23.55,
+      "sim_time_hz": 62.50530785562633,
+      "sim_to_wall_ratio_observed": 0.5988175135912925
+    }
+  },
+  "checks": {
+    "rgb_messages": true,
+    "depth_messages": true,
+    "scan_messages": true,
+    "clock_messages": true,
+    "camera_info_messages": true,
+    "depth_has_valid_values": true,
+    "intrinsics_positive": true,
+    "image_dimensions_match_info": true,
+    "camera_transform_available": true
+  },
+  "camera_info": {
+    "width": 320,
+    "height": 240,
+    "k": [
+      221.76500407999384,
+      0.0,
+      160.0,
+      0.0,
+      221.76500407999382,
+      120.0,
+      0.0,
+      0.0,
+      1.0
+    ],
+    "d": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "distortion_model": "plumb_bob"
+  },
+  "rgb_nearest_depth_stamp_delta_ms": {
+    "median": 0.0,
+    "p95": 0.0,
+    "note": "nearest stamp availability, not proof of matching exposure/calibration"
+  },
+  "camera_to_base_transform": {
+    "base": "base_link",
+    "camera_frame": "oakd_rgb_camera_optical_frame",
+    "translation": [
+      -0.05960000000000001,
+      0.0,
+      0.24353
+    ],
+    "quaternion_xyzw": [
+      -0.5,
+      0.4999999999999999,
+      -0.5,
+      0.5000000000000001
+    ]
+  },
+  "pass": true
+}

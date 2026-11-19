@@ -1,0 +1,219 @@
+[INFO] [launch]: All log files can be found below /home/ubuntu/.ros/log/2026-11-10-20-38-57-636322-6f29b90deca3-22
+[INFO] [launch]: Default logging verbosity is set to INFO
+[INFO] [gazebo-1]: process started with pid [43]
+[INFO] [parameter_bridge-2]: process started with pid [44]
+[INFO] [robot_state_publisher-3]: process started with pid [45]
+[INFO] [joint_state_publisher-4]: process started with pid [47]
+[INFO] [robot_state_publisher-5]: process started with pid [48]
+[INFO] [static_transform_publisher-6]: process started with pid [49]
+[INFO] [create-7]: process started with pid [50]
+[INFO] [create-8]: process started with pid [51]
+[INFO] [parameter_bridge-9]: process started with pid [52]
+[INFO] [parameter_bridge-10]: process started with pid [53]
+[INFO] [parameter_bridge-11]: process started with pid [54]
+[INFO] [parameter_bridge-12]: process started with pid [55]
+[INFO] [parameter_bridge-13]: process started with pid [58]
+[INFO] [parameter_bridge-14]: process started with pid [59]
+[INFO] [parameter_bridge-15]: process started with pid [64]
+[INFO] [parameter_bridge-16]: process started with pid [65]
+[INFO] [parameter_bridge-17]: process started with pid [68]
+[INFO] [parameter_bridge-18]: process started with pid [71]
+[INFO] [parameter_bridge-19]: process started with pid [72]
+[INFO] [parameter_bridge-20]: process started with pid [73]
+[INFO] [parameter_bridge-21]: process started with pid [74]
+[INFO] [parameter_bridge-22]: process started with pid [75]
+[INFO] [parameter_bridge-23]: process started with pid [76]
+[INFO] [parameter_bridge-24]: process started with pid [77]
+[INFO] [parameter_bridge-25]: process started with pid [80]
+[INFO] [parameter_bridge-26]: process started with pid [83]
+[INFO] [parameter_bridge-27]: process started with pid [84]
+[INFO] [parameter_bridge-28]: process started with pid [85]
+[INFO] [parameter_bridge-29]: process started with pid [92]
+[INFO] [turtlebot4_node-30]: process started with pid [99]
+[INFO] [turtlebot4_gz_hmi_node-31]: process started with pid [109]
+[INFO] [spawner-32]: process started with pid [110]
+[INFO] [hazards_vector_publisher-33]: process started with pid [114]
+[INFO] [ir_intensity_vector_publisher-34]: process started with pid [115]
+[INFO] [motion_control-35]: process started with pid [116]
+[INFO] [wheel_status_publisher-36]: process started with pid [124]
+[INFO] [mock_publisher-37]: process started with pid [127]
+[INFO] [robot_state-38]: process started with pid [133]
+[INFO] [kidnap_estimator_publisher-39]: process started with pid [145]
+[INFO] [ui_mgr-40]: process started with pid [166]
+[INFO] [pose_republisher_node-41]: process started with pid [177]
+[INFO] [sensors_node-42]: process started with pid [182]
+[INFO] [interface_buttons_node-43]: process started with pid [194]
+[INFO] [static_transform_publisher-44]: process started with pid [198]
+[INFO] [static_transform_publisher-45]: process started with pid [201]
+[robot_state_publisher-3] [WARN] [1794343138.581338531] [kdl_parser]: The root link base_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-3] [INFO] [1794343138.581522881] [robot_state_publisher]: Robot initialized
+[robot_state_publisher-5] [WARN] [1794343138.634483574] [kdl_parser]: The root link std_dock_link has an inertia specified in the URDF, but KDL does not support a root link with an inertia.  As a workaround, you can add an extra dummy link to your URDF.
+[robot_state_publisher-5] [INFO] [1794343138.634561717] [dock_state_publisher]: Robot initialized
+[static_transform_publisher-6] [WARN] [1794343138.552613018] []: Old-style arguments are deprecated; see --help for new-style arguments
+[create-7] [INFO] [1794343138.542408581] [ros_gz_sim]: Requesting list of world names.
+[parameter_bridge-13] [INFO] [1794343138.653621823] [cliff_front_left_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_front_left/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_front_left/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-11] [INFO] [1794343138.682278672] [odom_base_tf_bridge]: Creating GZ->ROS Bridge: [/model/turtlebot4/tf (ignition.msgs.Pose_V) -> /model/turtlebot4/tf (tf2_msgs/msg/TFMessage)] (Lazy 0)
+[parameter_bridge-17] [INFO] [1794343138.780105811] [ir_intensity_front_center_left_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/ir_intensity_front_center_left/sensor/ir_intensity_front_center_left/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/ir_intensity_front_center_left/sensor/ir_intensity_front_center_left/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[static_transform_publisher-44] [WARN] [1794343138.784055327] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-45] [WARN] [1794343138.845082971] []: Old-style arguments are deprecated; see --help for new-style arguments
+[static_transform_publisher-6] [INFO] [1794343138.853355787] [tf_odom_std_dock_link_publisher]: Spinning until stopped - publishing transform
+[static_transform_publisher-6] translation: ('0.157000', '0.000000', '0.000000')
+[static_transform_publisher-6] rotation: ('0.000000', '0.000000', '1.000000', '0.000000')
+[static_transform_publisher-6] from 'odom' to 'std_dock_link'
+[hazards_vector_publisher-33] [INFO] [1794343138.934510245] [hazards_vector_publisher]: Advertised topic: hazard_detection
+[hazards_vector_publisher-33] [INFO] [1794343138.934876087] [hazards_vector_publisher]: Subscription to topic: _internal/bumper/event
+[hazards_vector_publisher-33] [INFO] [1794343138.941180451] [hazards_vector_publisher]: Subscription to topic: _internal/cliff_front_left/event
+[hazards_vector_publisher-33] [INFO] [1794343138.942346730] [hazards_vector_publisher]: Subscription to topic: _internal/cliff_front_right/event
+[hazards_vector_publisher-33] [INFO] [1794343138.943470420] [hazards_vector_publisher]: Subscription to topic: _internal/cliff_side_left/event
+[hazards_vector_publisher-33] [INFO] [1794343138.943958088] [hazards_vector_publisher]: Subscription to topic: _internal/cliff_side_right/event
+[hazards_vector_publisher-33] [INFO] [1794343138.944854089] [hazards_vector_publisher]: Subscription to topic: _internal/wheel_drop/left_wheel/event
+[hazards_vector_publisher-33] [INFO] [1794343138.945609906] [hazards_vector_publisher]: Subscription to topic: _internal/wheel_drop/right_wheel/event
+[hazards_vector_publisher-33] [INFO] [1794343138.946483893] [hazards_vector_publisher]: Subscription to topic: _internal/backup_limit
+[parameter_bridge-18] [INFO] [1794343139.045795443] [ir_intensity_front_center_right_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/ir_intensity_front_center_right/sensor/ir_intensity_front_center_right/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/ir_intensity_front_center_right/sensor/ir_intensity_front_center_right/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[static_transform_publisher-44] [INFO] [1794343139.141755635] [rplidar_stf]: Spinning until stopped - publishing transform
+[static_transform_publisher-44] translation: ('0.000000', '0.000000', '0.000000')
+[static_transform_publisher-44] rotation: ('0.000000', '0.000000', '0.000000', '1.000000')
+[static_transform_publisher-44] from 'rplidar_link' to 'turtlebot4/rplidar_link/rplidar'
+[kidnap_estimator_publisher-39] terminate called after throwing an instance of 'std::system_error'
+[kidnap_estimator_publisher-39]   what():  pthread_create failed: Resource temporarily unavailable
+[parameter_bridge-15] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-15]   what():  Resource temporarily unavailable
+[parameter_bridge-14] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-14]   what():  pthread_create failed: Resource temporarily unavailable
+[parameter_bridge-26] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-26]   what():  Resource temporarily unavailable
+[create-8] Resource temporarily unavailable (src/thread.cpp:241)
+[parameter_bridge-19] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-19]   what():  Resource temporarily unavailable
+[parameter_bridge-12] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-12]   what():  Resource temporarily unavailable
+[gazebo-1] Resource temporarily unavailable (src/thread.cpp:241)
+[gazebo-1] Stack trace (most recent call last):
+[gazebo-1] #28   Object "[0xffffffffffffffff]", at 0xffffffffffffffff, in 
+[gazebo-1] #27   Object "gz sim -r -s --headless-rendering /workspace/worlds/camera_smoke.sdf", at 0x6286909421d4, in _start
+[gazebo-1] #26   Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7761d34b428a, in __libc_start_main
+[gazebo-1] #25   Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7761d34b41c9, in 
+[gazebo-1] #24   Object "gz sim -r -s --headless-rendering /workspace/worlds/camera_smoke.sdf", at 0x628690942186, in 
+[gazebo-1] #23   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d391b152, in ruby_run_node
+[gazebo-1] #22   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d3916e2b, in 
+[gazebo-1] #21   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d3ab9b49, in rb_vm_exec
+[gazebo-1] #20   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d3ab662b, in 
+[gazebo-1] #19   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d3ab213e, in 
+[gazebo-1] #18   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d3aaf92f, in 
+[gazebo-1] #17   Object "/usr/lib/x86_64-linux-gnu/ruby/3.2.0/fiddle.so", at 0x7761d3207b13, in 
+[gazebo-1] #16   Object "/lib/x86_64-linux-gnu/libruby-3.2.so.3.2", at 0x7761d3a7837b, in rb_nogvl
+[gazebo-1] #15   Object "/usr/lib/x86_64-linux-gnu/ruby/3.2.0/fiddle.so", at 0x7761d320743b, in 
+[gazebo-1] #14   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x7761ceceb0bd, in ffi_call
+[gazebo-1] #13   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x7761cece83ee, in 
+[gazebo-1] #12   Object "/lib/x86_64-linux-gnu/libffi.so.8", at 0x7761cecebb15, in 
+[gazebo-1] #11   Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8-gz.so.8.15.0", at 0x7761ce0c558e, in runServer
+[gazebo-1] #10   Object "/opt/ros/jazzy/opt/gz_sim_vendor/lib/libgz-sim8.so.8", at 0x7761cddaf76c, in gz::sim::v8::Server::Server(gz::sim::v8::ServerConfig const&)
+[gazebo-1] #9    Object "/opt/ros/jazzy/opt/gz_transport_vendor/lib/libgz-transport13.so.13", at 0x7761cd898197, in gz::transport::v13::Node::Node()
+[gazebo-1] #8    Object "/opt/ros/jazzy/opt/gz_transport_vendor/lib/libgz-transport13.so.13", at 0x7761cd897e5b, in gz::transport::v13::Node::Node(gz::transport::v13::NodeOptions const&)
+[gazebo-1] #7    Object "/opt/ros/jazzy/opt/gz_transport_vendor/lib/libgz-transport13.so.13", at 0x7761cd88d2ac, in 
+[gazebo-1] #6    Object "/opt/ros/jazzy/opt/gz_transport_vendor/lib/libgz-transport13.so.13", at 0x7761cd8adee3, in gz::transport::v13::NodeShared::NodeShared()
+[gazebo-1] #5    Object "/lib/x86_64-linux-gnu/libzmq.so.5", at 0x7761ca8eac37, in 
+[gazebo-1] #4    Object "/lib/x86_64-linux-gnu/libzmq.so.5", at 0x7761ca9046dc, in 
+[gazebo-1] #3    Object "/lib/x86_64-linux-gnu/libzmq.so.5", at 0x7761ca8db826, in 
+[gazebo-1] #2    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7761d34b28fe, in abort
+[gazebo-1] #1    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7761d34cf27d, in gsignal
+[gazebo-1] #0    Object "/lib/x86_64-linux-gnu/libc.so.6", at 0x7761d3528c0c, in pthread_kill
+[gazebo-1] Aborted (Signal sent by tkill() 46 1000)
+[parameter_bridge-2] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[parameter_bridge-2]   what():  failed to initialize rcl node: Failed to create std::thread: Resource temporarily unavailable, at ./src/listener_thread.cpp:60, at ./src/rcl/node.c:252
+[parameter_bridge-10] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-10]   what():  Resource temporarily unavailable
+[joint_state_publisher-4] Traceback (most recent call last):
+[joint_state_publisher-4]   File "/opt/ros/jazzy/lib/joint_state_publisher/joint_state_publisher", line 33, in <module>
+[joint_state_publisher-4]     sys.exit(load_entry_point('joint-state-publisher==2.4.3', 'console_scripts', 'joint_state_publisher')())
+[joint_state_publisher-4]              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+[joint_state_publisher-4]   File "/opt/ros/jazzy/lib/python3.12/site-packages/joint_state_publisher/joint_state_publisher.py", line 553, in main
+[joint_state_publisher-4]     rclpy.init()
+[joint_state_publisher-4]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/__init__.py", line 88, in init
+[joint_state_publisher-4]     context.init(args, domain_id=domain_id)
+[joint_state_publisher-4]   File "/opt/ros/jazzy/lib/python3.12/site-packages/rclpy/context.py", line 106, in init
+[joint_state_publisher-4]     _rclpy.rclpy_logging_configure(self.__context)
+[joint_state_publisher-4] RuntimeError: Resource temporarily unavailable
+[ERROR] [joint_state_publisher-4]: process has died [pid 47, exit code 1, cmd '/opt/ros/jazzy/lib/joint_state_publisher/joint_state_publisher --ros-args -r __node:=joint_state_publisher -r __ns:=/ --params-file /tmp/launch_params_tp6srajo -r /tf:=tf -r /tf_static:=tf_static'].
+[static_transform_publisher-45] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[static_transform_publisher-45]   what():  failed to initialize rcl node: Failed to create std::thread: Resource temporarily unavailable, at ./src/listener_thread.cpp:60, at ./src/rcl/node.c:252
+[ERROR] [static_transform_publisher-45]: process has died [pid 201, exit code -6, cmd '/opt/ros/jazzy/lib/tf2_ros/static_transform_publisher 0 0 0 1.5707 -1.5707 0 oakd_rgb_camera_optical_frame turtlebot4/oakd_rgb_camera_frame/rgbd_camera --ros-args -r __node:=camera_stf -r __ns:=/ -r /tf:=tf -r /tf_static:=tf_static'].
+[ERROR] [parameter_bridge-26]: process has died [pid 83, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /hmi/buttons@std_msgs/msg/Int32[gz.msgs.Int32 --ros-args -r __node:=hmi_buttons_msg_bridge -r __ns:=/ --params-file /tmp/launch_params_ehr6kbz0 -r /hmi/buttons:=hmi/buttons/_set'].
+[gazebo-1] Aborted (core dumped)
+[ERROR] [gazebo-1]: process has died [pid 43, exit code 134, cmd 'ruby /opt/ros/jazzy/opt/gz_tools_vendor/bin/gz sim -r -s --headless-rendering /workspace/worlds/camera_smoke.sdf --force-version 8'].
+[ERROR] [parameter_bridge-10]: process has died [pid 53, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /model/turtlebot4/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V /model/standard_dock/pose@tf2_msgs/msg/TFMessage[ignition.msgs.Pose_V --ros-args -r __node:=pose_bridge -r __ns:=/ --params-file /tmp/launch_params_13uri0re -r /model/turtlebot4/pose:=_internal/sim_ground_truth_pose -r /model/standard_dock/pose:=_internal/sim_ground_truth_dock_pose'].
+[ERROR] [parameter_bridge-15]: process has died [pid 64, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_side_left/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan --ros-args -r __node:=cliff_side_left_bridge -r __ns:=/ --params-file /tmp/launch_params_ljqmi5y2 -r /world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_side_left/scan:=_internal/cliff_side_left/scan'].
+[ERROR] [parameter_bridge-2]: process has died [pid 44, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /clock@rosgraph_msgs/msg/Clock[gz.msgs.Clock --ros-args -r __node:=clock_bridge'].
+[ERROR] [parameter_bridge-14]: process has died [pid 59, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_front_right/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan --ros-args -r __node:=cliff_front_right_bridge -r __ns:=/ --params-file /tmp/launch_params_oihqywao -r /world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_front_right/scan:=_internal/cliff_front_right/scan'].
+[ERROR] [parameter_bridge-19]: process has died [pid 72, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /world/camera_smoke/model/turtlebot4/link/ir_intensity_front_left/sensor/ir_intensity_front_left/scan@sensor_msgs/msg/LaserScan[ignition.msgs.LaserScan --ros-args -r __node:=ir_intensity_front_left_bridge -r __ns:=/ --params-file /tmp/launch_params_gjnqezpi -r /world/camera_smoke/model/turtlebot4/link/ir_intensity_front_left/sensor/ir_intensity_front_left/scan:=_internal/ir_intensity_front_left/scan'].
+[ERROR] [parameter_bridge-12]: process has died [pid 55, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /bumper_contact@ros_gz_interfaces/msg/Contacts[ignition.msgs.Contacts --ros-args -r __node:=bumper_contact_bridge -r __ns:=/ --params-file /tmp/launch_params_k90lo5eg -r /bumper_contact:=bumper_contact'].
+[ERROR] [create-8]: process has died [pid 51, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_sim/create -name standard_dock -x 0.157 -y 0.0 -z 0.0 -Y 3.1416 -topic standard_dock_description --ros-args -r __ns:=/'].
+[ERROR] [kidnap_estimator_publisher-39]: process has died [pid 145, exit code -6, cmd '/opt/ros/jazzy/lib/irobot_create_nodes/kidnap_estimator_publisher --ros-args -r __node:=kidnap_estimator_publisher -r __ns:=/ --params-file /opt/ros/jazzy/share/irobot_create_common_bringup/config/kidnap_estimator_params.yaml --params-file /tmp/launch_params_3rcggg9x'].
+[parameter_bridge-22] [INFO] [1794343140.182912308] [ir_intensity_right_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/ir_intensity_right/sensor/ir_intensity_right/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/ir_intensity_right/sensor/ir_intensity_right/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.366403293] [ir_intensity_vector_publisher]: Advertised topic: ir_intensity
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.367106080] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_front_center_left
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.367651640] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_front_center_right
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.368029828] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_front_left
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.368364152] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_front_right
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.368695379] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_left
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.369152897] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_right
+[ir_intensity_vector_publisher-34] [INFO] [1794343141.369601507] [ir_intensity_vector_publisher]: Subscription to topic: _internal/ir_intensity_side_left
+[turtlebot4_node-30] [INFO] [1794343141.599545075] [turtlebot4_node]: Init Turtlebot4 Node Main
+[turtlebot4_node-30] [INFO] [1794343141.620927841] [turtlebot4_node]: Buttons Init
+[turtlebot4_node-30] [INFO] [1794343141.622488725] [turtlebot4_node]: Init Display
+[turtlebot4_node-30] [INFO] [1794343141.623224437] [turtlebot4_node]: Leds Init
+[turtlebot4_node-30] [INFO] [1794343141.625743602] [turtlebot4_node]: Turtlebot4 standard running.
+[parameter_bridge-27] [INFO] [1794343141.940744022] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/power (std_msgs/msg/Int32) -> /hmi/led/power (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-27] [INFO] [1794343141.942629898] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/motors (std_msgs/msg/Int32) -> /hmi/led/motors (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-27] [INFO] [1794343141.943181609] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/comms (std_msgs/msg/Int32) -> /hmi/led/comms (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-23] [INFO] [1794343141.943506216] [ir_intensity_side_left_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/ir_intensity_side_left/sensor/ir_intensity_side_left/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/ir_intensity_side_left/sensor/ir_intensity_side_left/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[parameter_bridge-27] [INFO] [1794343141.943567368] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/wifi (std_msgs/msg/Int32) -> /hmi/led/wifi (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-27] [INFO] [1794343141.944006594] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/battery (std_msgs/msg/Int32) -> /hmi/led/battery (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-27] [INFO] [1794343141.944462171] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/user1 (std_msgs/msg/Int32) -> /hmi/led/user1 (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-27] [INFO] [1794343141.944952832] [hmi_led_msg_bridge]: Creating ROS->GZ Bridge: [/hmi/led/user2 (std_msgs/msg/Int32) -> /hmi/led/user2 (gz.msgs.Int32)] (Lazy 0)
+[parameter_bridge-25] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[parameter_bridge-25]   what():  failed to initialize rcl node: Failed to create std::thread: Resource temporarily unavailable, at ./src/listener_thread.cpp:60, at ./src/rcl/node.c:252
+[parameter_bridge-28] [INFO] [1794343142.195527523] [lidar_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (gz.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/rplidar_link/sensor/rplidar/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[ERROR] [parameter_bridge-25]: process has died [pid 80, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /hmi/display/raw@std_msgs/msg/String]gz.msgs.StringMsg /hmi/display/selected@std_msgs/msg/Int32]gz.msgs.Int32 --ros-args -r __node:=hmi_display_msg_bridge -r __ns:=/ --params-file /tmp/launch_params_nizdma_e -r /hmi/display/raw:=hmi/display/_raw -r /hmi/display/selected:=hmi/display/_selected'].
+[spawner-32] terminate called after throwing an instance of 'std::system_error'
+[spawner-32]   what():  Invalid argument
+[ERROR] [spawner-32]: process has died [pid 110, exit code -6, cmd '/opt/ros/jazzy/lib/controller_manager/spawner joint_state_broadcaster -c controller_manager --controller-manager-timeout 30 --ros-args -r __ns:=/'].
+[INFO] [spawner-46]: process started with pid [1462]
+[create-7] [INFO] [1794343143.546403994] [ros_gz_sim]: Requesting list of world names.
+[sensors_node-42] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[sensors_node-42]   what():  failed to initialize rcl node: Failed to create std::thread: Resource temporarily unavailable, at ./src/listener_thread.cpp:60, at ./src/rcl/node.c:252
+[parameter_bridge-9] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[parameter_bridge-9]   what():  failed to initialize rcl node: Failed to create std::thread: Resource temporarily unavailable, at ./src/listener_thread.cpp:60, at ./src/rcl/node.c:252
+[mock_publisher-37] terminate called after throwing an instance of 'rclcpp::exceptions::RCLError'
+[mock_publisher-37]   what():  failed to initialize rcl node: Failed to create std::thread: Resource temporarily unavailable, at ./src/listener_thread.cpp:60, at ./src/rcl/node.c:252
+[parameter_bridge-24] terminate called after throwing an instance of 'std::system_error'
+[parameter_bridge-24]   what():  Resource temporarily unavailable
+[parameter_bridge-16] [INFO] [1794343143.888441535] [cliff_side_right_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_side_right/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/base_link/sensor/cliff_side_right/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[ERROR] [parameter_bridge-9]: process has died [pid 52, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /cmd_vel@geometry_msgs/msg/TwistStamped[ignition.msgs.Twist /model/turtlebot4/cmd_vel@geometry_msgs/msg/TwistStamped]ignition.msgs.Twist --ros-args -r __node:=cmd_vel_bridge -r __ns:=/ --params-file /tmp/launch_params_izqfqxg6 -r /cmd_vel:=cmd_vel -r /model/turtlebot4/cmd_vel:=diffdrive_controller/cmd_vel'].
+[ERROR] [sensors_node-42]: process has died [pid 182, exit code -6, cmd '/opt/ros/jazzy/lib/irobot_create_gz_toolbox/sensors_node --ros-args -r __node:=sensors_node -r __ns:=/ --params-file /opt/ros/jazzy/share/irobot_create_gz_bringup/config/sensors_params.yaml --params-file /tmp/launch_params_yd_u7m_k'].
+[ERROR] [mock_publisher-37]: process has died [pid 127, exit code -6, cmd '/opt/ros/jazzy/lib/irobot_create_nodes/mock_publisher --ros-args -r __node:=mock_publisher -r __ns:=/ --params-file /opt/ros/jazzy/share/irobot_create_common_bringup/config/mock_params.yaml --params-file /tmp/launch_params_q_75d9xg'].
+[parameter_bridge-21] [INFO] [1794343143.950432099] [ir_intensity_left_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/ir_intensity_left/sensor/ir_intensity_left/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/ir_intensity_left/sensor/ir_intensity_left/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[robot_state-38] [INFO] [1794343143.956762249] [robot_state]: Advertised topic: battery_state
+[robot_state-38] [INFO] [1794343143.960488667] [robot_state]: Subscription to topic: dock_status
+[robot_state-38] [INFO] [1794343143.961879836] [robot_state]: Advertised topic: stop_status
+[robot_state-38] [INFO] [1794343143.963910336] [robot_state]: Subscription to topic: odom
+[ERROR] [parameter_bridge-24]: process has died [pid 77, exit code -6, cmd '/opt/ros/jazzy/lib/ros_gz_bridge/parameter_bridge /create3_buttons@std_msgs/msg/Int32[ignition.msgs.Int32 --ros-args -r __node:=buttons_msg_bridge -r __ns:=/ --params-file /tmp/launch_params_t5nbcefg -r /create3_buttons:=_internal/create3_buttons'].
+[wheel_status_publisher-36] [INFO] [1794343144.123547915] [wheel_status_publisher]: Advertised topic: wheel_vels
+[parameter_bridge-20] [INFO] [1794343144.162680477] [ir_intensity_front_right_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/ir_intensity_front_right/sensor/ir_intensity_front_right/scan (ignition.msgs.LaserScan) -> /world/camera_smoke/model/turtlebot4/link/ir_intensity_front_right/sensor/ir_intensity_front_right/scan (sensor_msgs/msg/LaserScan)] (Lazy 0)
+[wheel_status_publisher-36] [INFO] [1794343144.796266890] [wheel_status_publisher]: Advertised topic: wheel_ticks
+[parameter_bridge-29] [INFO] [1794343144.813793078] [camera_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (gz.msgs.Image) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/image (sensor_msgs/msg/Image)] (Lazy 0)
+[parameter_bridge-29] [INFO] [1794343144.822659235] [camera_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (gz.msgs.Image) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/depth_image (sensor_msgs/msg/Image)] (Lazy 0)
+[motion_control-35] [INFO] [1794343144.824790018] [motion_control]: Enabling REFLEX_BUMP
+[motion_control-35] [INFO] [1794343144.825349452] [motion_control]: Enabling REFLEX_CLIFF
+[parameter_bridge-29] [INFO] [1794343144.826073108] [camera_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/points (gz.msgs.PointCloudPacked) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/points (sensor_msgs/msg/PointCloud2)] (Lazy 0)
+[motion_control-35] [INFO] [1794343144.829339733] [motion_control]: Enabling REFLEX_STUCK
+[parameter_bridge-29] [INFO] [1794343144.830743992] [camera_bridge]: Creating GZ->ROS Bridge: [/world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (gz.msgs.CameraInfo) -> /world/camera_smoke/model/turtlebot4/link/oakd_rgb_camera_frame/sensor/rgbd_camera/camera_info (sensor_msgs/msg/CameraInfo)] (Lazy 0)
+[motion_control-35] [INFO] [1794343144.831550222] [motion_control]: Enabling REFLEX_WHEEL_DROP
+[create-7] [INFO] [1794343148.547647640] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343153.548116983] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343158.548444418] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343163.548758164] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343168.549075559] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343173.549382226] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343178.549712415] [ros_gz_sim]: Requesting list of world names.
+[create-7] [INFO] [1794343183.549997478] [ros_gz_sim]: Requesting list of world names.
